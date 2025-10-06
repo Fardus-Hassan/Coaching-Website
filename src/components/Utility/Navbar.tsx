@@ -8,32 +8,33 @@ import { FaInstagram, FaLinkedinIn, FaYoutube } from "react-icons/fa";
 import { PiStudentBold } from "react-icons/pi";
 import { IoIosSchool } from "react-icons/io";
 import { IoCall } from "react-icons/io5";
+import Link from "next/link";
+import { usePathname } from "next/navigation";
 
 const navigation = [
   { 
-    name: "Product", 
-    href: "#", 
-    sub: [
-      { name: "Overview", href: "#" },
-      { name: "Pricing", href: "#" }
-    ]
+    name: "হোম", 
+    href: "/", 
   },
   { 
-    name: "Features", 
-    href: "#", 
+    name: "আমাদের সম্পর্কে", 
+    href: "/aboutUs", 
     sub: [
-      { name: "Analytics", href: "#" },
-      { name: "Reports", href: "#" }
+      { name: "UCC সম্পর্কে", href: "/aboutUs" },
+      { name: "চেয়ারম্যানের বার্তা", href: "/message" }
     ]
   },
-  { name: "Marketplace", href: "#" },
-  { name: "Company", href: "#" },
+  { name: "নোটিশ", href: "/notice" },
+  { name: "ফটো গ্যালারি", href: "/gallery" },
+  { name: "ভিডিও", href: "/video" },
+  { name: "বই", href: "/books" },
 ];
 
 export default function Navbar() {
   const [mobileMenuOpen, setMobileMenuOpen] = useState(false);
   const [isScrolled, setIsScrolled] = useState(false);
   const [expandedItems, setExpandedItems] = useState(new Set());
+  const pathname = usePathname();
 
   useEffect(() => {
     const handleScroll = () => {
@@ -44,7 +45,7 @@ export default function Navbar() {
     return () => window.removeEventListener("scroll", handleScroll);
   }, []);
 
-  const toggleExpanded = (name) => {
+  const toggleExpanded = (name : string) => {
     setExpandedItems((prev) => {
       const newSet = new Set(prev);
       if (newSet.has(name)) {
@@ -55,6 +56,8 @@ export default function Navbar() {
       return newSet;
     });
   };
+
+  const isActive = (href: string) => pathname === href;
 
   return (
     <div>
@@ -115,14 +118,14 @@ export default function Navbar() {
           }`}
         >
           <div className="flex lg:flex-1">
-            <a href="#" className="-m-1.5 p-1.5">
+            <Link href="/" className="-m-1.5 p-1.5">
               <span className="sr-only">Your Company</span>
               <img
                 alt=""
                 src="https://tailwindcss.com/plus-assets/img/logos/mark.svg?color=indigo&shade=500"
                 className="h-8 w-auto"
               />
-            </a>
+            </Link>
           </div>
           <div className="flex lg:hidden">
             <button
@@ -137,9 +140,11 @@ export default function Navbar() {
           <div className="hidden lg:flex lg:gap-x-12">
             {navigation.map((item) => (
               <div key={item.name} className="group relative">
-                <a
+                <Link
                   href={item.href}
-                  className="text-sm/6 font-semibold text-white hover:text-gray-300 transition-colors duration-200"
+                  className={`text-sm/6 font-semibold text-white hover:text-gray-300 transition-colors duration-200 px-2 py-1 rounded-md ${
+                    isActive(item.href) ? 'bg-white/10 text-white' : ''
+                  }`}
                 >
                   {item.name}
                   {item.sub && (
@@ -152,18 +157,20 @@ export default function Navbar() {
                       <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M19 9l-7 7-7-7" />
                     </svg>
                   )}
-                </a>
+                </Link>
                 {item.sub && (
                   <div className="absolute left-0 mt-2 w-48 bg-gradient-to-r from-indigo-500 to-indigo-900 rounded-md shadow-lg opacity-0 invisible group-hover:opacity-100 group-hover:visible transition-all duration-300 ease-in-out transform scale-95 group-hover:scale-100 origin-top">
                     <div className="py-1">
                       {item.sub.map((subItem) => (
-                        <a
+                        <Link
                           key={subItem.name}
                           href={subItem.href}
-                          className="block px-4 py-2 text-sm text-white hover:bg-white/10 transition-colors duration-200"
+                          className={`block px-4 py-2 text-sm text-white hover:bg-white/10 transition-colors duration-200 ${
+                            isActive(subItem.href) ? 'bg-white/10' : ''
+                          }`}
                         >
                           {subItem.name}
-                        </a>
+                        </Link>
                       ))}
                     </div>
                   </div>
@@ -204,14 +211,14 @@ export default function Navbar() {
                   >
                     <DialogPanel className="pointer-events-auto p-6 w-screen bg-gradient-to-b from-indigo-500 to-indigo-900 ring-1 ring-gray-100/10 transform transition-all duration-300 ease-in-out">
                       <div className="flex items-center justify-between">
-                        <a href="#" className="-m-1.5 p-1.5">
+                        <Link href="/" className="-m-1.5 p-1.5">
                           <span className="sr-only">Your Company</span>
                           <img
                             alt=""
                             src="https://tailwindcss.com/plus-assets/img/logos/mark.svg?color=indigo&shade=500"
                             className="h-8 w-auto"
                           />
-                        </a>
+                        </Link>
                         <button
                           type="button"
                           onClick={() => setMobileMenuOpen(false)}
@@ -227,13 +234,16 @@ export default function Navbar() {
                         <div className="-my-6 divide-y divide-white/10">
                           {navigation.map((item) => {
                             const isExpanded = expandedItems.has(item.name);
+                            const parentActive = isActive(item.href);
                             return (
                               <div key={item.name} className="py-2">
                                 {item.sub ? (
                                   <>
                                     <button
                                       onClick={() => toggleExpanded(item.name)}
-                                      className="-mx-3 w-full rounded-lg px-3 py-2 text-base/7 font-semibold text-white hover:bg-white/10 transition-colors duration-200 text-left flex items-center justify-between"
+                                      className={`-mx-3 w-full rounded-lg px-3 py-2 text-base/7 font-semibold text-white hover:bg-white/10 transition-colors duration-200 text-left flex items-center justify-between ${
+                                        parentActive ? 'bg-white/10' : ''
+                                      }`}
                                     >
                                       <span>{item.name}</span>
                                       <ChevronDownIcon
@@ -248,34 +258,38 @@ export default function Navbar() {
                                       }`}
                                     >
                                       {item.sub.map((subItem) => (
-                                        <a
+                                        <Link
                                           key={subItem.name}
                                           href={subItem.href}
-                                          className="-mx-3 block rounded-lg px-3 py-1 text-sm text-white/80 hover:bg-white/10 transition-colors duration-200"
+                                          className={`-mx-3 block rounded-lg px-3 py-1 text-sm text-white/80 hover:bg-white/10 transition-colors duration-200 ${
+                                            isActive(subItem.href) ? 'bg-white/10 text-white' : ''
+                                          }`}
                                         >
                                           {subItem.name}
-                                        </a>
+                                        </Link>
                                       ))}
                                     </div>
                                   </>
                                 ) : (
-                                  <a
+                                  <Link
                                     href={item.href}
-                                    className="-mx-3 block rounded-lg px-3 py-2 text-base/7 font-semibold text-white hover:bg-white/10 transition-colors duration-200"
+                                    className={`-mx-3 block rounded-lg px-3 py-2 text-base/7 font-semibold text-white hover:bg-white/10 transition-colors duration-200 ${
+                                      isActive(item.href) ? 'bg-white/10' : ''
+                                    }`}
                                   >
                                     {item.name}
-                                  </a>
+                                  </Link>
                                 )}
                               </div>
                             );
                           })}
                           <div className="py-6">
-                            <a
+                            <Link
                               href="#"
                               className="-mx-3 block rounded-lg px-3 text-base/7 font-semibold text-white hover:bg-white/10 transition-colors duration-200"
                             >
                               Log in
-                            </a>
+                            </Link>
                           </div>
                         </div>
                       </div>

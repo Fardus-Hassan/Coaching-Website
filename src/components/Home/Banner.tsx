@@ -1,26 +1,26 @@
 import React, { useState, useEffect } from 'react';
 
 const images = [
-  'https://images.unsplash.com/photo-1522071820081-009f0129c71c?q=80&w=2070&auto=format&fit=crop',
-  'https://images.unsplash.com/photo-1521737604893-d14cc237f11d?q=80&w=2084&auto=format&fit=crop',
-  'https://images.unsplash.com/photo-1556761175-5973dc0f32e7?q=80&w=2232&auto=format&fit=crop',
+  'https://uccgroup.com.bd/uploads/gallery/s2.jpg',
+  'https://uccgroup.com.bd/uploads/gallery/s6.jpg',
+  'https://uccgroup.com.bd/uploads/gallery/s7.jpg',
 ];
 
 const content = [
   {
-    title: "Data to enrich your online business",
-    description: "Anim aute id magna aliqua ad ad non deserunt sunt. Qui irure qui lorem cupidatat commodo. Elit sunt amet fugiat veniam occaecat.",
-    badge: "Announcing our next round of funding.",
+    title: "ভবিষ্যৎ গড়ার সেরা ঠিকানা", 
+    description: "আপনার প্রস্তুতিকে আরও মজবুত করতে আমাদের অভিজ্ঞ শিক্ষকমণ্ডলী সব সময় প্রস্তুত। নিয়মিত পরীক্ষা ও বিশেষ ক্লাস দিয়ে আমরা আপনার সফলতার পথকে সুগম করি।",
+    badge: "ভর্তি চলছে! আজই যোগাযোগ করুন।",
   },
   {
-    title: "Innovate with the latest technology",
-    description: "Lorem ipsum dolor sit amet, consectetur adipiscing elit. Sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.",
-    badge: "New features just launched!",
+    title: "সেরা ফলাফলের নিশ্চয়তা", 
+    description: "প্রতিটি শিক্ষার্থীকে ব্যক্তিগত যত্ন ও প্রয়োজনীয় দিকনির্দেশনা প্রদান করা হয়। আমাদের বিশেষ মডিউলগুলো আপনার দুর্বলতা কাটিয়ে উঠতে সাহায্য করবে।", 
+    badge: "নতুন ব্যাচ শুরু হচ্ছে!", 
   },
   {
-    title: "Scale your business effortlessly",
-    description: "Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat.",
-    badge: "See our success stories",
+    title: "চাকরি পরীক্ষার সম্পূর্ণ প্রস্তুতি",
+    description: "বিসিএস, ব্যাংক ও অন্যান্য সরকারি চাকরির পরীক্ষার জন্য আমাদের বিশেষ কোর্সগুলো। সঠিক কৌশল ও নিয়মিত অনুশীলনের মাধ্যমে নিজেকে প্রস্তুত করুন।",
+    badge: "সফলতার গল্পগুলো দেখুন", 
   },
 ];
 
@@ -101,7 +101,7 @@ export default function Banner() {
             </div>
             
             <div className={`content-transition ${isContentChanging ? 'opacity-0' : 'opacity-100'}`}>
-              <h1 className="text-5xl font-semibold tracking-tight text-balance text-white sm:text-7xl">
+              <h1 className="text-5xl font-semibold tracking-tight text-balance text-white sm:text-6xl">
                 {content[currentIndex].title}
               </h1>
               <p className="mt-8 text-lg font-medium text-pretty text-gray-300 sm:text-xl/8">

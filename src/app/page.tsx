@@ -118,6 +118,8 @@ import { useDispatch, useSelector } from "react-redux";
 import { RootState } from "@/redux/store";
 import { increment, decrement } from "@/redux/features/counterSlice";
 import Banner from "@/components/Home/Banner";
+import About from "@/components/Home/About";
+import Students from "@/components/Home/Students";
 
 export default function HomePage() {
   const count = useSelector((state: RootState) => state.counter.value);
@@ -142,6 +144,8 @@ export default function HomePage() {
         </button>
       </div> */}
       <Banner/>
+      <About/>
+      <Students/>
     </main>
   );
 }
