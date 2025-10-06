@@ -117,14 +117,15 @@
 import { useDispatch, useSelector } from "react-redux";
 import { RootState } from "@/redux/store";
 import { increment, decrement } from "@/redux/features/counterSlice";
+import Banner from "@/components/Home/Banner";
 
 export default function HomePage() {
   const count = useSelector((state: RootState) => state.counter.value);
   const dispatch = useDispatch();
 
   return (
-    <main className="flex flex-col items-center justify-center h-screen space-y-4">
-      <h1 className="text-3xl font-bold">Next.js + Redux Toolkit + TypeScript</h1>
+    <main className="">
+      {/* <h1 className="text-3xl font-bold">Next.js + Redux Toolkit + TypeScript</h1>
       <p className="text-xl">Count: {count}</p>
       <div className="space-x-2">
         <button
@@ -139,7 +140,8 @@ export default function HomePage() {
         >
           Decrement
         </button>
-      </div>
+      </div> */}
+      <Banner/>
     </main>
   );
 }

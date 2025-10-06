@@ -43,6 +43,7 @@
 
 import { Providers } from "@/components/Providers";
 import "./globals.css";
+import Navbar from "@/components/Utility/Navbar";
 
 export const metadata = {
   title: "My App",
@@ -57,6 +58,7 @@ export default function RootLayout({
   return (
     <html lang="en">
       <body>
+        <Navbar/>
         <Providers>{children}</Providers>
       </body>
     </html>
