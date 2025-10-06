@@ -1,5 +1,3 @@
-"use client";
-
 import { FaFacebookF, FaInstagram, FaLinkedinIn, FaYoutube, FaPhone, FaEnvelope, FaMapMarkerAlt } from "react-icons/fa";
 import { PiStudentBold } from "react-icons/pi";
 import { IoIosSchool } from "react-icons/io";

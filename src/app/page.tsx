@@ -112,18 +112,19 @@
 
 
 
-"use client";
 
-import { useDispatch, useSelector } from "react-redux";
-import { RootState } from "@/redux/store";
-import { increment, decrement } from "@/redux/features/counterSlice";
+
+// import { useDispatch, useSelector } from "react-redux";
+// import { RootState } from "@/redux/store";
+// import { increment, decrement } from "@/redux/features/counterSlice";
 import Banner from "@/components/Home/Banner";
 import About from "@/components/Home/About";
 import Students from "@/components/Home/Students";
+import Success from "@/components/Home/Success";
 
 export default function HomePage() {
-  const count = useSelector((state: RootState) => state.counter.value);
-  const dispatch = useDispatch();
+  // const count = useSelector((state: RootState) => state.counter.value);
+  // const dispatch = useDispatch();
 
   return (
     <main className="">
@@ -146,6 +147,7 @@ export default function HomePage() {
       <Banner/>
       <About/>
       <Students/>
+      <Success/>
     </main>
   );
 }

@@ -47,8 +47,11 @@ import Navbar from "@/components/Utility/Navbar";
 import Footer from "@/components/Utility/Footer";
 
 export const metadata = {
-  title: "My App",
-  description: "Next.js + Redux app",
+  title: "Coaching",
+  description: "Coaching Management System",
+  icons: {
+    icon: [{ url: "/icon2.png" },],
+  },
 };
 
 export default function RootLayout({
@@ -61,7 +64,7 @@ export default function RootLayout({
       <body>
         <Navbar/>
         <Providers>{children}</Providers>
-        
+
         <Footer/>
       </body>
     </html>
