@@ -152,10 +152,10 @@ export default function HomePage() {
       <About/>
       <Course/>
       <Students/>
-      <Success/>
-      <SecBanner/>
       <Services/>
+      <SecBanner/>
       <PhotoGallery/>
+      <Success/>
   
     </main>
   );
