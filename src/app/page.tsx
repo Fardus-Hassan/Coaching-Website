@@ -122,6 +122,7 @@ import About from "@/components/Home/About";
 import Students from "@/components/Home/Students";
 import Success from "@/components/Home/Success";
 import Services from "@/components/Home/Services";
+import PhotoGallery from "@/components/Home/PhotoGallery";
 
 export default function HomePage() {
   // const count = useSelector((state: RootState) => state.counter.value);
@@ -150,6 +151,7 @@ export default function HomePage() {
       <Students/>
       <Success/>
       <Services/>
+      <PhotoGallery/>
     </main>
   );
 }
