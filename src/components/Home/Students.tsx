@@ -65,7 +65,7 @@ export default function Students() {
 
         {/* Marquee Container */}
 
-        <div className="overflow-hidden">
+        <div className="overflow-hidden max-w-7xl mx-auto">
           <Marquee
             speed={100} 
             direction="left"
