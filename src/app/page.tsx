@@ -125,6 +125,7 @@ import Services from "@/components/Home/Services";
 import PhotoGallery from "@/components/Home/PhotoGallery";
 import SecBanner from "@/components/Home/SecBanner";
 import Course from "@/components/Home/Course";
+import NoticeSlide from "@/components/Home/NoticeSlide";
 
 export default function HomePage() {
   // const count = useSelector((state: RootState) => state.counter.value);
@@ -149,6 +150,7 @@ export default function HomePage() {
         </button>
       </div> */}
       <Banner/>
+      <NoticeSlide/>
       <About/>
       <Course/>
       <Students/>

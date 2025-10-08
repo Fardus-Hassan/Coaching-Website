@@ -27,7 +27,7 @@ const navigation = [
   { name: "নোটিশ", href: "/notice" },
   { name: "ফটো গ্যালারি", href: "/gallery" },
   { name: "ভিডিও", href: "/video_gallery" },
-  { name: "বই", href: "/books" },
+  // { name: "বই", href: "/books" },
 ];
 
 export default function Navbar() {
