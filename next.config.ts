@@ -12,7 +12,7 @@
 /** @type {import('next').NextConfig} */
 const nextConfig = {
   images: {
-    domains: ['uccgroup.com.bd'],
+    domains: ["uccgroup.com.bd", "videos.examplecdn.com"],
   },
 };
 

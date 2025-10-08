@@ -45,6 +45,7 @@ import { Providers } from "@/components/Providers";
 import "./globals.css";
 import Navbar from "@/components/Utility/Navbar";
 import Footer from "@/components/Utility/Footer";
+import ScrollToTop from "@/components/Utility/ScrollToTop";
 
 export const metadata = {
   title: "Coaching",
@@ -66,6 +67,7 @@ export default function RootLayout({
         <Providers>{children}</Providers>
 
         <Footer/>
+        <ScrollToTop/>
       </body>
     </html>
   );
