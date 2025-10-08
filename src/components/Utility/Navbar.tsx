@@ -26,7 +26,7 @@ const navigation = [
   },
   { name: "নোটিশ", href: "/notice" },
   { name: "ফটো গ্যালারি", href: "/gallery" },
-  { name: "ভিডিও", href: "/video" },
+  { name: "ভিডিও", href: "/video_gallery" },
   { name: "বই", href: "/books" },
 ];
 
@@ -78,14 +78,14 @@ export default function Navbar() {
                   +88 01847-066362-66
                 </span>
                 <span>|</span>
-                <span className="flex gap-1 items-center">
+                <Link href='/admission' className="flex gap-1 items-center">
                   <IoIosSchool />
                   Admission
-                </span>
+                </Link>
                 <span>|</span>
                 <span className="flex gap-1 items-center">
                   <PiStudentBold />
-                  Student Login
+                  Login
                 </span>
               </div>
               <div className="flex items-center space-x-4 text-white text-sm">

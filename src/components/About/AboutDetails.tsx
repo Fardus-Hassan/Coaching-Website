@@ -2,12 +2,11 @@ import PageHeader from "../Utility/PageHeader";
 
 export default function AboutDetails() {
   return (
-    <div className="min-h-screen bg-gray-50 lg:mt-10">
-      <PageHeader title="UCC সম্পর্কে" />
+    <div className="min-h-screen bg-gray-50">
       {/* Main Content */}
       <main className="">
         {/* About Section */}
-        <section className="mb-20 mt-16 px-4">
+        <section className="mb-20 pt-16 px-4">
           <h2 className="text-3xl font-bold text-center mb-8 text-gray-900">
             UCC-র <span className="text-indigo-600">যাত্রা শুরুর</span>
             <div className="w-16 h-1 bg-indigo-600 mx-auto mt-2"></div>
