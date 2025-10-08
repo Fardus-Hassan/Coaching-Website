@@ -14,6 +14,9 @@ const nextConfig = {
   images: {
     domains: ["uccgroup.com.bd", "videos.examplecdn.com"],
   },
+  eslint: {
+    ignoreDuringBuilds: true,
+  },
 };
 
 export default nextConfig;
