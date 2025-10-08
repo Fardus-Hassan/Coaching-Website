@@ -2,6 +2,7 @@
 
 import { useState } from "react";
 import Image from "next/image";
+import Link from "next/link";
 
 interface GalleryImage {
   id: number;
@@ -11,7 +12,11 @@ interface GalleryImage {
 
 type TabType = "All" | "Success" | "Campus" | "Students" | "Others";
 
-export default function PhotoGallery() {
+interface PhotoGalleryProps {
+  isHomePage?: boolean;
+}
+
+export default function PhotoGallery({ isHomePage = true }: PhotoGalleryProps) {
   const [activeTab, setActiveTab] = useState<TabType>("All");
   const [selectedImage, setSelectedImage] = useState<GalleryImage | null>(null);
   const [currentIndex, setCurrentIndex] = useState<number>(0);
@@ -86,6 +91,9 @@ export default function PhotoGallery() {
       ? galleryImages
       : galleryImages.filter((img) => img.category === activeTab);
 
+  // Limit to 6 images for homepage
+  const displayedImages = isHomePage ? filteredImages.slice(0, 8) : filteredImages;
+
   const openModal = (image: GalleryImage, index: number) => {
     setSelectedImage(image);
     setCurrentIndex(index);
@@ -115,7 +123,7 @@ export default function PhotoGallery() {
   };
 
   return (
-    <section className="py-12 lg:py-20 bg-gray-50">
+    <section className="py-12 bg-gray-50">
       <div className="mx-auto max-w-7xl px-4 sm:px-6 lg:px-8">
         {/* Header */}
         <div className="text-center mb-8 lg:mb-12">
@@ -144,7 +152,7 @@ export default function PhotoGallery() {
 
         {/* Gallery Grid */}
         <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-2 lg:gap-3">
-          {filteredImages.map((image, index) => (
+          {displayedImages.map((image, index) => (
             <div
               key={image.id}
               onClick={() => openModal(image, index)}
@@ -156,7 +164,7 @@ export default function PhotoGallery() {
                   alt={`Gallery ${image.id}`}
                   fill
                   placeholder="blur"
-                  blurDataURL="data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAAEAAAABC..." // খুব ছোট base64 string
+                  blurDataURL="data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAAEAAAABCAQAAAC1HAwCAAAAC0lEQVR4nGNgYAAAAAMAASsJTYQAAAAASUVORK5CYII="
                   className="object-cover transform group-hover:scale-110 transition-transform duration-500"
                   sizes="(max-width: 640px) 100vw, (max-width: 1024px) 50vw, 25vw"
                 />
@@ -174,12 +182,16 @@ export default function PhotoGallery() {
           ))}
         </div>
 
-        {/* View More Button */}
-        <div className="text-right mt-12 ">
-          <button className="bg-indigo-600 hover:bg-indigo-700 text-white font-bold px-8 py-3 rounded-lg shadow-lg hover:shadow-xl transform hover:-translate-y-1 transition-all duration-300">
-            আরোও দেখুন
-          </button>
-        </div>
+        {/* View More Button (only for homepage) */}
+        {isHomePage && (
+          <div className="text-right mt-12">
+            <Link href="/gallery">
+              <button className="bg-indigo-600 hover:bg-indigo-700 text-white font-bold px-8 py-3 rounded-lg shadow-lg hover:shadow-xl transform hover:-translate-y-1 transition-all duration-300">
+                আরোও দেখুন
+              </button>
+            </Link>
+          </div>
+        )}
       </div>
 
       {/* Modal / Lightbox */}
