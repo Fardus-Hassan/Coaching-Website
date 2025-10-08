@@ -18,10 +18,10 @@ const navigation = [
   },
   { 
     name: "আমাদের সম্পর্কে", 
-    href: "/aboutUs", 
+    href: "/about", 
     sub: [
-      { name: "UCC সম্পর্কে", href: "/aboutUs" },
-      { name: "চেয়ারম্যানের বার্তা", href: "/message" }
+      { name: "UCC সম্পর্কে", href: "/about" },
+      { name: "চেয়ারম্যানের বার্তা", href: "/chairman" }
     ]
   },
   { name: "নোটিশ", href: "/notice" },
@@ -62,11 +62,7 @@ export default function Navbar() {
   return (
     <div>
       <header
-        className={`fixed inset-x-0 top-0 z-50 transition-all duration-300 ${
-          isScrolled
-            ? "bg-gradient-to-r from-indigo-500 to-indigo-900 shadow-lg"
-            : "bg-transparent"
-        }`}
+        className={`fixed inset-x-0 top-0 z-50 transition-all duration-300 bg-gradient-to-r from-indigo-50 to-indigo-100 shadow-lg`}
       >
         {/* Top Info Bar - Hidden on mobile */}
         <div
@@ -114,7 +110,7 @@ export default function Navbar() {
         <nav
           aria-label="Global"
           className={`flex items-center max-w-7xl mx-auto justify-between p-6 lg:px-8 transition-all duration-300 ${
-            isScrolled ? "py-4" : "py-6"
+            isScrolled ? "py-4" : "py-4"
           }`}
         >
           <div className="flex lg:flex-1">
@@ -131,7 +127,7 @@ export default function Navbar() {
             <button
               type="button"
               onClick={() => setMobileMenuOpen(true)}
-              className="-m-2.5 inline-flex items-center justify-center rounded-md p-2.5 text-gray-200"
+              className="-m-2.5 inline-flex items-center justify-center rounded-md p-2.5 text-gray-900"
             >
               <span className="sr-only">Open main menu</span>
               <Bars3Icon aria-hidden="true" className="size-6" />
@@ -142,8 +138,8 @@ export default function Navbar() {
               <div key={item.name} className="group relative">
                 <Link
                   href={item.href}
-                  className={`text-sm/6 font-semibold text-white hover:text-gray-300 transition-colors duration-200 px-2 py-1 rounded-md ${
-                    isActive(item.href) ? 'bg-white/10 text-white' : ''
+                  className={`text-sm/6 text-gray-900 hover:text-gray-500 transition-colors duration-200 p-2 rounded-md ${
+                    isActive(item.href) ? 'bg-indigo-500/10 text-gray-900 font-bold' : ''
                   }`}
                 >
                   {item.name}
@@ -159,14 +155,14 @@ export default function Navbar() {
                   )}
                 </Link>
                 {item.sub && (
-                  <div className="absolute left-0 mt-2 w-48 bg-gradient-to-r from-indigo-500 to-indigo-900 rounded-md shadow-lg opacity-0 invisible group-hover:opacity-100 group-hover:visible transition-all duration-300 ease-in-out transform scale-95 group-hover:scale-100 origin-top">
+                  <div className="absolute left-0 mt-2 w-48 bg-gradient-to-r from-indigo-200 to-indigo-300 rounded-md shadow-lg opacity-0 invisible group-hover:opacity-100 group-hover:visible transition-all duration-300 ease-in-out transform scale-95 group-hover:scale-100 origin-top">
                     <div className="py-1">
                       {item.sub.map((subItem) => (
                         <Link
                           key={subItem.name}
                           href={subItem.href}
-                          className={`block px-4 py-2 text-sm text-white hover:bg-white/10 transition-colors duration-200 ${
-                            isActive(subItem.href) ? 'bg-white/10' : ''
+                          className={`block px-4 py-2 text-sm text-gray-900 hover:bg-indigo-800/10 transition-colors duration-200 ${
+                            isActive(subItem.href) ? 'bg-indigo-800/10 font-bold' : ''
                           }`}
                         >
                           {subItem.name}
@@ -334,6 +330,8 @@ export default function Navbar() {
           </Dialog>
         </Transition>
       </header>
+              <div className="h-[64px]"></div>
+
     </div>
   );
 }
