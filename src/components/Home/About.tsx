@@ -44,7 +44,7 @@ export default function About() {
             </div>
             <div className="pt-4">
               <Link
-                href="/aboutUs"
+                href="/about"
                 className="group inline-flex items-center px-6 py-3 bg-gradient-to-r from-indigo-600 to-purple-600 text-white font-semibold rounded-full shadow-lg hover:shadow-xl transform hover:-translate-y-1 transition-all duration-300 ease-in-out"
               >
                 আরও পড়ুন
