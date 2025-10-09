@@ -2,6 +2,8 @@
 
 import { useGetBannersQuery } from '@/redux/features/api/banner/bannerApi';
 import React, { useState, useEffect } from 'react';
+import Skeleton from 'react-loading-skeleton';
+import 'react-loading-skeleton/dist/skeleton.css';
 
 interface Banner {
   id: number;
@@ -49,21 +51,42 @@ export default function Banner() {
   }, [activeBanners]);
 
 
- if (isLoading) {
+
+  if (isLoading) {
     return (
-      <div className="relative h-[calc(95vh-64px)] w-full overflow-hidden bg-gray-900">
-        <div className="absolute inset-0 animate-pulse">
-          <div className="h-full w-full bg-gradient-to-br from-gray-800 via-gray-900 to-gray-800" />
-        </div>
+      <div className="relative h-[calc(95vh-64px)] w-full overflow-hidden bg-gray-100">
+        <Skeleton 
+          className="absolute inset-0 h-full w-full" 
+          baseColor="#f3f4f6" 
+          highlightColor="#e5e7eb"
+        />
         
-        <div className="absolute inset-0 bg-black opacity-60" />
+        <div className="absolute inset-0 bg-gradient-to-t from-white/80 via-white/40 to-transparent z-30" />
         
-        <div className="relative h-full flex items-end justify-start px-6 lg:px-12 pb-12 lg:pb-16">
-          <div className="max-w-2xl space-y-4 animate-pulse">
-            <div className="h-12 sm:h-16 bg-gray-700 rounded-lg w-3/4" />
+        <div className="relative h-full flex items-end justify-start px-6 lg:px-12 pb-12 lg:pb-16 z-20">
+          <div className="max-w-2xl space-y-4 w-full">
+            <Skeleton 
+              height={64} 
+              width="75%" 
+              baseColor="#d1d5db" 
+              highlightColor="#e5e7eb"
+              borderRadius={8}
+            />
             <div className="space-y-2">
-              <div className="h-6 bg-gray-700 rounded w-full" />
-              <div className="h-6 bg-gray-700 rounded w-5/6" />
+              <Skeleton 
+                height={24} 
+                width="100%" 
+                baseColor="#d1d5db" 
+                highlightColor="#e5e7eb"
+                borderRadius={4}
+              />
+              <Skeleton 
+                height={24} 
+                width="85%" 
+                baseColor="#d1d5db" 
+                highlightColor="#e5e7eb"
+                borderRadius={4}
+              />
             </div>
           </div>
         </div>
@@ -88,11 +111,9 @@ export default function Banner() {
               transform: scale(1.1);
             }
           }
-          .animate-kenburns {
+          
+          .banner-image {
             animation: kenburns-zoom 5s ease-out forwards;
-          }
-          .hold-scale {
-            transform: scale(1.1);
           }
           
           .content-transition {
@@ -107,11 +128,16 @@ export default function Banner() {
             key={banner?.id}
             className={`
               absolute inset-0 bg-cover bg-center transition-opacity duration-[1500ms] ease-in-out
-              ${index === currentIndex ? 'opacity-100 animate-kenburns z-10' : 'opacity-0'}
-              ${index === previousIndex ? 'hold-scale z-0' : ''}
+              ${index === currentIndex ? 'opacity-100 z-10' : 'opacity-0 z-0'}
             `}
             style={{ backgroundImage: `url(${banner?.banner_image})` }}
-          />
+          >
+            {index === currentIndex && (
+              <div className="banner-image absolute inset-0 bg-cover bg-center"
+                style={{ backgroundImage: `url(${banner?.banner_image})` }}
+              />
+            )}
+          </div>
         ))}
 
         <div className="absolute inset-0 bg-gradient-to-t from-black via-black/50 to-transparent opacity-90 z-20" />
@@ -120,15 +146,41 @@ export default function Banner() {
           <div className="max-w-3xl">
             {(currentBanner?.heading || currentBanner?.description) && (
               <div className={`content-transition ${isContentChanging ? 'opacity-0' : 'opacity-100'}`}>
-                {currentBanner?.heading && (
+                {currentBanner?.heading ? (
                   <h1 className="text-4xl font-bold tracking-tight text-white sm:text-5xl lg:text-6xl mb-4 lg:mb-6">
                     {currentBanner?.heading}
                   </h1>
+                ) : (
+                  <Skeleton 
+                    height={64} 
+                    width="75%" 
+                    baseColor="#d1d5db" 
+                    highlightColor="#e5e7eb"
+                    borderRadius={8}
+                    className="mb-4 lg:mb-6"
+                  />
                 )}
-                {currentBanner?.description && (
+                {currentBanner?.description ? (
                   <p className="text-base sm:text-lg lg:text-xl font-medium text-gray-200 leading-relaxed max-w-2xl">
                     {currentBanner?.description}
                   </p>
+                ) : (
+                  <div className="space-y-2 max-w-2xl">
+                    <Skeleton 
+                      height={24} 
+                      width="100%" 
+                      baseColor="#d1d5db" 
+                      highlightColor="#e5e7eb"
+                      borderRadius={4}
+                    />
+                    <Skeleton 
+                      height={24} 
+                      width="85%" 
+                      baseColor="#d1d5db" 
+                      highlightColor="#e5e7eb"
+                      borderRadius={4}
+                    />
+                  </div>
                 )}
               </div>
             )}
