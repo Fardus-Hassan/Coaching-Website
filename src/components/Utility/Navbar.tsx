@@ -36,6 +36,7 @@ const navigation = [
   { name: "নোটিশ", href: "/notice" },
   { name: "ফটো গ্যালারি", href: "/gallery" },
   { name: "ভিডিও", href: "/video_gallery" },
+  { name: "যোগাযোগ", href: "/contact_us" },
 ];
 
 export default function Navbar() {
