@@ -8,7 +8,7 @@ import { useGetInstitutesQuery } from "@/redux/features/api/institute/instituteA
 export async function generateMetadata() {
   try {
     const res = await fetch("https://coaching.attendclub.top/api/institutes/", {
-      cache: "no-store",
+      cache: "force-cache",
     });
     const data = await res.json();
     const institute = data[0];
@@ -35,7 +35,6 @@ export async function generateMetadata() {
     };
   }
 }
-
 
 export default function RootLayout({
   children,

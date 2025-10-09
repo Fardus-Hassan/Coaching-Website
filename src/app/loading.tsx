@@ -1,19 +1,44 @@
 import Image from "next/image";
 
-export default function Loading() {
-  return (
-    <div className="fixed inset-0 flex flex-col items-center justify-center bg-slate-900 text-white z-50">
-      <Image
-        src="/icon2.png"
-        alt="Logo"
-        width={100}
-        height={100}
-        className="animate-bounce"
-      />
-      {/* <div className="mt-6 w-16 h-16 border-4 border-gray-300 border-t-indigo-500 rounded-full animate-spin"></div>
-      <p className="mt-6 text-lg font-medium tracking-wide text-indigo-400 animate-pulse">
-        Please wait, loading...
-      </p> */}
-    </div>
-  );
+export default async function Loading() {
+  try {
+    const res = await fetch("https://coaching.attendclub.top/api/institutes/", {
+      cache: "force-cache",
+    });
+
+    const data = await res.json();
+    const institute = data?.[0];
+
+    return (
+      <div className="fixed inset-0 flex flex-col items-center justify-center bg-slate-900 text-white z-50">
+        <Image
+          src={institute?.institute_logo || "/icon2.png"}
+          alt={institute?.institute_name || "Logo"}
+          width={100}
+          height={100}
+          className="animate-bounce"
+          priority
+        />
+        <p className="mt-3 text-sm text-gray-300 animate-pulse">
+          {institute?.institute_name || "Loading..."}
+        </p>
+      </div>
+    );
+  } catch (error) {
+    return (
+      <div className="fixed inset-0 flex flex-col items-center justify-center bg-slate-900 text-white z-50">
+        <Image
+          src="/icon2.png"
+          alt="Logo"
+          width={100}
+          height={100}
+          className="animate-bounce"
+          priority
+        />
+        <p className="mt-3 text-sm text-gray-300 animate-pulse">
+          Coaching Management System
+        </p>
+      </div>
+    );
+  }
 }

@@ -4,7 +4,7 @@ import { IoIosSchool } from "react-icons/io";
 
 export default function Footer() {
   return (
-    <footer className=" text-white relative overflow-hidden">
+    <footer className=" text-white bg-gradient-to-r from-slate-700 to-slate-800 relative overflow-hidden">
       {/* Decorative background elements */}
       <div className="absolute inset-0 opacity-10">
         <div className="absolute top-10 left-10 w-20 h-20 bg-purple-500 rounded-full mix-blend-multiply filter blur-xl animate-pulse"></div>
