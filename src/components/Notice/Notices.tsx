@@ -1,59 +1,14 @@
 "use client";
 
-import { saveAs } from "file-saver";
 
-interface Notice {
-  id: number;
-  title: string;
-  date: string;
-  description: string;
-  fileUrl: string;
-  fileType: "image" | "pdf";
-}
+import { saveAs } from "file-saver";
+import Skeleton from "react-loading-skeleton";
+import "react-loading-skeleton/dist/skeleton.css";
+import { CalendarDays, Download, AlertCircle } from "lucide-react";
+import { useGetNoticesQuery } from "@/redux/features/api/notice/noticeApi";
 
 export default function Notices() {
-  const notices: Notice[] = [
-    {
-      id: 1,
-      title: "বার্ষিক ক্রীড়া দিবস ২০২৫",
-      date: "১৫ নভেম্বর, ২০২৫",
-      description: "আমাদের বার্ষিক ক্রীড়া দিবসে অংশগ্রহণের জন্য প্রস্তুত হোন! বিস্তারিত সময়সূচি এবং নিয়মাবলী ডাউনলোড করুন।",
-      fileUrl: "https://uccgroup.com.bd/uploads/notices/sports_day_2025.pdf",
-      fileType: "pdf",
-    },
-    {
-      id: 2,
-      title: "অভিভাবক-শিক্ষক সভা",
-      date: "২০ অক্টোবর, ২০২৫",
-      description: "অভিভাবক-শিক্ষক সভায় অংশগ্রহণ করুন এবং আপনার সন্তানের অগ্রগতি নিয়ে আলোচনা করুন। বিস্তারিত ডাউনলোড করুন।",
-      fileUrl: "https://uccgroup.com.bd/uploads/notices/parent_teacher_meeting.jpg",
-      fileType: "image",
-    },
-    {
-      id: 3,
-      title: "বিজ্ঞান মেলা ২০২৫",
-      date: "৩০ অক্টোবর, ২০২৫",
-      description: "বিজ্ঞান মেলায় অংশগ্রহণের জন্য নিবন্ধন করুন। নিয়ম ও শর্তাবলী ডাউনলোড করুন।",
-      fileUrl: "https://uccgroup.com.bd/uploads/notices/science_fair_2025.pdf",
-      fileType: "pdf",
-    },
-    {
-      id: 4,
-      title: "মধ্যবর্তী পরীক্ষার সময়সূচি",
-      date: "১ নভেম্বর, ২০২৫",
-      description: "মধ্যবর্তী পরীক্ষার সময়সূচি এবং নির্দেশিকা ডাউনলোড করুন।",
-      fileUrl: "https://uccgroup.com.bd/uploads/notices/midterm_schedule.jpg",
-      fileType: "image",
-    },
-    {
-      id: 5,
-      title: "সাংস্কৃতিক অনুষ্ঠান",
-      date: "২৫ অক্টোবর, ২০২৫",
-      description: "সাংস্কৃতিক অনুষ্ঠানের অডিশন সম্পর্কিত বিস্তারিত তথ্য ডাউনলোড করুন।",
-      fileUrl: "https://uccgroup.com.bd/uploads/notices/cultural_program.pdf",
-      fileType: "pdf",
-    },
-  ];
+  const { data = [], isLoading, error } = useGetNoticesQuery();
 
   const handleDownload = async (url: string, fileName: string) => {
     try {
@@ -65,9 +20,37 @@ export default function Notices() {
     }
   };
 
+  if (isLoading) {
+    return (
+      <section className="py-12 bg-gray-50">
+        <div className="max-w-7xl mx-auto px-4 grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-6">
+          {Array.from({ length: 6 }).map((_, i) => (
+            <div
+              key={i}
+              className="bg-white p-6 rounded-xl shadow-md animate-pulse"
+            >
+              <Skeleton height={24} width="60%" />
+              <Skeleton height={16} width="40%" className="my-2" />
+              <Skeleton count={3} />
+              <Skeleton height={35} width="50%" className="mt-4" />
+            </div>
+          ))}
+        </div>
+      </section>
+    );
+  }
+
+  if (error) {
+    return (
+      <div className="text-center py-20 text-red-600 font-semibold">
+        ⚠️ নোটিশ লোড করতে সমস্যা হয়েছে।
+      </div>
+    );
+  }
+
   return (
     <section className="py-12 lg:py-20 bg-gray-50">
-      <div className="mx-auto max-w-7xl px-4 sm:px-6 lg:px-8">
+      <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
         {/* Header */}
         <div className="text-center mb-8 lg:mb-12">
           <h2 className="text-2xl lg:text-3xl font-bold text-gray-900 mb-3">
@@ -78,31 +61,60 @@ export default function Notices() {
 
         {/* Notices Grid */}
         <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-6">
-          {notices.map((notice) => (
-            <div
-              key={notice.id}
-              className="bg-white rounded-xl shadow-md hover:shadow-2xl transition-all duration-300 p-6 flex flex-col"
-            >
-              <h3 className="text-lg font-semibold text-gray-900 mb-2">
-                {notice.title}
-              </h3>
-              <p className="text-sm text-gray-500 mb-3">{notice.date}</p>
-              <p className="text-gray-700 text-sm mb-4 flex-grow">
-                {notice.description}
-              </p>
-              <button
-                onClick={() =>
-                  handleDownload(
-                    notice.fileUrl,
-                    `${notice.title}.${notice.fileType === "pdf" ? "pdf" : "jpg"}`
-                  )
-                }
-                className="bg-indigo-600 hover:bg-indigo-700 text-white font-bold px-6 py-2 rounded-lg shadow-lg hover:shadow-xl transform hover:-translate-y-1 transition-all duration-300 mt-auto"
+          {data.map((notice) => {
+            const isExpired =
+              new Date(notice.expire_date) < new Date() ? true : false;
+
+            return (
+              <div
+                key={notice.id}
+                className="bg-white rounded-xl shadow-md hover:shadow-2xl transition-all duration-300 p-6 flex flex-col"
               >
-                ডাউনলোড করুন
-              </button>
-            </div>
-          ))}
+                {/* Expiry Badge */}
+                <div className="flex justify-between items-center mb-2">
+                  <span
+                    className={`text-xs font-semibold px-3 py-1 rounded-full ${
+                      isExpired
+                        ? "bg-red-100 text-red-600"
+                        : "bg-green-100 text-green-600"
+                    }`}
+                  >
+                    {isExpired ? "মেয়াদোত্তীর্ণ" : `শেষ তারিখ: ${notice.expire_date}`}
+                  </span>
+                  <span className="text-gray-400 text-sm flex items-center gap-1">
+                    <CalendarDays size={14} />
+                    {notice.date}
+                  </span>
+                </div>
+
+                <h3 className="text-lg font-semibold text-gray-900 mb-2 line-clamp-2">
+                  {notice.notice_title}
+                </h3>
+
+                <p className="text-gray-600 text-sm mb-4 line-clamp-3 flex-grow">
+                  {notice.notice_description}
+                </p>
+
+                {notice.file_attached ? (
+                  <button
+                    onClick={() =>
+                      handleDownload(
+                        notice.file_attached,
+                        `${notice.notice_title}.${notice.file_attached.endsWith(".pdf") ? "pdf" : "jpg"}`
+                      )
+                    }
+                    className="bg-indigo-600 hover:bg-indigo-700 text-white font-bold px-5 py-2 rounded-lg shadow-md hover:shadow-xl transform hover:-translate-y-1 transition-all duration-300 flex items-center justify-center gap-2 mt-auto"
+                  >
+                    <Download size={16} /> ডাউনলোড করুন
+                  </button>
+                ) : (
+                  <div className="text-gray-400 text-sm italic flex items-center gap-1 mt-auto">
+                    <AlertCircle size={14} /> সংযুক্তি নেই
+                  </div>
+                )}
+              </div>
+            );
+          })}
         </div>
       </div>
     </section>

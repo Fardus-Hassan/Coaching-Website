@@ -1,10 +1,10 @@
 import { createApi, fetchBaseQuery } from "@reduxjs/toolkit/query/react";
 
 export const apiSlice = createApi({
-  reducerPath: "api", // unique key
+  reducerPath: "api", 
   baseQuery: fetchBaseQuery({
-    baseUrl: "https://coaching.attendclub.top/api/", // ✅ এক central জায়গায় base URL
+    baseUrl: "https://coaching.attendclub.top/api/",
   }),
-  tagTypes: ["Institute", "Banner"],
+  tagTypes: ["Institute", "Banner", "Notice"],
   endpoints: () => ({}),
 });
