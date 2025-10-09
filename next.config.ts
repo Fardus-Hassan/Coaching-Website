@@ -12,7 +12,7 @@
 /** @type {import('next').NextConfig} */
 const nextConfig = {
   images: {
-    domains: ["uccgroup.com.bd", "videos.examplecdn.com"],
+    domains: ["uccgroup.com.bd", "videos.examplecdn.com", "coaching.attendclub.top"],
   },
   eslint: {
     ignoreDuringBuilds: true,

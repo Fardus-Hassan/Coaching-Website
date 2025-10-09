@@ -128,27 +128,9 @@ import Course from "@/components/Home/Course";
 import NoticeSlide from "@/components/Home/NoticeSlide";
 
 export default function HomePage() {
-  // const count = useSelector((state: RootState) => state.counter.value);
-  // const dispatch = useDispatch();
 
   return (
     <main className="">
-      {/* <h1 className="text-3xl font-bold">Next.js + Redux Toolkit + TypeScript</h1>
-      <p className="text-xl">Count: {count}</p>
-      <div className="space-x-2">
-        <button
-          onClick={() => dispatch(increment())}
-          className="px-4 py-2 bg-green-500 text-white rounded"
-        >
-          Increment
-        </button>
-        <button
-          onClick={() => dispatch(decrement())}
-          className="px-4 py-2 bg-red-500 text-white rounded"
-        >
-          Decrement
-        </button>
-      </div> */}
       <Banner/>
       <NoticeSlide/>
       <About/>

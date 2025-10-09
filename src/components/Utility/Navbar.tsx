@@ -10,6 +10,7 @@ import { IoIosSchool } from "react-icons/io";
 import { IoCall } from "react-icons/io5";
 import Link from "next/link";
 import { usePathname } from "next/navigation";
+import { useGetInstitutesQuery } from "@/redux/features/api/institute/instituteApi";
 
 const navigation = [
   { 
@@ -35,6 +36,8 @@ export default function Navbar() {
   const [isScrolled, setIsScrolled] = useState(false);
   const [expandedItems, setExpandedItems] = useState(new Set());
   const pathname = usePathname();
+  const { data, isLoading, error } = useGetInstitutesQuery();
+
 
   useEffect(() => {
     const handleScroll = () => {
@@ -57,7 +60,14 @@ export default function Navbar() {
     });
   };
 
+
   const isActive = (href: string) => pathname === href;
+
+
+
+  if (isLoading) return <p className="text-center mt-4">Loading...</p>;
+  if (error) return <p className="text-red-500 text-center">Failed to load data</p>;
+
 
   return (
     <div>
@@ -75,7 +85,7 @@ export default function Navbar() {
               <div className="flex items-center space-x-4 text-white text-sm">
                 <span className="flex gap-1 items-center">
                   <IoCall />
-                  +88 01847-066362-66
+                  {data[0]?.institute_mobile}
                 </span>
                 <span>|</span>
                 <Link href='/admission' className="flex gap-1 items-center">
@@ -89,18 +99,18 @@ export default function Navbar() {
                 </span>
               </div>
               <div className="flex items-center space-x-4 text-white text-sm">
-                <span>
+                <a  href={data[0]?.institute_fb} target="_blank">
                   <FaFacebookF />
-                </span>
-                <span>
+                </a>
+                {/* <span>
                   <FaInstagram />
-                </span>
-                <span>
+                </span> */}
+                <a href={data[0]?.institute_youtube} target="_blank">
                   <FaYoutube />
-                </span>
-                <span>
+                </a>
+                {/* <span>
                   <FaLinkedinIn />
-                </span>
+                </span> */}
               </div>
             </div>
           </div>
@@ -114,12 +124,13 @@ export default function Navbar() {
           }`}
         >
           <div className="flex lg:flex-1">
-            <Link href="/" className="-m-1.5 p-1.5">
+            <Link href="/" className="-m-1.5">
               <span className="sr-only">Your Company</span>
               <img
                 alt=""
-                src="https://tailwindcss.com/plus-assets/img/logos/mark.svg?color=indigo&shade=500"
-                className="h-8 w-auto"
+                src={data[0].institute_logo}
+
+                className="h-[44px] w-auto"
               />
             </Link>
           </div>
