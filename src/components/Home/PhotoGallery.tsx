@@ -3,95 +3,53 @@
 import { useState } from "react";
 import Image from "next/image";
 import Link from "next/link";
+import Skeleton from "react-loading-skeleton";
+import "react-loading-skeleton/dist/skeleton.css";
+import { useGetGalleriesQuery, Gallery } from "@/redux/features/api/gallery/galleryApi";
 
 interface GalleryImage {
   id: number;
   src: string;
   category: string;
+  featured: boolean;
+  status: string;
 }
 
-type TabType = "All" | "Success" | "Campus" | "Students" | "Others";
+type TabType = string; 
 
 interface PhotoGalleryProps {
   isHomePage?: boolean;
 }
 
-export default function PhotoGallery({ isHomePage = true }: PhotoGalleryProps) {
+export default function PhotoGallery({ isHomePage }: PhotoGalleryProps) {
   const [activeTab, setActiveTab] = useState<TabType>("All");
   const [selectedImage, setSelectedImage] = useState<GalleryImage | null>(null);
   const [currentIndex, setCurrentIndex] = useState<number>(0);
+  const { data = [], isLoading, error } = useGetGalleriesQuery();
 
-  const tabs: TabType[] = ["All", "Success", "Campus", "Students", "Others"];
+  const galleryImages: GalleryImage[] = data
+    .filter((item: Gallery) => item.status === "ACTIVE") 
+    .map((item: Gallery) => ({
+      id: item.id,
+      src: item.galary_image, 
+      category: item.tag,
+      featured: item.featured,
+      status: item.status,
+    }));
 
-  const galleryImages: GalleryImage[] = [
-    {
-      id: 1,
-      src: "https://uccgroup.com.bd/uploads/gallery/s1.jpg",
-      category: "Students",
-    },
-    {
-      id: 2,
-      src: "https://uccgroup.com.bd/uploads/gallery/s2.jpg",
-      category: "Campus",
-    },
-    {
-      id: 3,
-      src: "https://uccgroup.com.bd/uploads/gallery/s3.jpg",
-      category: "Students",
-    },
-    {
-      id: 4,
-      src: "https://uccgroup.com.bd/uploads/gallery/s4.jpg",
-      category: "Success",
-    },
-    {
-      id: 5,
-      src: "https://uccgroup.com.bd/uploads/gallery/s5.jpg",
-      category: "Students",
-    },
-    {
-      id: 6,
-      src: "https://uccgroup.com.bd/uploads/gallery/s6.jpg",
-      category: "Campus",
-    },
-    {
-      id: 7,
-      src: "https://uccgroup.com.bd/uploads/gallery/s7.jpg",
-      category: "Students",
-    },
-    {
-      id: 8,
-      src: "https://uccgroup.com.bd/uploads/gallery/s8.jpg",
-      category: "Others",
-    },
-    {
-      id: 9,
-      src: "https://uccgroup.com.bd/uploads/gallery/s9.jpg",
-      category: "Success",
-    },
-    {
-      id: 10,
-      src: "https://uccgroup.com.bd/uploads/gallery/s10.jpg",
-      category: "Campus",
-    },
-    {
-      id: 11,
-      src: "https://uccgroup.com.bd/uploads/gallery/s11.jpg",
-      category: "Students",
-    },
-    {
-      id: 12,
-      src: "https://uccgroup.com.bd/uploads/gallery/s12.jpg",
-      category: "Others",
-    },
+  const tabs: TabType[] = [
+    "All",
+    ...Array.from(new Set(galleryImages.map((img) => img.category))),
   ];
 
-  const filteredImages =
-    activeTab === "All"
-      ? galleryImages
-      : galleryImages.filter((img) => img.category === activeTab);
+const filteredImages = galleryImages.filter((img) => {
+  const featuredFilter = isHomePage ? img.featured : true; 
+  
+  const tabFilter = activeTab === "All" || img.category === activeTab;
+  
+  return featuredFilter && tabFilter;
+});
 
-  // Limit to 6 images for homepage
   const displayedImages = isHomePage ? filteredImages.slice(0, 8) : filteredImages;
 
   const openModal = (image: GalleryImage, index: number) => {
@@ -151,36 +109,53 @@ export default function PhotoGallery({ isHomePage = true }: PhotoGalleryProps) {
         </div>
 
         {/* Gallery Grid */}
-        <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-2 lg:gap-3">
-          {displayedImages.map((image, index) => (
-            <div
-              key={image.id}
-              onClick={() => openModal(image, index)}
-              className="group relative overflow-hidden rounded-xl shadow-md hover:shadow-2xl transition-all duration-300 cursor-pointer"
-            >
-              <div className="aspect-[4/3] overflow-hidden bg-gray-200 relative">
-                <Image
-                  src={image.src}
-                  alt={`Gallery ${image.id}`}
-                  fill
-                  placeholder="blur"
-                  blurDataURL="data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAAEAAAABCAQAAAC1HAwCAAAAC0lEQVR4nGNgYAAAAAMAASsJTYQAAAAASUVORK5CYII="
-                  sizes="(max-width: 640px) 100vw, (max-width: 1024px) 50vw, 25vw"
-                  className="object-cover transform group-hover:scale-110 transition-transform duration-500"
-                />
+        {isLoading ? (
+          <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-2 lg:gap-3">
+            {[...Array(isHomePage ? 8 : 12)].map((_, index) => (
+              <div
+                key={index}
+                className="relative overflow-hidden rounded-xl shadow-md"
+              >
+                <Skeleton height="100%" className="aspect-[4/3]" />
               </div>
+            ))}
+          </div>
+        ) : error ? (
+          <div className="text-center text-red-600">
+            Error loading gallery. Please try again later.
+          </div>
+        ) : (
+          <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-2 lg:gap-3">
+            {displayedImages.map((image, index) => (
+              <div
+                key={image.id}
+                onClick={() => openModal(image, index)}
+                className="group relative overflow-hidden rounded-xl shadow-md hover:shadow-2xl transition-all duration-300 cursor-pointer"
+              >
+                <div className="aspect-[4/3] overflow-hidden bg-gray-200 relative">
+                  <Image
+                    src={image.src}
+                    alt={`Gallery ${image.id}`}
+                    fill
+                    placeholder="blur"
+                    blurDataURL="data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAAEAAAABCAQAAAC1HAwCAAAAC0lEQVR4nGNgYAAAAAMAASsJTYQAAAAASUVORK5CYII="
+                    sizes="(max-width: 640px) 100vw, (max-width: 1024px) 50vw, 25vw"
+                    className="object-cover transform group-hover:scale-110 transition-transform duration-500"
+                  />
+                </div>
 
-              {/* Overlay */}
-              <div className="absolute inset-0 bg-gradient-to-t from-black/70 via-black/20 to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-300 flex items-end justify-center pb-4">
-                <div className="transform translate-y-4 group-hover:translate-y-0 transition-transform duration-300">
-                  <p className="text-white text-sm font-semibold">
-                    {image.category}
-                  </p>
+                {/* Overlay */}
+                <div className="absolute inset-0 bg-gradient-to-t from-black/70 via-black/20 to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-300 flex items-end justify-center pb-4">
+                  <div className="transform translate-y-4 group-hover:translate-y-0 transition-transform duration-300">
+                    <p className="text-white text-sm font-semibold">
+                      {image.category}
+                    </p>
+                  </div>
                 </div>
               </div>
-            </div>
-          ))}
-        </div>
+            ))}
+          </div>
+        )}
 
         {/* View More Button (only for homepage) */}
         {isHomePage && (

@@ -138,9 +138,8 @@ export default function HomePage() {
       <Students/>
       <Services/>
       <SecBanner/>
-      <PhotoGallery/>
+      <PhotoGallery isHomePage={true}/>
       <Success/>
-  
     </main>
   );
 }
