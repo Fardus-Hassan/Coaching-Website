@@ -303,7 +303,7 @@ export default function ContactUs() {
                 required
               ></textarea>
             </div>
-            <div className="md:col-span-2">
+            <div className="md:col-span-2 text-center">
               <button
                 type="submit"
                 disabled={isSending}
