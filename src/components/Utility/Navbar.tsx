@@ -2,7 +2,11 @@
 
 import { useState, useEffect, Fragment } from "react";
 import { Dialog, DialogPanel, Transition } from "@headlessui/react";
-import { Bars3Icon, XMarkIcon, ChevronDownIcon } from "@heroicons/react/24/outline";
+import {
+  Bars3Icon,
+  XMarkIcon,
+  ChevronDownIcon,
+} from "@heroicons/react/24/outline";
 import { FaFacebookF } from "react-icons/fa6";
 import { FaInstagram, FaLinkedinIn, FaYoutube } from "react-icons/fa";
 import { PiStudentBold } from "react-icons/pi";
@@ -11,19 +15,20 @@ import { IoCall } from "react-icons/io5";
 import Link from "next/link";
 import { usePathname } from "next/navigation";
 import { useGetInstitutesQuery } from "@/redux/features/api/institute/instituteApi";
+import Image from "next/image";
 
 const navigation = [
-  { 
-    name: "হোম", 
-    href: "/", 
+  {
+    name: "হোম",
+    href: "/",
   },
-  { 
-    name: "আমাদের সম্পর্কে", 
-    href: "/about", 
+  {
+    name: "আমাদের সম্পর্কে",
+    href: "/about",
     sub: [
       { name: "UCC সম্পর্কে", href: "/about" },
-      { name: "চেয়ারম্যানের বার্তা", href: "/chairman" }
-    ]
+      { name: "চেয়ারম্যানের বার্তা", href: "/chairman" },
+    ],
   },
   { name: "নোটিশ", href: "/notice" },
   { name: "ফটো গ্যালারি", href: "/gallery" },
@@ -36,8 +41,7 @@ export default function Navbar() {
   const [isScrolled, setIsScrolled] = useState(false);
   const [expandedItems, setExpandedItems] = useState(new Set());
   const pathname = usePathname();
-  const { data, isLoading, error } = useGetInstitutesQuery();
-
+  const { data = [], isLoading, error } = useGetInstitutesQuery();
 
   useEffect(() => {
     const handleScroll = () => {
@@ -48,7 +52,7 @@ export default function Navbar() {
     return () => window.removeEventListener("scroll", handleScroll);
   }, []);
 
-  const toggleExpanded = (name : string) => {
+  const toggleExpanded = (name: string) => {
     setExpandedItems((prev) => {
       const newSet = new Set(prev);
       if (newSet.has(name)) {
@@ -60,14 +64,11 @@ export default function Navbar() {
     });
   };
 
-
   const isActive = (href: string) => pathname === href;
 
-
-
   if (isLoading) return <p className="text-center mt-4">Loading...</p>;
-  if (error) return <p className="text-red-500 text-center">Failed to load data</p>;
-
+  if (error)
+    return <p className="text-red-500 text-center">Failed to load data</p>;
 
   return (
     <div>
@@ -88,7 +89,7 @@ export default function Navbar() {
                   {data[0]?.institute_mobile}
                 </span>
                 <span>|</span>
-                <Link href='/admission' className="flex gap-1 items-center">
+                <Link href="/admission" className="flex gap-1 items-center">
                   <IoIosSchool />
                   Admission
                 </Link>
@@ -99,7 +100,7 @@ export default function Navbar() {
                 </span>
               </div>
               <div className="flex items-center space-x-4 text-white text-sm">
-                <a  href={data[0]?.institute_fb} target="_blank">
+                <a href={data[0]?.institute_fb} target="_blank">
                   <FaFacebookF />
                 </a>
                 {/* <span>
@@ -126,11 +127,15 @@ export default function Navbar() {
           <div className="flex lg:flex-1">
             <Link href="/" className="-m-1.5">
               <span className="sr-only">Your Company</span>
-              <img
-                alt=""
+              <Image
                 src={data[0].institute_logo}
-
-                className="h-[44px] w-auto"
+                alt={data[0].institute_name}
+                width={44}
+                height={44}
+                placeholder="blur"
+                blurDataURL="data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAAEAAAABCAQAAAC1HAwCAAAAC0lEQVR4nGNgYAAAAAMAASsJTYQAAAAASUVORK5CYII="
+                sizes="(max-width: 640px) 100vw, (max-width: 1024px) 50vw, 25vw"
+                className="mx-auto rounded-md"
               />
             </Link>
           </div>
@@ -150,7 +155,9 @@ export default function Navbar() {
                 <Link
                   href={item.href}
                   className={`text-sm/6 text-gray-900 hover:text-gray-500 transition-colors duration-200 p-2 rounded-md ${
-                    isActive(item.href) ? 'bg-indigo-500/10 text-gray-900 font-bold' : ''
+                    isActive(item.href)
+                      ? "bg-indigo-500/10 text-gray-900 font-bold"
+                      : ""
                   }`}
                 >
                   {item.name}
@@ -161,7 +168,12 @@ export default function Navbar() {
                       stroke="currentColor"
                       viewBox="0 0 24 24"
                     >
-                      <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M19 9l-7 7-7-7" />
+                      <path
+                        strokeLinecap="round"
+                        strokeLinejoin="round"
+                        strokeWidth={2}
+                        d="M19 9l-7 7-7-7"
+                      />
                     </svg>
                   )}
                 </Link>
@@ -173,7 +185,9 @@ export default function Navbar() {
                           key={subItem.name}
                           href={subItem.href}
                           className={`block px-4 py-2 text-sm text-gray-900 hover:bg-indigo-800/10 transition-colors duration-200 ${
-                            isActive(subItem.href) ? 'bg-indigo-800/10 font-bold' : ''
+                            isActive(subItem.href)
+                              ? "bg-indigo-800/10 font-bold"
+                              : ""
                           }`}
                         >
                           {subItem.name}
@@ -189,7 +203,11 @@ export default function Navbar() {
 
         {/* Mobile Menu with Top Info */}
         <Transition show={mobileMenuOpen} as={Fragment} appear>
-          <Dialog as="div" className="relative z-50 lg:hidden" onClose={setMobileMenuOpen}>
+          <Dialog
+            as="div"
+            className="relative z-50 lg:hidden"
+            onClose={setMobileMenuOpen}
+          >
             {/* Backdrop */}
             <Transition.Child
               as={Fragment}
@@ -249,7 +267,7 @@ export default function Navbar() {
                                     <button
                                       onClick={() => toggleExpanded(item.name)}
                                       className={`-mx-3 w-full rounded-lg px-3 py-2 text-base/7 font-semibold text-white hover:bg-white/10 transition-colors duration-200 text-left flex items-center justify-between ${
-                                        parentActive ? 'bg-white/10' : ''
+                                        parentActive ? "bg-white/10" : ""
                                       }`}
                                     >
                                       <span>{item.name}</span>
@@ -261,7 +279,9 @@ export default function Navbar() {
                                     </button>
                                     <div
                                       className={`ml-6 space-y-1 overflow-hidden transition-all duration-300 ease-in-out ${
-                                        isExpanded ? "max-h-96 opacity-100" : "h-0 opacity-0"
+                                        isExpanded
+                                          ? "max-h-96 opacity-100"
+                                          : "h-0 opacity-0"
                                       }`}
                                     >
                                       {item.sub.map((subItem) => (
@@ -269,7 +289,9 @@ export default function Navbar() {
                                           key={subItem.name}
                                           href={subItem.href}
                                           className={`-mx-3 block rounded-lg px-3 py-1 text-sm text-white/80 hover:bg-white/10 transition-colors duration-200 ${
-                                            isActive(subItem.href) ? 'bg-white/10 text-white' : ''
+                                            isActive(subItem.href)
+                                              ? "bg-white/10 text-white"
+                                              : ""
                                           }`}
                                         >
                                           {subItem.name}
@@ -281,7 +303,7 @@ export default function Navbar() {
                                   <Link
                                     href={item.href}
                                     className={`-mx-3 block rounded-lg px-3 py-2 text-base/7 font-semibold text-white hover:bg-white/10 transition-colors duration-200 ${
-                                      isActive(item.href) ? 'bg-white/10' : ''
+                                      isActive(item.href) ? "bg-white/10" : ""
                                     }`}
                                   >
                                     {item.name}
@@ -316,19 +338,31 @@ export default function Navbar() {
                             <span>Student Login</span>
                           </div>
                         </div>
-                        
+
                         {/* Social Icons in Mobile Menu */}
                         <div className="flex items-center gap-4 mt-5">
-                          <a href="#" className="text-white hover:text-gray-300 transition-colors duration-200">
+                          <a
+                            href="#"
+                            className="text-white hover:text-gray-300 transition-colors duration-200"
+                          >
                             <FaFacebookF />
                           </a>
-                          <a href="#" className="text-white hover:text-gray-300 transition-colors duration-200">
+                          <a
+                            href="#"
+                            className="text-white hover:text-gray-300 transition-colors duration-200"
+                          >
                             <FaInstagram />
                           </a>
-                          <a href="#" className="text-white hover:text-gray-300 transition-colors duration-200">
+                          <a
+                            href="#"
+                            className="text-white hover:text-gray-300 transition-colors duration-200"
+                          >
                             <FaYoutube />
                           </a>
-                          <a href="#" className="text-white hover:text-gray-300 transition-colors duration-200">
+                          <a
+                            href="#"
+                            className="text-white hover:text-gray-300 transition-colors duration-200"
+                          >
                             <FaLinkedinIn />
                           </a>
                         </div>
@@ -341,8 +375,7 @@ export default function Navbar() {
           </Dialog>
         </Transition>
       </header>
-              <div className="h-[64px]"></div>
-
+      <div className="h-[64px]"></div>
     </div>
   );
 }

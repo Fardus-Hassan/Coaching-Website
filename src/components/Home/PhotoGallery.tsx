@@ -165,8 +165,8 @@ export default function PhotoGallery({ isHomePage = true }: PhotoGalleryProps) {
                   fill
                   placeholder="blur"
                   blurDataURL="data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAAEAAAABCAQAAAC1HAwCAAAAC0lEQVR4nGNgYAAAAAMAASsJTYQAAAAASUVORK5CYII="
-                  className="object-cover transform group-hover:scale-110 transition-transform duration-500"
                   sizes="(max-width: 640px) 100vw, (max-width: 1024px) 50vw, 25vw"
+                  className="object-cover transform group-hover:scale-110 transition-transform duration-500"
                 />
               </div>
 

@@ -5,6 +5,6 @@ export const apiSlice = createApi({
   baseQuery: fetchBaseQuery({
     baseUrl: "https://coaching.attendclub.top/api/", // ✅ এক central জায়গায় base URL
   }),
-  tagTypes: ["Institute"], // optional: caching & refetch control
+  tagTypes: ["Institute", "Banner"],
   endpoints: () => ({}),
 });
