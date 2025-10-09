@@ -143,7 +143,7 @@ export default function Banner() {
         <div className="absolute inset-0 bg-gradient-to-t from-black via-black/50 to-transparent opacity-90 z-20" />
 
         <div className="relative h-full flex items-end justify-start px-6 lg:px-12 pb-12 lg:pb-16 z-30">
-          <div className="max-w-3xl">
+          <div className="">
             {(currentBanner?.heading || currentBanner?.description) && (
               <div className={`content-transition ${isContentChanging ? 'opacity-0' : 'opacity-100'}`}>
                 {currentBanner?.heading ? (
