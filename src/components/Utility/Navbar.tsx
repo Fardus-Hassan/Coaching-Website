@@ -29,7 +29,7 @@ const navigation = [
     name: "আমাদের সম্পর্কে",
     href: "/about",
     sub: [
-      { name: "UCC সম্পর্কে", href: "/about" },
+      { name: "প্রতিষ্ঠানের সম্পর্কে", href: "/about" },
       { name: "চেয়ারম্যানের বার্তা", href: "/chairman" },
     ],
   },
