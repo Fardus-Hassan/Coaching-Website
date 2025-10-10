@@ -147,7 +147,7 @@ export default function Banner() {
             {(currentBanner?.heading || currentBanner?.description) && (
               <div className={`content-transition ${isContentChanging ? 'opacity-0' : 'opacity-100'}`}>
                 {currentBanner?.heading ? (
-                  <h1 className="text-4xl font-bold tracking-tight text-white sm:text-5xl lg:text-6xl mb-4 lg:mb-6">
+                  <h1 className="text-4xl font-bold tracking-tight text-white sm:text-5xl mb-4 lg:mb-6">
                     {currentBanner?.heading}
                   </h1>
                 ) : (

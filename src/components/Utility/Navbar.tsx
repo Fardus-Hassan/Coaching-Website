@@ -30,7 +30,7 @@ const navigation = [
     href: "/about",
     sub: [
       { name: "প্রতিষ্ঠানের সম্পর্কে", href: "/about" },
-      { name: "চেয়ারম্যানের বার্তা", href: "/chairman" },
+      { name: "নীতিনির্ধারকদের বাণী", href: "/chairman" },
     ],
   },
   { name: "নোটিশ", href: "/notice" },

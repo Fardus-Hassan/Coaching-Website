@@ -5,7 +5,7 @@ import Link from "next/link";
 import Image from "next/image";
 import Skeleton from "react-loading-skeleton";
 import "react-loading-skeleton/dist/skeleton.css";
-import { useGetCoachingHistoriesQuery } from "@/redux/features/api/aboutSection/coachingHistoryApi";
+import { useGetCoachingHistoriesQuery } from "@/redux/features/api/about/coachingHistoryApi";
 
 export default function About() {
   const { data = [], isLoading, error } = useGetCoachingHistoriesQuery();
@@ -30,6 +30,16 @@ export default function About() {
   const handleKeyDown = (e: React.KeyboardEvent) => {
     if (e.key === "Escape") closeModal();
   };
+
+
+  const truncateDescription = (text : string) => {
+  if (!text) return "কোনো বিবরণ পাওয়া যায়নি।";
+  if (text.length > 450) {
+    return text.substring(0, 450) + '.....';
+  }
+  return text;
+};
+  
 
   return (
     <section className="relative py-16 lg:py-24 bg-gradient-to-br from-indigo-50 via-white to-purple-50 overflow-hidden">
@@ -120,7 +130,7 @@ export default function About() {
               </div>
               <div className="prose prose-lg text-gray-700 leading-relaxed max-w-none">
                 <p className="text-base lg:text-lg">
-                  {coachingHistory.description || "কোনো বিবরণ পাওয়া যায়নি।"}
+                   {truncateDescription(coachingHistory.description)}
                 </p>
               </div>
               <div className="pt-4">

@@ -1,6 +1,13 @@
-import PageHeader from "../Utility/PageHeader";
+import { useGetCoachingHistoriesQuery } from "@/redux/features/api/about/coachingHistoryApi";
+import { useGetSpecialQualitiesQuery } from "@/redux/features/api/about/specialQualitiesApi";
 
 export default function AboutDetails() {
+
+  // const { data = [], isLoading, error } = useGetSpecialQualitiesQuery();
+    // const { data = [], isLoading, error } = useGetCoachingHistoriesQuery();
+  
+
+
   return (
     <div className="min-h-screen bg-gray-50">
       {/* Main Content */}
@@ -8,7 +15,7 @@ export default function AboutDetails() {
         {/* About Section */}
         <section className="mb-20 pt-16 px-4">
           <h2 className="text-3xl font-bold text-center mb-8 text-gray-900">
-            UCC-র <span className="text-indigo-600">যাত্রা শুরুর</span>
+            প্রতিষ্ঠানের <span className="text-indigo-600">সম্পর্কে</span>
             <div className="w-16 h-1 bg-indigo-600 mx-auto mt-2"></div>
           </h2>
 
@@ -46,7 +53,7 @@ export default function AboutDetails() {
         <section className="bg-white py-16 px-4">
           <div className="max-w-7xl mx-auto">
             <h2 className="text-3xl text-gray-900 font-bold text-center mb-12">
-              UCC-র <span className="text-indigo-600">বৈশিষ্ট্য</span> সমূহ
+              প্রতিষ্ঠানের <span className="text-indigo-600">বৈশিষ্ট্য</span> সমূহ
               <div className="w-16 h-1 bg-indigo-600 mx-auto mt-2"></div>
             </h2>
 
