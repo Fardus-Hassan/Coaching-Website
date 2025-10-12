@@ -1,10 +1,29 @@
 import { createApi, fetchBaseQuery } from "@reduxjs/toolkit/query/react";
 
 export const apiSlice = createApi({
-  reducerPath: "api", 
+  reducerPath: "api",
   baseQuery: fetchBaseQuery({
     baseUrl: "https://coaching.attendclub.top/api/",
   }),
-  tagTypes: ["Institute", "Banner", "Notice", "Gallery", "Contact", "VideoGallery", "IconicStudents", "Service", "CoachingHistory", "SuccessStories", "SpecialQualities", "Speech", "Program", "Committee"],
+  tagTypes: [
+    "Institute",
+    "Banner",
+    "Notice",
+    "Gallery",
+    "Contact",
+    "VideoGallery",
+    "IconicStudents",
+    "Service",
+    "CoachingHistory",
+    "SuccessStories",
+    "SpecialQualities",
+    "Speech",
+    "Program",
+    "Committee",
+    "AdmissionYear",
+    "StudentClass",
+    "Batch",
+    "OnlineAdmission",
+  ],
   endpoints: () => ({}),
 });
