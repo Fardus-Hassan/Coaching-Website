@@ -31,6 +31,7 @@ const navigation = [
     sub: [
       { name: "প্রতিষ্ঠানের সম্পর্কে", href: "/about" },
       { name: "নীতিনির্ধারকদের বাণী", href: "/chairman" },
+      { name: "কমিটি সদস্যবৃন্দ", href: "/committees" },
     ],
   },
   { name: "নোটিশ", href: "/notice" },
