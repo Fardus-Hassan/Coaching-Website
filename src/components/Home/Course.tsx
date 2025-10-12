@@ -155,7 +155,7 @@ export default function Course() {
               leaveFrom="opacity-100 scale-100"
               leaveTo="opacity-0 scale-95"
             >
-              <DialogPanel className="w-full max-w-2xl transform overflow-hidden rounded-2xl bg-white p-6 text-left align-middle shadow-xl transition-all max-h-[90vh]">
+              <DialogPanel className="w-full max-w-2xl transform overflow-hidden rounded-2xl bg-white p-6 text-left align-middle shadow-xl transition-all max-h-[100vh]">
                 <div className="flex items-start justify-between mb-4 border-b pb-3">
                   <DialogTitle className="text-2xl font-bold text-gray-900">
                     {selectedCourse?.title} - বিস্তারিত
