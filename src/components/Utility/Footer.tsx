@@ -101,12 +101,20 @@ export default function Footer() {
               <p className="text-indigo-200 text-sm leading-relaxed">{footerText}</p>
             )}
             <div className="flex space-x-4">
-              <a href={institute?.institute_fb} target="_blank" className="group p-2 rounded-full bg-indigo-600 hover:bg-indigo-500 transition-all duration-300 transform hover:scale-110">
-                <FaFacebookF className="h-4 w-4" />
-              </a>
-              <a href={institute?.institute_youtube} target="_blank" className="group p-2 rounded-full bg-indigo-600 hover:bg-indigo-500 transition-all duration-300 transform hover:scale-110">
-                <FaYoutube className="h-4 w-4" />
-              </a>
+             {
+              institute?.institute_fb && (
+                <a href={institute?.institute_fb} target="_blank" className="group p-2 rounded-full bg-indigo-600 hover:bg-indigo-500 transition-all duration-300 transform hover:scale-110">
+                  <FaFacebookF className="h-4 w-4" />
+                </a>
+              )
+             }
+             {
+              institute?.institute_youtube && (
+                <a href={institute?.institute_youtube} target="_blank" className="group p-2 rounded-full bg-indigo-600 hover:bg-indigo-500 transition-all duration-300 transform hover:scale-110">
+                  <FaYoutube className="h-4 w-4" />
+                </a>
+              )
+             }
             </div>
           </div>
 
