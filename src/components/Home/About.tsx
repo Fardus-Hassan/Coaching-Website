@@ -105,12 +105,13 @@ export default function About() {
                 ) : (
                   <Image
                     src={coachingHistory.img || "https://via.placeholder.com/600x400"}
-                    alt="UCC সম্পর্কে"
+                    alt="প্রতিষ্ঠানের সম্পর্কে"
                     width={600}
                     height={400}
                     className="w-full h-80 lg:h-96 object-cover rounded-xl"
                     placeholder="blur"
                     blurDataURL="data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAAEAAAABCAQAAAC1HAwCAAAAC0lEQVR4nGNgYAAAAAMAASsJTYQAAAAASUVORK5CYII="
+                    unoptimized 
                   />
                 )}
               </div>

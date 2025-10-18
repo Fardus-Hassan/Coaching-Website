@@ -3,11 +3,11 @@ import "./globals.css";
 import Navbar from "@/components/Utility/Navbar";
 import Footer from "@/components/Utility/Footer";
 import ScrollToTop from "@/components/Utility/ScrollToTop";
-import { useGetInstitutesQuery } from "@/redux/features/api/institute/instituteApi";
+import baseUrl from "@/components/Utility/apiConfig";
 
 export async function generateMetadata() {
   try {
-    const res = await fetch("https://coaching.attendclub.top/api/institutes/", {
+    const res = await fetch(`${baseUrl()}institutes/`, {
       cache: "force-cache",
     });
     const data = await res.json();

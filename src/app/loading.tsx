@@ -1,8 +1,9 @@
+import baseUrl from "@/components/Utility/apiConfig";
 import Image from "next/image";
 
 export default async function Loading() {
   try {
-    const res = await fetch("https://coaching.attendclub.top/api/institutes/", {
+    const res = await fetch(`${baseUrl()}institutes/`, {
       cache: "force-cache",
     });
 

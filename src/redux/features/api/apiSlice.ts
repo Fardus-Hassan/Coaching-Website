@@ -1,9 +1,10 @@
+import baseUrl from "@/components/Utility/apiConfig";
 import { createApi, fetchBaseQuery } from "@reduxjs/toolkit/query/react";
 
 export const apiSlice = createApi({
   reducerPath: "api",
   baseQuery: fetchBaseQuery({
-    baseUrl: "https://coaching.attendclub.top/api/",
+    baseUrl: baseUrl(),
   }),
   tagTypes: [
     "Institute",
@@ -24,6 +25,7 @@ export const apiSlice = createApi({
     "StudentClass",
     "Batch",
     "OnlineAdmission",
+    "InfoBlock",
   ],
   endpoints: () => ({}),
 });
