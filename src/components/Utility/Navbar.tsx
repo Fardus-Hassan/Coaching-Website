@@ -38,6 +38,7 @@ const navigation = [
   { name: "নোটিশ", href: "/notice" },
   { name: "ফটো গ্যালারি", href: "/gallery" },
   { name: "ভিডিও", href: "/video_gallery" },
+  { name: "রিপোর্ট কার্ড", href: "/report-card" },
   { name: "যোগাযোগ", href: "/contact_us" },
 ];
 
@@ -199,7 +200,7 @@ export default function Navbar() {
             </div>
           </div>
 
-          <div className="flex lg:hidden">
+          <div className="flex xl:hidden">
             <button
               type="button"
               onClick={() => setMobileMenuOpen(true)}
@@ -210,7 +211,7 @@ export default function Navbar() {
             </button>
           </div>
 
-          <div className="hidden lg:flex lg:gap-x-8">
+          <div className="hidden xl:flex flex-wrap lg:gap-x-5">
             {navigation.map((item) => (
               <div key={item.name} className="group relative">
                 <Link
@@ -266,7 +267,7 @@ export default function Navbar() {
         <Transition show={mobileMenuOpen} as={Fragment} appear>
           <Dialog
             as="div"
-            className="relative z-50 lg:hidden"
+            className="relative z-50 xl:hidden"
             onClose={setMobileMenuOpen}
           >
             {/* Backdrop */}

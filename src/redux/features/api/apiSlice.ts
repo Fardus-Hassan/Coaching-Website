@@ -28,6 +28,7 @@ export const apiSlice = createApi({
     "InfoBlock",
     "Teacher",
     "SiteColor",
+    "Exam",
   ],
   endpoints: () => ({}),
 });
