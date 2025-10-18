@@ -4,7 +4,7 @@ import { useGetSiteColorsQuery } from "@/redux/features/api/siteColor/siteColorA
 import { useEffect, useMemo } from "react";
 
 export default function SiteColorProvider({ children }: { children: React.ReactNode }) {
-  const { data, isLoading } = useGetSiteColorsQuery();
+  const { data = [], isLoading } = useGetSiteColorsQuery();
 
   const color = useMemo(() => {
     if (Array.isArray(data) && data.length > 0) return data[0];
@@ -28,7 +28,7 @@ export default function SiteColorProvider({ children }: { children: React.ReactN
 
   if (isLoading)
     return (
-      <div className="flex justify-center items-center text-gray-400 bg-white h-screen">
+      <div className="flex justify-center items-center text-gray-200 bg-white h-screen">
         Loading...
       </div>
     );
