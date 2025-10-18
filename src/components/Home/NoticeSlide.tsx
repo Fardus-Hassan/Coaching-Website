@@ -23,11 +23,11 @@ export default function NoticeSlide() {
   }
 
   if (error) {
-    return (
-      <section className="h-[5vh] bg-red-500 flex items-center justify-center text-white">
-        🔴 নোটিশ লোড করতে ব্যর্থ হয়েছে
-      </section>
-    );
+    return null;
+  }
+
+  if (data.length === 0) {
+    return null;
   }
 
   return (

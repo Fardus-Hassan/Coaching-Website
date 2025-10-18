@@ -94,8 +94,8 @@ export default function Banner() {
     );
   }
 
-  if (error) return <p className="text-center text-red-500 mt-6">Failed to load banners</p>;
-  if (activeBanners.length === 0) return <p className="text-center mt-6">No active banners available</p>;
+  if (error) return null;
+  if (activeBanners.length === 0) return null;
 
   const currentBanner: Banner = activeBanners[currentIndex];
 

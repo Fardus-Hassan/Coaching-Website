@@ -62,6 +62,10 @@ export default function Video() {
     if (e.key === "ArrowLeft") prevVideo();
   };
 
+  if (data.length === 0) {
+    return null;
+  }
+
   return (
     <section className="py-12 lg:py-20 bg-gradient-to-b from-gray-50 to-gray-100">
       <div className="mx-auto max-w-7xl px-4 sm:px-6 lg:px-8">
@@ -86,9 +90,9 @@ export default function Video() {
             ))}
           </div>
         ) : error ? (
-          <div className="text-center text-red-600">
-            Error loading videos. Please try again later.
-          </div>
+          null
+        ) : filteredVideos.length === 0 ? (
+          null
         ) : (
           <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-2 lg:gap-3">
             {filteredVideos.map((video, index) => (

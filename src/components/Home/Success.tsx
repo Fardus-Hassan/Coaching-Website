@@ -42,6 +42,11 @@ export default function Success() {
 
   const isExpanded = (id: number) => expandedCards.includes(id);
 
+
+  if (data.length === 0) {
+    return null;
+  }
+
   return (
     <section className="relative py-16 bg-gradient-to-br from-indigo-50 via-purple-50 to-indigo-50 overflow-hidden">
       {/* Decorative elements */}
@@ -111,9 +116,9 @@ export default function Success() {
             <div className="swiper-pagination mt-8 !relative !bottom-0"></div>
           </Swiper>
         ) : error ? (
-          <div className="text-center text-red-600">
-            Error loading success stories. Please try again later.
-          </div>
+          null
+        ) : successStories.length === 0 ? (
+          null
         ) : (
           <Swiper
             modules={[Autoplay, Pagination]}

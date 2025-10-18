@@ -24,11 +24,11 @@ export default function Services() {
   }
 
   if (error) {
-    return (
-      <div className="text-center py-10 text-red-500 font-semibold">
-        সেবা লোড করতে সমস্যা হয়েছে 😢
-      </div>
-    );
+    return null;
+  }
+
+  if (data.length === 0) {
+    return null;
   }
 
   return (

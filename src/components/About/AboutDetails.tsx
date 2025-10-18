@@ -37,7 +37,9 @@ export default function AboutDetails() {
                 <Skeleton count={4} height={20} />
               </>
             ) : historyError ? (
-              <p className="text-center text-red-600">Error loading history. Please try again later.</p>
+              null
+            ) : !coachingHistory.description ? (
+              null
             ) : (
               <p className="text-justify text-base md:text-lg">{coachingHistory.description}</p>
             )}
@@ -86,7 +88,9 @@ export default function AboutDetails() {
                 </div>
               </>
             ) : qualitiesError ? (
-              <p className="text-center text-red-600 col-span-2">Error loading special qualities. Please try again later.</p>
+              null
+            ) : qualitiesData.length === 0 ? (
+              null
             ) : (
               <>
                 {/* Left Column */}

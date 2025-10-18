@@ -24,6 +24,10 @@ export default function TeacherList() {
     designation: item.designation,
   }));
 
+  if (data.length === 0) {
+    return null;
+  }
+
   return (
     <section className="py-16 lg:py-24 bg-gradient-to-br from-indigo-50 via-white to-purple-50 relative overflow-hidden">
       {/* Decorative Background */}
@@ -66,13 +70,9 @@ export default function TeacherList() {
             ))}
           </div>
         ) : error ? (
-          <div className="text-center text-red-600">
-            Error loading teachers. Please try again later.
-          </div>
+          null
         ) : activeTeachers.length === 0 ? (
-          <div className="text-center text-gray-600">
-            No active teachers found.
-          </div>
+          null
         ) : (
           <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-8 lg:gap-10">
             {activeTeachers.map((teacher) => (

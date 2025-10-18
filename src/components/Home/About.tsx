@@ -39,6 +39,10 @@ export default function About() {
   }
   return text;
 };
+
+if (data.length === 0) {
+  return null;
+}
   
 
   return (
@@ -70,9 +74,9 @@ export default function About() {
             </div>
           </div>
         ) : error ? (
-          <div className="text-center text-red-600">
-            Error loading content. Please try again later.
-          </div>
+          null
+        ) : !coachingHistory.heading && !coachingHistory.description ? (
+          null
         ) : (
           <div className="grid grid-cols-1 lg:grid-cols-2 gap-12 lg:gap-20 items-center">
             {/* Image/Video Section */}

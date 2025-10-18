@@ -19,6 +19,7 @@ import { useGetInstitutesQuery } from "@/redux/features/api/institute/instituteA
 import Image from "next/image";
 import Skeleton from 'react-loading-skeleton';
 import 'react-loading-skeleton/dist/skeleton.css';
+import { useSiteColor } from "../SiteColorProvider";
 
 const navigation = [
   {
@@ -38,7 +39,7 @@ const navigation = [
   { name: "নোটিশ", href: "/notice" },
   { name: "ফটো গ্যালারি", href: "/gallery" },
   { name: "ভিডিও", href: "/video_gallery" },
-  { name: "রিপোর্ট কার্ড", href: "/report-card" },
+  { name: "রেজাল্ট", href: "/report-card" },
   { name: "যোগাযোগ", href: "/contact_us" },
 ];
 
@@ -48,6 +49,8 @@ export default function Navbar() {
   const [expandedItems, setExpandedItems] = useState(new Set());
   const pathname = usePathname();
   const { data = [], isLoading, error } = useGetInstitutesQuery();
+  const color = useSiteColor();
+
 
   useEffect(() => {
     const handleScroll = () => {
@@ -193,10 +196,10 @@ export default function Navbar() {
               <h1 className="lg:text-lg font-bold text-gray-900 leading-tight">
                 {data[0]?.institute_name}
               </h1>
-              <p className="lg:text-xs text-[10px] text-gray-600 flex items-center gap-1 mt-0.5">
+              {data[0]?.institute_address && <p className="lg:text-xs text-[10px] text-gray-600 flex items-center gap-1 mt-0.5">
                 <MdLocationOn className="text-indigo-600" />
                 {data[0]?.institute_address}
-              </p>
+              </p>}
             </div>
           </div>
 
@@ -312,10 +315,10 @@ export default function Navbar() {
                               <h2 className="text-sm font-bold text-white leading-tight">
                                 {data[0]?.institute_name}
                               </h2>
-                              <p className="text-xs text-indigo-200 flex items-center gap-1 mt-0.5">
+                              {data[0]?.institute_address && <p className="text-xs text-indigo-200 flex items-center gap-1 mt-0.5">
                                 <MdLocationOn className="text-xs" />
                                 {data[0]?.institute_address}
-                              </p>
+                              </p>}
                             </div>
                           </div>
                           <button

@@ -110,10 +110,11 @@ export default function ContactUs() {
         </div>
 
         {/* Contact Info (Email, Mobile, Address) */}
-        <div className="p-6 rounded-2xl shadow-lg mb-8">
-          {isLoading ? (
-            <Skeleton height={120} className="rounded-2xl" />
-          ) : (
+        {!isLoading && contact && (
+          <div className="p-6 rounded-2xl shadow-lg mb-8">
+            {isLoading ? (
+              <Skeleton height={120} className="rounded-2xl" />
+            ) : (
             <div className="grid grid-cols-1 sm:grid-cols-3 gap-6">
               <div className="flex items-center gap-4">
                 <svg
@@ -179,17 +180,16 @@ export default function ContactUs() {
                 </div>
               </div>
             </div>
-          )}
-        </div>
+            )}
+          </div>
+        )}
 
         {/* Map and Image Side by Side */}
-        <div className="grid md:grid-cols-2 gap-8 mb-8 items-center justify-between">
-          {/* Google Map */}
-          <div className="p-6 rounded-2xl transition-shadow duration-300">
-            {isLoading ? (
-              <Skeleton height={300} className="rounded-2xl" />
-            ) : (
-              contact?.google_map && (
+        {!isLoading && (contact?.google_map || contact?.image) && (
+          <div className="grid md:grid-cols-2 gap-8 mb-8 items-center justify-between">
+            {/* Google Map */}
+            {contact?.google_map && (
+              <div className="p-6 rounded-2xl transition-shadow duration-300">
                 <div className="rounded-2xl overflow-hidden shadow-lg">
                   <iframe
                     src={contact.google_map}
@@ -198,16 +198,12 @@ export default function ContactUs() {
                     title="Location Map"
                   ></iframe>
                 </div>
-              )
+              </div>
             )}
-          </div>
 
-          {/* Institute Image */}
-          <div className="p-6 rounded-2xl transition-shadow mx-auto duration-300">
-            {isLoading ? (
-              <Skeleton height={300} className="rounded-2xl" />
-            ) : (
-              contact?.image && (
+            {/* Institute Image */}
+            {contact?.image && (
+              <div className="p-6 rounded-2xl transition-shadow mx-auto duration-300">
                 <div className="relative w-full mx-auto h-[350px] rounded-2xl">
                   <Image
                     src={contact.image}
@@ -219,10 +215,10 @@ export default function ContactUs() {
                     blurDataURL="data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAAEAAAABCAQAAAC1HAwCAAAAC0lEQVR4nGNgYAAAAAMAASsJTYQAAAAASUVORK5CYII="
                   />
                 </div>
-              )
+              </div>
             )}
           </div>
-        </div>
+        )}
 
         {/* Contact Form - Now at the bottom */}
         <div className="p-8 rounded-2xl shadow-lg hover:shadow-xl transition-shadow duration-300">

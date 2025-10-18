@@ -15,6 +15,9 @@ export default function SecBanner() {
 
   const backgroundImage = coachingHistories[0]?.img || "https://uccgroup.com.bd/assets/images/cover-x.jpg";
 
+
+  
+
   return (
     <section className="relative h-[250px] md:h-[300px] lg:h-[350px] w-full overflow-hidden">
       {/* Background Image */}

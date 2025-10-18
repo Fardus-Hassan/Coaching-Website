@@ -138,10 +138,10 @@ export default function ReportCard() {
         {/* Title */}
         <div className="text-center mb-12 lg:mb-16">
           <h2 className="text-2xl lg:text-3xl font-extrabold text-gray-900 mb-2">
-            রিপোর্ট কার্ড <span className="text-indigo-600">ডাউনলোড</span>
+          রেজাল্ট  <span className="text-indigo-600">ডাউনলোড</span>
           </h2>
           <p className="text-base lg:text-lg text-gray-600">
-            আপনার স্টুডেন্ট আইডি এবং পরীক্ষা নির্বাচন করুন রিপোর্ট কার্ড দেখতে এবং ডাউনলোড করতে।
+            আপনার স্টুডেন্ট আইডি এবং পরীক্ষা নির্বাচন করুন রেজাল্ট দেখতে এবং ডাউনলোড করতে।
           </p>
           <div className="w-24 h-1 bg-gradient-to-r from-indigo-500 to-purple-500 mx-auto mt-3"></div>
         </div>
@@ -171,6 +171,8 @@ export default function ReportCard() {
                   <Skeleton height={40} baseColor="#e2e8f0" highlightColor="#ffffff" />
                 ) : examsError ? (
                   <p className="text-red-600 text-sm">Failed to load exams.</p>
+                ) : examOptions.length === 0 ? (
+                  <p className="text-gray-600 text-sm">No exams available.</p>
                 ) : (
                   <Select
                     options={examOptions}
@@ -190,14 +192,14 @@ export default function ReportCard() {
                   isReportLoading || isExamsLoading ? "opacity-50 cursor-not-allowed" : "hover:bg-indigo-600"
                 }`}
               >
-                {isReportLoading ? "লোড হচ্ছে..." : "রিপোর্ট কার্ড দেখুন"}
+                {isReportLoading ? "লোড হচ্ছে..." : "রেজাল্ট দেখুন"}
               </button>
             </form>
           </div>
 
           {/* Preview Section */}
           <div className="lg:col-span-2 p-4 sm:p-6 bg-white rounded-xl shadow-lg">
-            <h3 className="text-lg font-semibold text-gray-900 mb-4">রিপোর্ট কার্ড প্রিভিউ</h3>
+            <h3 className="text-lg font-semibold text-gray-900 mb-4">রেজাল্ট প্রিভিউ</h3>
             {isReportLoading ? (
               <Skeleton height={300} baseColor="#e2e8f0" highlightColor="#ffffff" />
             ) : reportUrl ? (
@@ -240,7 +242,7 @@ export default function ReportCard() {
                 </button>
               </div>
             ) : (
-              <p className="text-gray-600 text-center py-12">উপরের ফর্মটি পূর্ণ করুন রিপোর্ট কার্ড দেখতে।</p>
+              <p className="text-gray-600 text-center py-12">উপরের ফর্মটি পূর্ণ করুন রেজাল্ট দেখতে।</p>
             )}
           </div>
         </div>

@@ -183,14 +183,14 @@ export default function Footer() {
                   <FaPhone className="h-5 w-5 text-indigo-400" />
                   <span>{institute.institute_mobile}</span>
                 </div>
-                <div className="flex items-center gap-3">
+                {institute.institute_email_address && <div className="flex items-center gap-3">
                   <FaEnvelope className="h-5 w-5 text-indigo-400" />
                   <span>{institute.institute_email_address}</span>
-                </div>
-                <div className="flex items-center gap-3">
+                </div>}
+                {institute.institute_address && <div className="flex items-center gap-3">
                   <FaMapMarkerAlt className="h-5 w-5 text-indigo-400" />
                   <span>{institute.institute_address}</span>
-                </div>
+                </div>}
               </div>
             )}
             <div className="flex flex-col space-y-2 pt-2">

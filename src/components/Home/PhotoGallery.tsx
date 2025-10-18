@@ -80,6 +80,10 @@ const filteredImages = galleryImages.filter((img) => {
     if (e.key === "ArrowLeft") prevImage();
   };
 
+  if (data.length === 0) {
+    return null;
+  }
+
   return (
     <section className="py-12 bg-gray-50">
       <div className="mx-auto max-w-7xl px-4 sm:px-6 lg:px-8">
@@ -121,9 +125,9 @@ const filteredImages = galleryImages.filter((img) => {
             ))}
           </div>
         ) : error ? (
-          <div className="text-center text-red-600">
-            Error loading gallery. Please try again later.
-          </div>
+          null
+        ) : displayedImages.length === 0 ? (
+          null
         ) : (
           <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-2 lg:gap-3">
             {displayedImages.map((image, index) => (

@@ -55,11 +55,11 @@ export default function Notices() {
   }
 
   if (error) {
-    return (
-      <div className="text-center py-20 text-red-600 font-semibold">
-        ⚠️ নোটিশ লোড করতে সমস্যা হয়েছে।
-      </div>
-    );
+    return null;
+  }
+
+  if (data.length === 0) {
+    return null;
   }
 
   return (

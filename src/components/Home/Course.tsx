@@ -52,6 +52,10 @@ export default function Course() {
     price: item.price,
   }));
 
+  if (data.length === 0) {
+    return null;
+  }
+
   return (
     <section className="py-16 lg:py-24 bg-gradient-to-br from-indigo-50 via-white to-purple-50 relative overflow-hidden">
       {/* Decorative Background */}
@@ -86,9 +90,9 @@ export default function Course() {
             ))}
           </div>
         ) : error ? (
-          <div className="text-center text-red-600">
-            Error loading programs. Please try again later.
-          </div>
+          null
+        ) : courses.length === 0 ? (
+          null
         ) : (
           <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8 lg:gap-10">
             {courses.map((course) => (

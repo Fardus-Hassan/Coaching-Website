@@ -23,6 +23,10 @@ export default function Students() {
     image: item.image,
   }));
 
+  if (data.length === 0) {
+    return null;
+  }
+
   return (
     <section className="relative py-12 lg:py-14 overflow-hidden bg-gradient-to-br from-indigo-50 via-white to-purple-50">
       {/* Decorative background */}
@@ -70,9 +74,9 @@ export default function Students() {
               ))}
             </Marquee>
           ) : error ? (
-            <div className="text-center text-red-600">
-              Error loading students. Please try again later.
-            </div>
+            null
+          ) : students.length === 0 ? (
+            null
           ) : (
             <Marquee
               speed={80}

@@ -4,7 +4,7 @@ import PageHeader from "@/components/Utility/PageHeader";
 export default function ReportCardPage() {
   return (
     <div className="lg:mt-10">
-      <PageHeader title="রিপোর্ট কার্ড" />
+      <PageHeader title="রেজাল্ট" />
       <ReportCard/>
     </div>
   );

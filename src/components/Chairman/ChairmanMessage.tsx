@@ -31,6 +31,10 @@ export default function ChairmanMessage() {
     }))
     .sort((a, b) => a.sl - b.sl);
 
+    if (data.length === 0) {
+      return null;
+    }
+
   return (
     <section className="relative py-12 lg:py-20 bg-gradient-to-br from-indigo-50 via-white to-purple-50 overflow-hidden">
       {/* Decorative background elements */}
@@ -70,9 +74,9 @@ export default function ChairmanMessage() {
             ))}
           </div>
         ) : error ? (
-          <div className="text-center text-red-600">
-            Error loading speeches. Please try again later.
-          </div>
+          null
+        ) : speeches.length === 0 ? (
+          null
         ) : (
           <div className="space-y-12">
             {speeches.map((speech, index) => (
