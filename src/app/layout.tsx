@@ -4,6 +4,7 @@ import Navbar from "@/components/Utility/Navbar";
 import Footer from "@/components/Utility/Footer";
 import ScrollToTop from "@/components/Utility/ScrollToTop";
 import baseUrl from "@/components/Utility/apiConfig";
+import SiteColorProvider from "@/components/SiteColorProvider";
 
 export async function generateMetadata() {
   try {
@@ -45,10 +46,12 @@ export default function RootLayout({
     <html lang="en">
       <body>
         <Providers>
-          <Navbar />
-          {children}
-          <Footer />
-          <ScrollToTop />
+          <SiteColorProvider>
+            <Navbar />
+            {children}
+            <Footer />
+            <ScrollToTop />
+          </SiteColorProvider>
         </Providers>
       </body>
     </html>
