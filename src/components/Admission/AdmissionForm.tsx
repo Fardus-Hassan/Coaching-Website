@@ -273,7 +273,7 @@ export default function AdmissionForm() {
             <h1 className="text-2xl md:text-3xl font-bold text-gray-800 border-b-4 border-indigo-600 inline-block pb-1">
               ভর্তি ফরম
             </h1>
-            <p className="text-gray-600 text-sm md:text-base">
+            <p className="text-gray-600 text-sm md:text-base lg:mt-0 mt-3">
               আপনার তথ্য সঠিকভাবে পূরণ করুন। প্রয়োজনীয় ফিল্ডগুলোতে * চিহ্ন দেওয়া আছে।
             </p>
           </div>

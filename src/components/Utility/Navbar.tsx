@@ -402,10 +402,10 @@ export default function Navbar() {
                               <IoIosSchool className="text-white" />
                               <span>Admission</span>
                             </Link>
-                            <button className="flex items-center gap-2 text-sm hover:text-indigo-200 transition-colors">
+                            <a href={data[0]?.institute_management_web} target="_blank" className="flex items-center gap-2 text-sm hover:text-indigo-200 transition-colors">
                               <PiStudentBold className="text-white" />
-                              <span>Student Login</span>
-                            </button>
+                              <span>Login</span>
+                            </a>
                           </div>
 
                           {/* Social Icons in Mobile Menu */}
