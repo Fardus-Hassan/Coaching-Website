@@ -146,10 +146,10 @@ export default function Navbar() {
                   Admission
                 </Link>
                 <span>|</span>
-                <span className="flex gap-1 items-center hover:text-indigo-200 transition-colors cursor-pointer">
+                <Link href={data[0]?.institute_management_web} target="_blank" rel="noopener noreferrer" className="flex gap-1 items-center hover:text-indigo-200 transition-colors cursor-pointer">
                   <PiStudentBold />
                   Login
-                </span>
+                </Link>
               </div>
               <div className="flex items-center space-x-4 text-white text-sm">
                 {data[0]?.institute_fb && (
