@@ -32,6 +32,7 @@ const navigation = [
       { name: "প্রতিষ্ঠানের সম্পর্কে", href: "/about" },
       { name: "নীতিনির্ধারকদের বাণী", href: "/chairman" },
       { name: "কমিটি সদস্যবৃন্দ", href: "/committees" },
+      { name: "শিক্ষকবৃন্দ", href: "/teachers" },
     ],
   },
   { name: "নোটিশ", href: "/notice" },
@@ -187,11 +188,11 @@ export default function Navbar() {
                 className="rounded-md"
               />
             </Link>
-            <div className="hidden lg:block">
-              <h1 className="text-lg font-bold text-gray-900 leading-tight">
+            <div className="">
+              <h1 className="lg:text-lg font-bold text-gray-900 leading-tight">
                 {data[0]?.institute_name}
               </h1>
-              <p className="text-xs text-gray-600 flex items-center gap-1 mt-0.5">
+              <p className="lg:text-xs text-[10px] text-gray-600 flex items-center gap-1 mt-0.5">
                 <MdLocationOn className="text-indigo-600" />
                 {data[0]?.institute_address}
               </p>
@@ -282,9 +283,9 @@ export default function Navbar() {
             </Transition.Child>
 
             {/* Slide panel */}
-            <div className="fixed inset-0 overflow-hidden">
-              <div className="absolute inset-0 overflow-hidden">
-                <div className="pointer-events-none fixed inset-y-0 right-0 flex max-w-full">
+            <div className="fixed inset-0 overflow-y-auto">
+              <div className="absolute inset-0 overflow-y-auto">
+                <div className="pointer-events-none overflow-y-auto fixed inset-y-0 right-0 flex max-w-full">
                   <Transition.Child
                     as={Fragment}
                     enter="transform transition ease-in-out duration-300"
@@ -294,7 +295,7 @@ export default function Navbar() {
                     leaveFrom="translate-x-0"
                     leaveTo="translate-x-full"
                   >
-                    <DialogPanel className="pointer-events-auto w-screen bg-gradient-to-b from-indigo-500 to-indigo-900 ring-1 ring-gray-100/10 transform transition-all duration-300 ease-in-out">
+                    <DialogPanel className="pointer-events-auto w-screen h-fit min-h-screen bg-gradient-to-b from-indigo-500 to-indigo-900 ring-1 ring-gray-100/10 transform transition-all duration-300 ease-in-out">
                       <div className="p-6">
                         {/* Header */}
                         <div className="flex items-center justify-between">
