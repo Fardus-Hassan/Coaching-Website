@@ -51,6 +51,8 @@ export default function Navbar() {
   const { data = [], isLoading, error } = useGetInstitutesQuery();
   const color = useSiteColor();
 
+  console.log(color)
+
 
   useEffect(() => {
     const handleScroll = () => {
@@ -84,7 +86,7 @@ export default function Navbar() {
       <div>
         <header className="fixed inset-x-0 top-0 z-50 bg-gradient-to-r from-indigo-50 to-indigo-100 shadow-lg">
           {/* Top Info Bar Skeleton */}
-          <div className="bg-gradient-to-r from-indigo-500 to-indigo-900 h-12 hidden lg:block">
+          <div className="bg-gradient-to-r from-secondary to-primary h-12 hidden lg:block">
             <div className="mx-auto max-w-7xl px-4 sm:px-6 lg:px-8">
               <div className="flex items-center justify-between h-12">
                 <div className="flex items-center space-x-4">
@@ -130,40 +132,40 @@ export default function Navbar() {
   return (
     <div>
       <header
-        className={`fixed inset-x-0 top-0 z-50 transition-all duration-300 bg-gradient-to-r from-indigo-50 to-indigo-100 shadow-lg`}
+        className={`fixed inset-x-0 top-0 z-50 transition-all duration-300 bg-white shadow-lg`}
       >
         {/* Top Info Bar - Hidden on mobile */}
         <div
-          className={`bg-gradient-to-r from-indigo-500 to-indigo-900 transition-all duration-300 hidden lg:block ${
+          className={`bg-gradient-to-r from-[var(--color-secondary)] to-[var(--color-primary)] transition-all duration-300 hidden lg:block ${
             isScrolled ? "h-0 opacity-0 overflow-hidden" : "h-12 opacity-100"
           }`}
         >
           <div className="mx-auto max-w-7xl px-4 sm:px-6 lg:px-8">
             <div className="flex items-center justify-between h-12">
               <div className="flex items-center space-x-4 text-white text-sm">
-                <span className="flex gap-1 items-center hover:text-indigo-200 transition-colors">
+                <span className="flex gap-1 items-center hover:text-var(--color-primary)] transition-colors">
                   <IoCall />
                   {data[0]?.institute_mobile}
                 </span>
                 <span>|</span>
-                <Link href="/admission" className="flex gap-1 items-center hover:text-indigo-200 transition-colors">
+                <Link href="/admission" className="flex gap-1 items-center hover:text-white/70 transition-colors">
                   <IoIosSchool />
                   Admission
                 </Link>
                 <span>|</span>
-                <Link href={data[0]?.institute_management_web} target="_blank" rel="noopener noreferrer" className="flex gap-1 items-center hover:text-indigo-200 transition-colors cursor-pointer">
+                <Link href={data[0]?.institute_management_web} target="_blank" rel="noopener noreferrer" className="flex gap-1 items-center hover:text-white/70 transition-colors cursor-pointer">
                   <PiStudentBold />
                   Login
                 </Link>
               </div>
               <div className="flex items-center space-x-4 text-white text-sm">
                 {data[0]?.institute_fb && (
-                  <a href={data[0]?.institute_fb} target="_blank" rel="noopener noreferrer" className="hover:text-indigo-200 transition-colors">
+                  <a href={data[0]?.institute_fb} target="_blank" rel="noopener noreferrer" className="hover:text-white/70 transition-colors">
                     <FaFacebookF />
                   </a>
                 )}
                 {data[0]?.institute_youtube && (
-                  <a href={data[0]?.institute_youtube} target="_blank" rel="noopener noreferrer" className="hover:text-indigo-200 transition-colors">
+                  <a href={data[0]?.institute_youtube} target="_blank" rel="noopener noreferrer" className="hover:text-white/70 transition-colors">
                     <FaYoutube />
                   </a>
                 )}
@@ -193,11 +195,11 @@ export default function Navbar() {
               />
             </Link>
             <div className="">
-              <h1 className="lg:text-lg font-bold text-gray-900 leading-tight">
+              <h1 className="lg:text-lg font-bold text-[var(--color-text)] leading-tight">
                 {data[0]?.institute_name}
               </h1>
-              {data[0]?.institute_address && <p className="lg:text-xs text-[10px] text-gray-600 flex items-center gap-1 mt-0.5">
-                <MdLocationOn className="text-indigo-600" />
+              {data[0]?.institute_address && <p className="lg:text-xs text-[10px] text-[var(--color-text)] flex items-center gap-1 mt-0.5">
+                <MdLocationOn className="text-[var(--color-primary)]]" />
                 {data[0]?.institute_address}
               </p>}
             </div>
@@ -207,7 +209,7 @@ export default function Navbar() {
             <button
               type="button"
               onClick={() => setMobileMenuOpen(true)}
-              className="-m-2.5 inline-flex items-center justify-center rounded-md p-2.5 text-gray-900 hover:bg-indigo-100 transition-colors"
+              className="-m-2.5 inline-flex items-center justify-center rounded-md p-2.5 text-[var(--color-text)] hover:bg-white transition-colors"
             >
               <span className="sr-only">Open main menu</span>
               <Bars3Icon aria-hidden="true" className="size-6" />
@@ -219,9 +221,9 @@ export default function Navbar() {
               <div key={item.name} className="group relative">
                 <Link
                   href={item.href}
-                  className={`text-sm/6 font-medium text-gray-900 hover:text-indigo-600 transition-colors duration-200 px-3 py-2 rounded-md ${
+                  className={`text-sm/6 font-medium text-[var(--color-text)] hover:text-[var(--color-primary)] transition-colors duration-200 px-3 py-2 rounded-md ${
                     isActive(item.href)
-                      ? "bg-indigo-500/10 text-indigo-700 font-bold"
+                      ? "bg-[var(--color-primary)]/10 text-[var(--color-primary)] font-bold"
                       : ""
                   }`}
                 >
@@ -243,15 +245,15 @@ export default function Navbar() {
                   )}
                 </Link>
                 {item.sub && (
-                  <div className="absolute left-0 mt-2 w-56 bg-white rounded-md shadow-xl opacity-0 invisible group-hover:opacity-100 group-hover:visible transition-all duration-300 ease-in-out transform scale-95 group-hover:scale-100 origin-top border border-indigo-100">
+                  <div className="absolute left-0 mt-2 w-56 bg-white rounded-md shadow-xl opacity-0 invisible group-hover:opacity-100 group-hover:visible transition-all duration-300 ease-in-out transform scale-95 group-hover:scale-100 origin-top border border-white">
                     <div className="py-2">
                       {item.sub.map((subItem) => (
                         <Link
                           key={subItem.name}
                           href={subItem.href}
-                          className={`block px-4 py-2.5 text-sm text-gray-700 hover:bg-indigo-50 hover:text-indigo-700 transition-colors duration-200 ${
+                          className={`block px-4 py-2.5 text-sm text-[var(--color-text)] hover:bg-white hover:text-[var(--color-primary)] transition-colors duration-200 ${
                             isActive(subItem.href)
-                              ? "bg-indigo-50 text-indigo-700 font-semibold"
+                              ? "bg-white text-[var(--color-primary)] font-semibold"
                               : ""
                           }`}
                         >
@@ -299,7 +301,7 @@ export default function Navbar() {
                     leaveFrom="translate-x-0"
                     leaveTo="translate-x-full"
                   >
-                    <DialogPanel className="pointer-events-auto w-screen h-fit min-h-screen bg-gradient-to-b from-indigo-500 to-indigo-900 ring-1 ring-gray-100/10 transform transition-all duration-300 ease-in-out">
+                    <DialogPanel className="pointer-events-auto w-screen h-fit min-h-screen bg-gradient-to-b from-[var(--color-secondary)] to-[var(--color-primary)] ring-1 ring-gray-100/10 transform transition-all duration-300 ease-in-out">
                       <div className="p-6">
                         {/* Header */}
                         <div className="flex items-center justify-between">
@@ -315,7 +317,7 @@ export default function Navbar() {
                               <h2 className="text-sm font-bold text-white leading-tight">
                                 {data[0]?.institute_name}
                               </h2>
-                              {data[0]?.institute_address && <p className="text-xs text-indigo-200 flex items-center gap-1 mt-0.5">
+                              {data[0]?.institute_address && <p className="text-xs text-white flex items-center gap-1 mt-0.5">
                                 <MdLocationOn className="text-xs" />
                                 {data[0]?.institute_address}
                               </p>}
@@ -397,15 +399,15 @@ export default function Navbar() {
                         {/* Top Info in Mobile Menu */}
                         <div className="mt-8 border-t border-white/10 pt-6">
                           <div className="space-y-3 text-white">
-                            <a href={`tel:${data[0]?.institute_mobile}`} className="flex items-center gap-2 text-sm hover:text-indigo-200 transition-colors">
+                            <a href={`tel:${data[0]?.institute_mobile}`} className="flex items-center gap-2 text-sm hover:text-white/70 transition-colors">
                               <IoCall className="text-white" />
                               <span>{data[0]?.institute_mobile}</span>
                             </a>
-                            <Link href="/admission" onClick={handleMobileLinkClick} className="flex items-center gap-2 text-sm hover:text-indigo-200 transition-colors">
+                            <Link href="/admission" onClick={handleMobileLinkClick} className="flex items-center gap-2 text-sm hover:text-white/70 transition-colors">
                               <IoIosSchool className="text-white" />
                               <span>Admission</span>
                             </Link>
-                            <a href={data[0]?.institute_management_web} target="_blank" className="flex items-center gap-2 text-sm hover:text-indigo-200 transition-colors">
+                            <a href={data[0]?.institute_management_web} target="_blank" className="flex items-center gap-2 text-sm hover:text-white/70 transition-colors">
                               <PiStudentBold className="text-white" />
                               <span>Login</span>
                             </a>
@@ -418,7 +420,7 @@ export default function Navbar() {
                                 href={data[0]?.institute_fb}
                                 target="_blank"
                                 rel="noopener noreferrer"
-                                className="text-white hover:text-indigo-200 transition-colors duration-200"
+                                className="text-white hover:text-white/70 transition-colors duration-200"
                               >
                                 <FaFacebookF />
                               </a>
@@ -428,7 +430,7 @@ export default function Navbar() {
                                 href={data[0]?.institute_youtube}
                                 target="_blank"
                                 rel="noopener noreferrer"
-                                className="text-white hover:text-indigo-200 transition-colors duration-200"
+                                className="text-white hover:text-white/70 transition-colors duration-200"
                               >
                                 <FaYoutube />
                               </a>

@@ -63,9 +63,9 @@ export default function Footer() {
     <footer className="text-white bg-slate-900 relative overflow-hidden">
       {/* Decorative background elements */}
       <div className="absolute inset-0 opacity-10">
-        <div className="absolute top-10 left-10 w-20 h-20 bg-purple-500 rounded-full mix-blend-multiply filter blur-xl animate-pulse"></div>
-        <div className="absolute -bottom-8 left-20 w-24 h-24 bg-indigo-500 rounded-full mix-blend-multiply filter blur-xl animate-pulse animation-delay-2000"></div>
-        <div className="absolute top-20 -right-10 w-32 h-32 bg-purple-400 rounded-full mix-blend-multiply filter blur-xl animate-pulse animation-delay-4000"></div>
+        <div className="absolute top-10 left-10 w-20 h-20 bg-[var(--color-primary)] rounded-full mix-blend-multiply filter blur-xl animate-pulse"></div>
+        <div className="absolute -bottom-8 left-20 w-24 h-24 bg-[var(--color-secondary)] rounded-full mix-blend-multiply filter blur-xl animate-pulse animation-delay-2000"></div>
+        <div className="absolute top-20 -right-10 w-32 h-32 bg-[var(--color-primary)] rounded-full mix-blend-multiply filter blur-xl animate-pulse animation-delay-4000"></div>
       </div>
 
       <div className="relative mx-auto max-w-7xl px-4 sm:px-6 lg:px-8">
@@ -94,23 +94,23 @@ export default function Footer() {
             {isInfoLoading ? (
               <Skeleton height={16} count={3} baseColor="#4a5568" highlightColor="#a0aec0" />
             ) : infoError ? (
-              <p className="text-indigo-200 text-sm leading-relaxed">
+              <p className="text-white text-sm leading-relaxed">
                 Empowering the future through innovative education solutions.
               </p>
             ) : (
-              <p className="text-indigo-200 text-sm leading-relaxed">{footerText}</p>
+              <p className="text-white text-sm leading-relaxed">{footerText}</p>
             )}
             <div className="flex space-x-4">
              {
               institute?.institute_fb && (
-                <a href={institute?.institute_fb} target="_blank" className="group p-2 rounded-full bg-indigo-600 hover:bg-indigo-500 transition-all duration-300 transform hover:scale-110">
+                <a href={institute?.institute_fb} target="_blank" className="group p-2 rounded-full bg-[var(--color-primary)] hover:bg-[var(--color-secondary)] transition-all duration-300 transform hover:scale-110">
                   <FaFacebookF className="h-4 w-4" />
                 </a>
               )
              }
              {
               institute?.institute_youtube && (
-                <a href={institute?.institute_youtube} target="_blank" className="group p-2 rounded-full bg-indigo-600 hover:bg-indigo-500 transition-all duration-300 transform hover:scale-110">
+                <a href={institute?.institute_youtube} target="_blank" className="group p-2 rounded-full bg-[var(--color-primary)] hover:bg-[var(--color-secondary)] transition-all duration-300 transform hover:scale-110">
                   <FaYoutube className="h-4 w-4" />
                 </a>
               )
@@ -120,12 +120,12 @@ export default function Footer() {
 
           {/* Navigation Section */}
           <div className="space-y-4">
-            <h3 className="text-lg font-semibold text-white border-b border-indigo-400 pb-1">নেভিগেশন</h3>
-            <ul className="space-y-2 text-indigo-200">
+            <h3 className="text-lg font-semibold text-white border-b border-white pb-1">নেভিগেশন</h3>
+            <ul className="space-y-2 text-white">
               {navigation.map((item) => (
                 <li key={item.name}>
                   <Link href={item.href} className="hover:text-white transition-colors duration-200 flex items-center gap-2 group">
-                    <span className="w-1 h-1 bg-indigo-400 rounded-full group-hover:translate-x-1 transition-transform"></span>
+                    <span className="w-1 h-1 bg-[var(--color-secondary)] rounded-full group-hover:translate-x-1 transition-transform"></span>
                     {item.name}
                   </Link>
                 </li>
@@ -135,20 +135,20 @@ export default function Footer() {
 
           {/* Programs Section */}
           <div className="space-y-4">
-            <h3 className="text-lg font-semibold text-white border-b border-indigo-400 pb-1">প্রোগ্রাম</h3>
+            <h3 className="text-lg font-semibold text-white border-b border-white pb-1">প্রোগ্রাম</h3>
             {isProgramsLoading ? (
               <Skeleton height={16} count={3} baseColor="#4a5568" highlightColor="#a0aec0" />
             ) : programsError ? (
-              <p className="text-indigo-200 text-sm">প্রোগ্রাম লোড করতে ব্যর্থ।</p>
+              <p className="text-white text-sm">প্রোগ্রাম লোড করতে ব্যর্থ।</p>
             ) : (
-              <ul className="space-y-2 text-indigo-200">
+              <ul className="space-y-2 text-white">
                 {programs.map((program: Program) => (
                   <li key={program.id}>
                     <button
                       onClick={() => setSelectedProgram(program)}
                       className="hover:text-white transition-colors duration-200 flex items-center gap-2 group"
                     >
-                      <span className="w-1 h-1 bg-indigo-400 rounded-full group-hover:translate-x-1 transition-transform"></span>
+                      <span className="w-1 h-1 bg-[var(--color-secondary)] rounded-full group-hover:translate-x-1 transition-transform"></span>
                       {program.title.slice(0, 10)}...
                     </button>
                   </li>
@@ -159,45 +159,45 @@ export default function Footer() {
 
           {/* Contact Section */}
           <div className="space-y-4">
-            <h3 className="text-lg font-semibold text-white border-b border-indigo-400 pb-1">যোগাযোগ</h3>
+            <h3 className="text-lg font-semibold text-white border-b border-white pb-1">যোগাযোগ</h3>
             {isInstituteLoading ? (
               <Skeleton height={16} count={3} baseColor="#4a5568" highlightColor="#a0aec0" />
             ) : instituteError ? (
-              <div className="space-y-3 text-indigo-200">
+              <div className="space-y-3 text-white">
                 <div className="flex items-center gap-3">
-                  <FaPhone className="h-5 w-5 text-indigo-400" />
+                  <FaPhone className="h-5 w-5 text-[var(--color-secondary)]" />
                   <span>+88 01847-066362-66</span>
                 </div>
                 <div className="flex items-center gap-3">
-                  <FaEnvelope className="h-5 w-5 text-indigo-400" />
+                  <FaEnvelope className="h-5 w-5 text-[var(--color-secondary)]" />
                   <span>info@edutech.com</span>
                 </div>
                 <div className="flex items-center gap-3">
-                  <FaMapMarkerAlt className="h-5 w-5 text-indigo-400" />
+                  <FaMapMarkerAlt className="h-5 w-5 text-[var(--color-secondary)]" />
                   <span>Dhaka, Bangladesh</span>
                 </div>
               </div>
             ) : (
-              <div className="space-y-3 text-indigo-200">
+              <div className="space-y-3 text-white">
                 <div className="flex items-center gap-3">
-                  <FaPhone className="h-5 w-5 text-indigo-400" />
+                  <FaPhone className="h-5 w-5 text-[var(--color-secondary)]" />
                   <span>{institute.institute_mobile}</span>
                 </div>
                 {institute.institute_email_address && <div className="flex items-center gap-3">
-                  <FaEnvelope className="h-5 w-5 text-indigo-400" />
+                  <FaEnvelope className="h-5 w-5 text-[var(--color-secondary)]" />
                   <span>{institute.institute_email_address}</span>
                 </div>}
                 {institute.institute_address && <div className="flex items-center gap-3">
-                  <FaMapMarkerAlt className="h-5 w-5 text-indigo-400" />
+                  <FaMapMarkerAlt className="h-5 w-5 text-[var(--color-secondary)]" />
                   <span>{institute.institute_address}</span>
                 </div>}
               </div>
             )}
             <div className="flex flex-col space-y-2 pt-2">
-              <Link href="/admission" className="flex items-center gap-2 text-sm text-indigo-300">
+              <Link href="/admission" className="flex items-center gap-2 text-sm text-white">
                 <IoIosSchool /> Admission
               </Link>
-              <Link href={institute.institute_management_web} className="flex items-center gap-2 text-sm text-indigo-300">
+              <Link href={institute.institute_management_web} className="flex items-center gap-2 text-sm text-white">
                 <PiStudentBold /> Login
               </Link>
             </div>
@@ -205,9 +205,9 @@ export default function Footer() {
         </div>
 
         {/* Bottom Bar */}
-        <div className="border-t border-indigo-800 py-4">
+        <div className="border-t border-white py-4">
           <div className="flex flex-col md:flex-row justify-between items-center space-y-4 md:space-y-0">
-            <p className="text-sm text-indigo-300">
+            <p className="text-sm text-white">
               &copy; 2025 {institute?.institute_name}. All rights reserved. Built with ❤️ for education.
             </p>
           </div>
@@ -242,19 +242,19 @@ export default function Footer() {
               >
                 <DialogPanel className="w-full max-w-2xl transform overflow-hidden rounded-2xl bg-white p-6 text-left align-middle shadow-xl transition-all max-h-[100vh]">
                   <div className="flex items-start justify-between mb-4 border-b pb-3">
-                    <DialogTitle className="text-2xl font-bold text-gray-900">
+                    <DialogTitle className="text-2xl font-bold text-[var(--color-text)]">
                       {selectedProgram?.title} - বিস্তারিত
                     </DialogTitle>
                     <button
                       onClick={() => setSelectedProgram(null)}
-                      className="text-gray-400 hover:text-gray-700 p-1 rounded-full transition-colors"
+                      className="text-[var(--color-text)] hover:text-[var(--color-text)]/70 p-1 rounded-full transition-colors"
                     >
                       <XMarkIcon className="h-7 w-7" />
                     </button>
                   </div>
 
                   {selectedProgram && (
-                    <div className="space-y-4 text-gray-700 leading-relaxed overflow-y-auto max-h-[calc(90vh-180px)]">
+                    <div className="space-y-4 text-[var(--color-text)] leading-relaxed overflow-y-auto max-h-[calc(90vh-180px)]">
                       <div
                         className="prose prose-sm lg:prose-base max-w-none bg-gray-50 p-4 rounded-lg border border-gray-200 shadow-sm"
                         dangerouslySetInnerHTML={createMarkup(selectedProgram.long_description)}
@@ -265,7 +265,7 @@ export default function Footer() {
                   <div className="mt-6 pt-4 border-t flex justify-end">
                     <button
                       onClick={() => setSelectedProgram(null)}
-                      className="bg-indigo-500 hover:bg-indigo-600 text-white px-8 py-2 rounded-full font-semibold transition-colors duration-200 shadow-md"
+                      className="bg-[var(--color-secondary)] hover:text-[var(--color-primary)] text-white px-8 py-2 rounded-full font-semibold transition-colors duration-200 shadow-md"
                     >
                       বন্ধ করুন
                     </button>

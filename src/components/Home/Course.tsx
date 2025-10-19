@@ -57,21 +57,21 @@ export default function Course() {
   }
 
   return (
-    <section className="py-16 lg:py-24 bg-gradient-to-br from-indigo-50 via-white to-purple-50 relative overflow-hidden">
+    <section className="py-16 lg:py-24 bg-white relative overflow-hidden">
       {/* Decorative Background */}
       <div className="absolute inset-0 opacity-10">
-        <div className="absolute top-10 left-10 w-64 h-64 bg-indigo-300 rounded-full mix-blend-multiply filter blur-3xl animate-pulse"></div>
-        <div className="absolute bottom-10 right-10 w-64 h-64 bg-purple-300 rounded-full mix-blend-multiply filter blur-3xl animate-pulse animation-delay-2000"></div>
+        <div className="absolute top-10 left-10 w-64 h-64 bg-white rounded-full mix-blend-multiply filter blur-3xl animate-pulse"></div>
+        <div className="absolute bottom-10 right-10 w-64 h-64 bg-white rounded-full mix-blend-multiply filter blur-3xl animate-pulse animation-delay-2000"></div>
       </div>
 
       <div className="relative mx-auto max-w-7xl px-4 sm:px-6 lg:px-8">
         {/* Title */}
         <div className="text-center mb-12 lg:mb-16">
-          <h2 className="text-3xl lg:text-4xl font-extrabold text-gray-900 mb-2">
-            আমাদের <span className="text-indigo-600">প্রোগ্রামসমূহ</span>
+          <h2 className="text-3xl lg:text-4xl font-extrabold text-[var(--color-text)] mb-2">
+            আমাদের <span className="text-[var(--color-primary)]">প্রোগ্রামসমূহ</span>
           </h2>
-          <p className="text-base lg:text-lg text-gray-600">আপনার শিক্ষার যাত্রাকে শক্তিশালী করতে ডিজাইন করা কোর্স</p>
-          <div className="w-24 h-1 bg-gradient-to-r from-indigo-500 to-purple-500 mx-auto rounded-full mt-4"></div>
+          <p className="text-base lg:text-lg text-[var(--color-text)]/70">আপনার শিক্ষার যাত্রাকে শক্তিশালী করতে ডিজাইন করা কোর্স</p>
+          <div className="w-24 h-1 bg-gradient-to-r from-[var(--color-secondary)] to-[var(--color-primary)] mx-auto rounded-full mt-4"></div>
         </div>
 
         {/* Courses Grid */}
@@ -80,7 +80,7 @@ export default function Course() {
             {[...Array(3)].map((_, index) => (
               <div
                 key={index}
-                className="bg-white rounded-2xl shadow-xl border-t-4 border-indigo-500 p-6"
+                className="bg-white rounded-2xl shadow-xl border-t-4 border-[var(--color-primary)] p-6"
               >
                 <Skeleton height={32} width="70%" className="mb-2" baseColor="#e0e7ff" highlightColor="#f3f4f6" />
                 <Skeleton height={20} width="50%" className="mb-4" baseColor="#e0e7ff" highlightColor="#f3f4f6" />
@@ -98,18 +98,18 @@ export default function Course() {
             {courses.map((course) => (
               <div
                 key={course.id}
-                className="bg-white rounded-2xl shadow-xl border-t-4 border-indigo-500 transition-all duration-300 hover:shadow-2xl hover:scale-[1.02] flex flex-col"
+                className="bg-white rounded-2xl shadow-xl border-t-4 border-[var(--color-primary)] transition-all duration-300 hover:shadow-2xl hover:scale-[1.02] flex flex-col"
               >
                 <div className="p-6 flex-grow">
-                  <h3 className="text-xl lg:text-2xl font-bold text-gray-900 mb-2">{course.title}</h3>
-                  <p className="text-base font-medium text-indigo-600 mb-4">{course.subtitle}</p>
-                  <div className="space-y-3 text-gray-700 text-sm lg:text-base leading-relaxed">
+                  <h3 className="text-xl lg:text-2xl font-bold text-[var(--color-text)] mb-2">{course.title}</h3>
+                  <p className="text-base font-medium text-[var(--color-primary)] mb-4">{course.subtitle}</p>
+                  <div className="space-y-3 text-[var(--color-text)]/70 text-sm lg:text-base leading-relaxed">
                     <div
                       className="prose prose-sm lg:prose-base max-w-none"
                       dangerouslySetInnerHTML={createMarkup(course.shortDescription)}
                     />
                     <p className="flex items-start gap-2">
-                      <BanknotesIcon className="h-5 w-5 text-indigo-500 mt-1 flex-shrink-0" />
+                      <BanknotesIcon className="h-5 w-5 text-[var(--color-secondary)] mt-1 flex-shrink-0" />
                       <span>মূল্য: {course.price}</span>
                     </p>
                   </div>
@@ -117,7 +117,7 @@ export default function Course() {
                 <div className="p-6 pt-0">
                   <button
                     onClick={() => setSelectedCourse(course)}
-                    className="w-full bg-gradient-to-r from-indigo-600 to-purple-600 text-white px-6 py-3 rounded-full font-semibold hover:from-indigo-700 hover:to-purple-700 transition-all duration-300 shadow-md"
+                    className="w-full bg-gradient-to-r from-[var(--color-primary)] to-[var(--color-secondary)] text-white px-6 py-3 rounded-full font-semibold hover:from-[var(--color-primary)]hover:to-purple-700 transition-all duration-300 shadow-md"
                   >
                     বিস্তারিত দেখুন
                   </button>
@@ -166,19 +166,19 @@ export default function Course() {
                   </DialogTitle>
                   <button
                     onClick={() => setSelectedCourse(null)}
-                    className="text-gray-400 hover:text-gray-700 p-1 rounded-full transition-colors"
+                    className="text-[var(--color-text)]/50 hover:text-[var(--color-text)]/70 p-1 rounded-full transition-colors"
                   >
                     <XMarkIcon className="h-7 w-7" />
                   </button>
                 </div>
 
                 {selectedCourse && (
-                  <div className="space-y-4 text-gray-700 leading-relaxed overflow-y-auto max-h-[calc(90vh-180px)]">
-                    <h4 className="text-lg font-semibold text-indigo-600">
+                  <div className="space-y-4 text-[var(--color-text)]/70 leading-relaxed overflow-y-auto max-h-[calc(90vh-180px)]">
+                    <h4 className="text-lg font-semibold text-[var(--color-primary)]">
                       {selectedCourse.subtitle}
                     </h4>
                     <div
-                      className="prose prose-sm lg:prose-base max-w-none bg-gray-50 p-4 rounded-lg border border-gray-200 shadow-sm"
+                      className="prose prose-sm lg:prose-base max-w-none bg-white p-4 rounded-lg border border-gray-200 shadow-sm"
                       dangerouslySetInnerHTML={createMarkup(selectedCourse.fullDetails)}
                     />
                   </div>
@@ -187,7 +187,7 @@ export default function Course() {
                 <div className="mt-6 pt-4 border-t flex justify-end">
                   <button
                     onClick={() => setSelectedCourse(null)}
-                    className="bg-indigo-500 hover:bg-indigo-600 text-white px-8 py-2 rounded-full font-semibold transition-colors duration-200 shadow-md"
+                    className="bg-[var(--color-secondary)] hover:bg-[var(--color-primary)] text-white px-8 py-2 rounded-full font-semibold transition-colors duration-200 shadow-md"
                   >
                     বন্ধ করুন
                   </button>

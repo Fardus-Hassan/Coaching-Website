@@ -44,7 +44,7 @@ export default function SecBanner() {
           />
         )}
         {/* Indigo Overlay */}
-        <div className="absolute inset-0 bg-indigo-500/70"></div>
+        <div className="absolute inset-0 bg-[var(--color-primary)]/70"></div>
       </div>
 
       {/* Content */}

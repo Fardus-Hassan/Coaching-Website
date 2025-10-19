@@ -10,7 +10,7 @@ export default function NoticeSlide() {
 
   if (isLoading) {
     return (
-      <section className="h-[5vh] bg-indigo-500 flex items-center overflow-hidden px-6">
+      <section className="h-[5vh] bg-[var(--color-primary)] flex items-center overflow-hidden px-6">
         <Skeleton
           count={1}
           height={20}
@@ -31,7 +31,7 @@ export default function NoticeSlide() {
   }
 
   return (
-    <section className="h-[5vh] bg-indigo-500 flex items-center overflow-hidden">
+    <section className="h-[5vh] bg-[var(--color-primary)] flex items-center overflow-hidden">
       <div className="w-full">
         <Marquee speed={50} gradient={false} pauseOnHover>
           {data.map((notice) => (

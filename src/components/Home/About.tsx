@@ -46,11 +46,11 @@ if (data.length === 0) {
   
 
   return (
-    <section className="relative py-16 lg:py-24 bg-gradient-to-br from-indigo-50 via-white to-purple-50 overflow-hidden">
+    <section className="relative py-16 lg:py-24 bg-white overflow-hidden">
       {/* Decorative background elements */}
       <div className="absolute inset-0 opacity-5">
-        <div className="absolute top-20 left-10 w-32 h-32 bg-indigo-200 rounded-full mix-blend-multiply filter blur-xl animate-pulse"></div>
-        <div className="absolute bottom-20 right-10 w-40 h-40 bg-purple-200 rounded-full mix-blend-multiply filter blur-xl animate-pulse animation-delay-2000"></div>
+        <div className="absolute top-20 left-10 w-32 h-32 bg-white rounded-full mix-blend-multiply filter blur-xl animate-pulse"></div>
+        <div className="absolute bottom-20 right-10 w-40 h-40 bg-white rounded-full mix-blend-multiply filter blur-xl animate-pulse animation-delay-2000"></div>
       </div>
 
       <div className="relative mx-auto max-w-7xl px-4 sm:px-6 lg:px-8">
@@ -120,7 +120,7 @@ if (data.length === 0) {
                 )}
               </div>
               {/* Decorative badge */}
-              <div className="absolute -top-4 -right-4 bg-gradient-to-r from-indigo-500 to-purple-600 text-white px-4 py-2 rounded-full text-sm font-semibold shadow-lg transform rotate-3">
+              <div className="absolute -top-4 -right-4 bg-gradient-to-r from-[var(--color-secondary)] to-[var(--color-primary)] text-white px-4 py-2 rounded-full text-sm font-semibold shadow-lg transform rotate-3">
                 {coachingHistory.tag || "৪০+ বছরের ঐতিহ্য"}
               </div>
             </div>
@@ -128,12 +128,12 @@ if (data.length === 0) {
             {/* Text Section */}
             <div className="space-y-6 lg:space-y-8">
               <div>
-                <h2 className="text-2xl lg:text-3xl font-bold text-gray-900 leading-tight mb-4">
+                <h2 className="text-2xl lg:text-3xl font-bold text-[var(--color-text)] leading-tight mb-4">
                   {coachingHistory.heading || "আমাদের সম্পর্কে"}
                 </h2>
-                <div className="h-1 w-20 bg-gradient-to-r from-indigo-500 to-purple-600 rounded-full"></div>
+                <div className="h-1 w-20 bg-gradient-to-r from-[var(--color-secondary)] to-[var(--color-primary)] rounded-full"></div>
               </div>
-              <div className="prose prose-lg text-gray-700 leading-relaxed max-w-none">
+              <div className="prose prose-lg text-[var(--color-text)]/80 leading-relaxed max-w-none">
                 <p className="text-base lg:text-lg">
                    {truncateDescription(coachingHistory.description)}
                 </p>
@@ -141,7 +141,7 @@ if (data.length === 0) {
               <div className="pt-4">
                 <Link
                   href="/about"
-                  className="group inline-flex items-center px-6 py-3 bg-gradient-to-r from-indigo-600 to-purple-600 text-white font-semibold rounded-full shadow-lg hover:shadow-xl transform hover:-translate-y-1 transition-all duration-300 ease-in-out"
+                  className="group inline-flex items-center px-6 py-3 bg-gradient-to-r from-[var(--color-secondary)] to-[var(--color-primary)] text-white font-semibold rounded-full shadow-lg hover:shadow-xl transform hover:-translate-y-1 transition-all duration-300 ease-in-out"
                 >
                   আরও পড়ুন
                   <svg

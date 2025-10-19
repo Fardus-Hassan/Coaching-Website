@@ -26,6 +26,7 @@ export default function SiteColorProvider({ children }: { children: React.ReactN
     if (Array.isArray(data) && data.length > 0) return data[0];
     return DEFAULT_COLOR;
   }, [data]);
+  console.log(color)
 
   useEffect(() => {
     if (color) {
