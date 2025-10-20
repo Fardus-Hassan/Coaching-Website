@@ -3,8 +3,8 @@ import "./globals.css";
 import Navbar from "@/components/Utility/Navbar";
 import Footer from "@/components/Utility/Footer";
 import ScrollToTop from "@/components/Utility/ScrollToTop";
-import baseUrl from "../../apiConfig";
 import SiteColorProvider from "@/components/SiteColorProvider";
+import baseUrl from "@/apiConfig";
 
 export async function generateMetadata() {
   try {

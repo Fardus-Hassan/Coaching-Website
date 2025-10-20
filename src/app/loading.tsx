@@ -1,5 +1,5 @@
+import baseUrl from "@/apiConfig";
 import Image from "next/image";
-import baseUrl from "../../apiConfig";
 
 export default async function Loading() {
   try {
