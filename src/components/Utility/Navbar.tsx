@@ -118,19 +118,19 @@ export default function Navbar() {
   if (isLoading) {
     return (
       <div>
-        <header className="fixed inset-x-0 top-0 z-50 bg-gradient-to-r from-indigo-50 to-indigo-100 shadow-lg">
+        <header className="fixed inset-x-0 top-0 z-50 bg-gray-50 shadow-lg">
           {/* Top Info Bar Skeleton */}
           <div className="bg-gradient-to-r from-secondary to-primary h-12 hidden lg:block">
             <div className="mx-auto max-w-7xl px-4 sm:px-6 lg:px-8">
               <div className="flex items-center justify-between h-12">
                 <div className="flex items-center space-x-4">
-                  <Skeleton width={120} height={16} baseColor="#6366f1" highlightColor="#818cf8" />
-                  <Skeleton width={80} height={16} baseColor="#6366f1" highlightColor="#818cf8" />
-                  <Skeleton width={60} height={16} baseColor="#6366f1" highlightColor="#818cf8" />
+                  <Skeleton width={120} height={16} baseColor="var(--color-primary)" highlightColor="var(--color-secondary)" />
+                  <Skeleton width={80} height={16} baseColor="var(--color-primary)" highlightColor="var(--color-secondary)" />
+                  <Skeleton width={60} height={16} baseColor="var(--color-primary)" highlightColor="var(--color-secondary)" />
                 </div>
                 <div className="flex items-center space-x-4">
-                  <Skeleton circle width={20} height={20} baseColor="#6366f1" highlightColor="#818cf8" />
-                  <Skeleton circle width={20} height={20} baseColor="#6366f1" highlightColor="#818cf8" />
+                  <Skeleton circle width={20} height={20} baseColor="var(--color-primary)" highlightColor="var(--color-secondary)" />
+                  <Skeleton circle width={20} height={20} baseColor="var(--color-primary)" highlightColor="var(--color-secondary)" />
                 </div>
               </div>
             </div>
@@ -139,19 +139,19 @@ export default function Navbar() {
           {/* Main Navigation Skeleton */}
           <nav className="flex items-center max-w-7xl mx-auto justify-between p-3 lg:px-8">
             <div className="flex items-center gap-4">
-              <Skeleton circle width={44} height={44} baseColor="#e0e7ff" highlightColor="#c7d2fe" />
+              <Skeleton circle width={44} height={44} baseColor="var(--color-primary)" highlightColor="var(--color-secondary)" />
               <div className="hidden lg:block">
-                <Skeleton width={200} height={20} baseColor="#e0e7ff" highlightColor="#c7d2fe" />
-                <Skeleton width={250} height={14} baseColor="#e0e7ff" highlightColor="#c7d2fe" className="mt-1" />
+                <Skeleton width={200} height={20} baseColor="var(--color-primary)" highlightColor="var(--color-secondary)" />
+                <Skeleton width={250} height={14} baseColor="var(--color-primary)" highlightColor="var(--color-secondary)" className="mt-1" />
               </div>
             </div>
             <div className="hidden lg:flex lg:gap-x-8">
               {[1, 2, 3, 4, 5].map((i) => (
-                <Skeleton key={i} width={80} height={20} baseColor="#e0e7ff" highlightColor="#c7d2fe" />
+                <Skeleton key={i} width={80} height={20} baseColor="var(--color-primary)" highlightColor="var(--color-secondary)" />
               ))}
             </div>
             <div className="lg:hidden">
-              <Skeleton width={24} height={24} baseColor="#e0e7ff" highlightColor="#c7d2fe" />
+              <Skeleton width={24} height={24} baseColor="var(--color-primary)" highlightColor="var(--color-secondary)" />
             </div>
           </nav>
         </header>

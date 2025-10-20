@@ -10,7 +10,7 @@ export default function Services() {
 
   if (isLoading) {
     return (
-      <section className="py-10 lg:py-16 bg-gradient-to-br from-indigo-50 via-purple-50 to-pink-50">
+      <section className="py-10 lg:py-16 bg-gray-50">
         <div className="max-w-7xl mx-auto px-4 grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-6">
           {Array.from({ length: 4 }).map((_, i) => (
             <div key={i} className="p-6 bg-white rounded-2xl shadow-lg">
@@ -32,7 +32,7 @@ export default function Services() {
   }
 
   return (
-    <section className="py-10 lg:py-16 bg-gradient-to-br from-indigo-50 via-purple-50 to-pink-50 relative overflow-hidden">
+    <section className="py-10 lg:py-16 bg-gray-50 relative overflow-hidden">
       {/* Background Image */}
       <div className="absolute inset-0 pointer-events-none opacity-20">
         <img
@@ -45,13 +45,13 @@ export default function Services() {
       <div className="relative mx-auto max-w-7xl px-4 sm:px-6 lg:px-8">
         {/* Title */}
         <div className="text-center mb-12 lg:mb-16">
-          <h2 className="text-2xl lg:text-3xl font-bold text-gray-900 mb-3">
+          <h2 className="text-2xl lg:text-3xl font-bold text-[var(--color-text)] mb-3">
             আমাদের{" "}
-            <span className="text-transparent bg-clip-text bg-gradient-to-r from-indigo-600 to-purple-600">
+            <span className="text-transparent bg-clip-text bg-gradient-to-r from-[var(--color-primary)] to-[var(--color-secondary)]">
               সেবা প্রকারসমূহ
             </span>
           </h2>
-          <div className="w-24 h-1 bg-gradient-to-r from-indigo-400 to-purple-400 mx-auto rounded-full"></div>
+          <div className="w-24 h-1 bg-gradient-to-r from-[var(--color-primary)] to-[var(--color-secondary)] mx-auto rounded-full"></div>
           <p className="mt-4 text-gray-600 text-xs lg:text-base max-w-2xl mx-auto">
             আধুনিক প্রযুক্তি ও মানসম্পন্ন সেবা নিয়ে আমরা আপনার পাশে
           </p>
@@ -72,11 +72,11 @@ export default function Services() {
                 />
               </div>
 
-              <p className="relative z-10 text-gray-800 text-base lg:text-lg font-bold leading-snug group-hover:text-indigo-700 transition-colors duration-300">
+              <p className="relative z-10 text-gray-800 text-base lg:text-lg font-bold leading-snug group-hover:text-[var(--color-primary)] transition-colors duration-300">
                 {service.service_name}
               </p>
 
-              <div className="absolute bottom-0 left-1/2 transform -translate-x-1/2 w-0 h-1 bg-gradient-to-r from-indigo-500 to-purple-500 group-hover:w-3/4 transition-all duration-300 rounded-full"></div>
+              <div className="absolute bottom-0 left-1/2 transform -translate-x-1/2 w-0 h-1 bg-gradient-to-r from-[var(--color-primary)] to-[var(--color-secondary)] group-hover:w-3/4 transition-all duration-300 rounded-full"></div>
             </div>
           ))}
         </div>

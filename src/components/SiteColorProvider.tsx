@@ -40,7 +40,7 @@ export default function SiteColorProvider({ children }: { children: React.ReactN
 
   if (isLoading)
     return (
-      <div className="flex justify-center items-center text-gray-200 bg-white h-screen">
+      <div className="flex justify-center items-center text-gray-500 bg-white h-screen">
         Loading...
       </div>
     );

@@ -3,7 +3,7 @@ import "./globals.css";
 import Navbar from "@/components/Utility/Navbar";
 import Footer from "@/components/Utility/Footer";
 import ScrollToTop from "@/components/Utility/ScrollToTop";
-import baseUrl from "@/components/Utility/apiConfig";
+import baseUrl from "../../apiConfig";
 import SiteColorProvider from "@/components/SiteColorProvider";
 
 export async function generateMetadata() {
@@ -48,7 +48,9 @@ export default function RootLayout({
         <Providers>
           <SiteColorProvider>
             <Navbar />
+            <div className="min-h-[70vh]">
             {children}
+            </div>
             <Footer />
             <ScrollToTop />
           </SiteColorProvider>

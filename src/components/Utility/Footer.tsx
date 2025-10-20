@@ -59,6 +59,12 @@ export default function Footer() {
   // Use first info block's footer_text with fallback
   const footerText = infoBlocks[0]?.footer_text || "Empowering the future through innovative education solutions. Join thousands of students transforming their careers with our cutting-edge platform.";
 
+
+  if (infoBlocks.length === 0 && institutes.length === 0 && programs.length === 0) {
+    return null;
+  }
+
+
   return (
     <footer className="text-white bg-slate-900 relative overflow-hidden">
       {/* Decorative background elements */}

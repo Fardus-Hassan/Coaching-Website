@@ -16,6 +16,10 @@ export default function SecBanner() {
   const backgroundImage = coachingHistories[0]?.img || "https://uccgroup.com.bd/assets/images/cover-x.jpg";
 
 
+  if (infoBlocks.length === 0 && coachingHistories.length === 0) {
+    return null;
+  }
+
   
 
   return (

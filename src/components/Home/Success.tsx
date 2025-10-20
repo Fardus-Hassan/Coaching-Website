@@ -48,21 +48,17 @@ export default function Success() {
   }
 
   return (
-    <section className="relative py-16 bg-gradient-to-br from-indigo-50 via-purple-50 to-indigo-50 overflow-hidden">
-      {/* Decorative elements */}
-      <div className="absolute inset-0 opacity-10">
-        <div className="absolute top-10 left-10 w-32 h-32 bg-indigo-300 rounded-full mix-blend-multiply filter blur-xl animate-pulse"></div>
-        <div className="absolute bottom-10 right-10 w-40 h-40 bg-purple-300 rounded-full mix-blend-multiply filter blur-xl animate-pulse animation-delay-2000"></div>
-      </div>
+    <section className="relative py-16 bg-gray-50 overflow-hidden">
+
 
       <div className="relative mx-auto max-w-7xl px-4 sm:px-6 lg:px-8">
         {/* Title and Subtitle */}
         <div className="text-center">
-          <h2 className="text-2xl lg:text-3xl font-bold text-gray-900 mb-2">
-            আমাদের <span className="text-indigo-600">সফলতার</span> গল্প
+          <h2 className="text-2xl lg:text-3xl font-bold text-[var(--color-text)] mb-2">
+            আমাদের <span className="text-[var(--color-primary)]">সফলতার</span> গল্প
           </h2>
-          <p className="text-sm text-gray-900 font-semibold">শিক্ষার্থীদের মতামত</p>
-          <div className="mt-4 w-24 h-1 bg-gradient-to-r from-indigo-500 to-purple-500 mx-auto rounded-full"></div>
+          <p className="text-sm text-[var(--color-text)] font-semibold">শিক্ষার্থীদের মতামত</p>
+          <div className="mt-4 w-24 h-1 bg-gradient-to-r from-[var(--color-primary)] to-[var(--color-secondary)] mx-auto rounded-full"></div>
         </div>
 
         {/* Swiper Slider */}
@@ -84,7 +80,7 @@ export default function Success() {
             {[...Array(3)].map((_, index) => (
               <SwiperSlide className="pt-20" key={index}>
                 <div className="bg-white p-8 lg:p-12 rounded-3xl shadow-xl ring-1 ring-indigo-100 space-y-6 relative h-full">
-                  <div className="absolute -top-4 left-1/2 transform -translate-x-1/2 bg-gradient-to-r from-indigo-500 to-purple-500 text-white px-6 py-2 rounded-full text-sm font-bold shadow-md">
+                  <div className="absolute -top-4 left-1/2 transform -translate-x-1/2 bg-gradient-to-r from-[var(--color-primary)] to-[var(--color-secondary)] text-white px-6 py-2 rounded-full text-sm font-bold shadow-md">
                     <Skeleton width={100} height={20} />
                   </div>
                   <Skeleton
@@ -137,7 +133,7 @@ export default function Success() {
             {successStories.map((story) => (
               <SwiperSlide className="pt-20" key={story.id}>
                 <div className="bg-white p-8 lg:p-12 rounded-3xl shadow-xl ring-1 ring-indigo-100 space-y-6 relative h-full">
-                  <div className="absolute -top-4 left-1/2 transform -translate-x-1/2 bg-gradient-to-r from-indigo-500 to-purple-500 text-white px-6 py-2 rounded-full text-sm font-bold shadow-md">
+                  <div className="absolute -top-4 left-1/2 transform -translate-x-1/2 bg-gradient-to-r from-[var(--color-primary)] to-[var(--color-secondary)] text-white px-6 py-2 rounded-full text-sm font-bold shadow-md">
                     সফলতার গল্প
                   </div>
                   <Image
@@ -163,7 +159,7 @@ export default function Success() {
                     {story.description.length > 200 && (
                       <button
                         onClick={() => toggleReadMore(story.id)}
-                        className="text-indigo-600 hover:text-indigo-800 font-medium text-sm mt-2 transition-colors duration-200"
+                        className="text-[var(--color-primary)] hover:text-[var(--color-primary)] font-medium text-sm mt-2 transition-colors duration-200"
                       >
                         {isExpanded(story.id) ? "Read Less" : "Read More"}
                       </button>
@@ -173,8 +169,8 @@ export default function Success() {
                     ”
                   </div>
                   <div className="space-y-1 mt-[-30px]">
-                    <h3 className="text-lg font-bold text-indigo-900">{story.name}</h3>
-                    <p className="text-sm text-indigo-600 font-medium">{story.position}</p>
+                    <h3 className="text-lg font-bold text-[var(--color-primary)]">{story.name}</h3>
+                    <p className="text-sm text-[var(--color-primary)] font-medium">{story.position}</p>
                     <p className="text-sm text-gray-600">{story.institution}</p>
                   </div>
                 </div>
@@ -196,13 +192,13 @@ export default function Success() {
         .swiper-pagination-bullet {
           width: 12px;
           height: 12px;
-          background-color: #c7d2fe;
+          background-color: var(--color-primary);
           opacity: 0.7;
           transition: all 0.3s ease;
         }
 
         .swiper-pagination-bullet-active {
-          background-color: #4f46e5;
+          background-color: var(--color-secondary);
           opacity: 1;
           width: 32px;
           border-radius: 6px;
