@@ -84,9 +84,8 @@ export default function Navbar() {
   const [expandedItems, setExpandedItems] = useState(new Set());
   const pathname = usePathname();
   const { data = [], isLoading, error } = useGetInstitutesQuery();
-  const color = useSiteColor();
+  // const color = useSiteColor();
 
-  console.log(color)
 
   useEffect(() => {
     const handleScroll = () => {
