@@ -200,7 +200,6 @@ export default function ContactUs() {
               </div>
             )}
 
-            {/* Institute Image */}
             {contact?.image && (
               <div className="p-6 rounded-2xl transition-shadow mx-auto duration-300">
                 <div className="relative w-full mx-auto h-[350px] rounded-2xl">
