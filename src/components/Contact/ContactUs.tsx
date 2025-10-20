@@ -184,7 +184,6 @@ export default function ContactUs() {
           </div>
         )}
 
-        {/* Map and Image Side by Side */}
         {!isLoading && (contact?.google_map || contact?.image) && (
           <div className="grid md:grid-cols-2 gap-8 mb-8 items-center justify-between">
             {/* Google Map */}
