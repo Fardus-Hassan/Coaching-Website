@@ -11,7 +11,7 @@ export default async function Loading() {
     const institute = data?.[0];
 
     return (
-      <div className="fixed inset-0 flex flex-col items-center justify-center bg-slate-900 text-white z-50">
+      <div className="fixed inset-0 flex flex-col items-center justify-center bg-white text-white z-50">
         <Image
           src={institute?.institute_logo || "/icon2.png"}
           alt={institute?.institute_name || "Logo"}
@@ -20,14 +20,14 @@ export default async function Loading() {
           className="animate-bounce"
           priority
         />
-        <p className="mt-3 text-sm text-gray-300 animate-pulse">
+        <p className="mt-3 text-sm text-[var(--color-text)] animate-pulse">
           {institute?.institute_name || "Loading..."}
         </p>
       </div>
     );
   } catch (error) {
     return (
-      <div className="fixed inset-0 flex flex-col items-center justify-center bg-slate-900 text-white z-50">
+      <div className="fixed inset-0 flex flex-col items-center justify-center bg-white text-white z-50">
         <Image
           src="/icon2.png"
           alt="Logo"
@@ -36,7 +36,7 @@ export default async function Loading() {
           className="animate-bounce"
           priority
         />
-        <p className="mt-3 text-sm text-gray-300 animate-pulse">
+        <p className="mt-3 text-sm text-[var(--color-text)] animate-pulse">
           Coaching Management System
         </p>
       </div>

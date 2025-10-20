@@ -13,7 +13,7 @@ export default function PageHeader({ title }: PageHeaderProps) {
           <div className="flex items-center justify-center gap-2 text-sm">
             <Link href='/' className="hover:underline">হোম</Link>
             <span>▶</span>
-            <span className="text-indigo-400">{title}</span>
+            <span className="text-[var(--color-secondary)]">{title}</span>
           </div>
         </div>
       </header>
