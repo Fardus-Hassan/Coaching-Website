@@ -302,7 +302,7 @@ export default function ContactUs() {
               <button
                 type="submit"
                 disabled={isSending}
-                className={`bg-gradient-to-r from-[var(--color-primary)] to-purple-600 hover:from-indigo-700 hover:to-purple-700 text-white font-semibold py-3 px-8 rounded-lg transition-all duration-300 transform hover:scale-105 w-full md:w-auto ${
+                className={`bg-gradient-to-r from-[var(--color-primary)] to-[var(--color-primary)] hover:from-[var(--color-secondary)] hover:to-[var(--color-primary)] text-white font-semibold py-3 px-8 rounded-lg transition-all duration-300 transform hover:scale-105 w-full md:w-auto ${
                   isSending ? "opacity-50 cursor-not-allowed" : ""
                 }`}
               >

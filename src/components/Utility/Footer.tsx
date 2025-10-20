@@ -66,7 +66,7 @@ export default function Footer() {
 
 
   return (
-    <footer className="text-white bg-slate-900 relative overflow-hidden">
+    <footer className="text-white bg-[var(--color-others)] relative overflow-hidden">
       {/* Decorative background elements */}
       <div className="absolute inset-0 opacity-10">
         <div className="absolute top-10 left-10 w-20 h-20 bg-[var(--color-primary)] rounded-full mix-blend-multiply filter blur-xl animate-pulse"></div>

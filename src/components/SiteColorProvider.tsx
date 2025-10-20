@@ -1,6 +1,7 @@
 "use client";
 
 import { useGetSiteColorsQuery } from "@/redux/features/api/siteColor/siteColorApi";
+import { Loader2 } from "lucide-react";
 import { useEffect, useMemo, createContext, useContext } from "react";
 
 export interface SiteColor {
@@ -19,14 +20,18 @@ const DEFAULT_COLOR: SiteColor = {
 
 const ColorContext = createContext<SiteColor>(DEFAULT_COLOR);
 
-export default function SiteColorProvider({ children }: { children: React.ReactNode }) {
+export default function SiteColorProvider({
+  children,
+}: {
+  children: React.ReactNode;
+}) {
   const { data = [], isLoading } = useGetSiteColorsQuery();
 
   const color: SiteColor = useMemo(() => {
     if (Array.isArray(data) && data.length > 0) return data[0];
     return DEFAULT_COLOR;
   }, [data]);
-  console.log(color)
+  console.log(color);
 
   useEffect(() => {
     if (color) {
@@ -41,14 +46,12 @@ export default function SiteColorProvider({ children }: { children: React.ReactN
   if (isLoading)
     return (
       <div className="flex justify-center items-center text-gray-500 bg-white h-screen">
-        Loading...
+        <Loader2 className="w-12 h-12 text-gray-500 animate-spin" />{" "}
       </div>
     );
 
   return (
-    <ColorContext.Provider value={color}>
-      {children}
-    </ColorContext.Provider>
+    <ColorContext.Provider value={color}>{children}</ColorContext.Provider>
   );
 }
 
