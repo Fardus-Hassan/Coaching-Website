@@ -52,7 +52,7 @@ export default function ContactUs() {
   };
 
   return (
-    <section className="py-16 bg-gradient-to-b from-gray-50 to-gray-100">
+    <section className="py-16 bg-gray-50">
       {/* Custom Alert */}
       {alert && (
         <div
@@ -103,10 +103,10 @@ export default function ContactUs() {
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
         {/* Header */}
         <div className="text-center mb-12">
-          <h2 className="text-2xl md:text-3xl font-extrabold text-gray-900">
-            <span className="text-indigo-600">যোগাযোগ</span> করুন
+          <h2 className="text-2xl md:text-3xl font-extrabold text-[var(--color-text)]">
+            <span className="text-[var(--color-primary)]">যোগাযোগ</span> করুন
           </h2>
-          <div className="w-24 h-1 bg-gradient-to-r from-indigo-500 to-purple-500 mx-auto mt-3 rounded-full"></div>
+          <div className="w-24 h-1 bg-gradient-to-r from-[var(--color-primary)] to-[var(--color-secondary)] mx-auto mt-3 rounded-full"></div>
         </div>
 
         {/* Contact Info (Email, Mobile, Address) */}
@@ -118,7 +118,7 @@ export default function ContactUs() {
             <div className="grid grid-cols-1 sm:grid-cols-3 gap-6">
               <div className="flex items-center gap-4">
                 <svg
-                  className="w-8 h-8 text-indigo-600 flex-shrink-0"
+                  className="w-8 h-8 text-[var(--color-primary)] flex-shrink-0"
                   fill="none"
                   stroke="currentColor"
                   viewBox="0 0 24 24"
@@ -137,7 +137,7 @@ export default function ContactUs() {
               </div>
               <div className="flex items-center gap-4">
                 <svg
-                  className="w-8 h-8 text-indigo-600 flex-shrink-0"
+                  className="w-8 h-8 text-[var(--color-primary)] flex-shrink-0"
                   fill="none"
                   stroke="currentColor"
                   viewBox="0 0 24 24"
@@ -156,7 +156,7 @@ export default function ContactUs() {
               </div>
               <div className="flex items-center gap-4">
                 <svg
-                  className="w-8 h-8 text-indigo-600 flex-shrink-0"
+                  className="w-8 h-8 text-[var(--color-primary)] flex-shrink-0"
                   fill="none"
                   stroke="currentColor"
                   viewBox="0 0 24 24"
@@ -222,7 +222,7 @@ export default function ContactUs() {
 
         {/* Contact Form - Now at the bottom */}
         <div className="p-8 rounded-2xl shadow-lg hover:shadow-xl transition-shadow duration-300">
-          <h3 className="text-2xl font-bold text-gray-900 mb-6 text-center">
+          <h3 className="text-2xl font-bold text-[var(--color-text)] mb-6 text-center">
             {contact?.text || "N/A"}
           </h3>
           <form onSubmit={handleSubmit} className="grid grid-cols-1 md:grid-cols-2 gap-6">
@@ -237,7 +237,7 @@ export default function ContactUs() {
                 placeholder="আপনার নাম লিখুন"
                 value={formData.name}
                 onChange={handleInputChange}
-                className="border border-gray-300 p-3 rounded-lg w-full focus:ring-2 focus:ring-indigo-500 focus:border-indigo-500 transition-all duration-200"
+                className="border border-gray-300 p-3 rounded-lg w-full focus:ring-2 focus:ring-[var(--color-primary)] focus:border-[var(--color-primary)] transition-all duration-200"
                 required
               />
             </div>
@@ -252,7 +252,7 @@ export default function ContactUs() {
                 placeholder="আপনার ফোন নাম্বার লিখুন"
                 value={formData.phone_number}
                 onChange={handleInputChange}
-                className="border border-gray-300 p-3 rounded-lg w-full focus:ring-2 focus:ring-indigo-500 focus:border-indigo-500 transition-all duration-200"
+                className="border border-gray-300 p-3 rounded-lg w-full focus:ring-2 focus:ring-[var(--color-primary)] focus:border-[var(--color-primary)] transition-all duration-200"
                 required
               />
             </div>
@@ -267,7 +267,7 @@ export default function ContactUs() {
                 placeholder="আপনার ইমেইল লিখুন"
                 value={formData.email}
                 onChange={handleInputChange}
-                className="border border-gray-300 p-3 rounded-lg w-full focus:ring-2 focus:ring-indigo-500 focus:border-indigo-500 transition-all duration-200"
+                className="border border-gray-300 p-3 rounded-lg w-full focus:ring-2 focus:ring-[var(--color-primary)] focus:border-[var(--color-primary)] transition-all duration-200"
                 required
               />
             </div>
@@ -282,7 +282,7 @@ export default function ContactUs() {
                 placeholder="বিষয় লিখুন"
                 value={formData.subject}
                 onChange={handleInputChange}
-                className="border border-gray-300 p-3 rounded-lg w-full focus:ring-2 focus:ring-indigo-500 focus:border-indigo-500 transition-all duration-200"
+                className="border border-gray-300 p-3 rounded-lg w-full focus:ring-2 focus:ring-[var(--color-primary)] focus:border-[var(--color-primary)] transition-all duration-200"
               />
             </div>
             <div className="md:col-span-2">
@@ -295,7 +295,7 @@ export default function ContactUs() {
                 placeholder="আপনার বার্তা লিখুন..."
                 value={formData.msg}
                 onChange={handleInputChange}
-                className="border border-gray-300 p-3 rounded-lg w-full h-36 focus:ring-2 focus:ring-indigo-500 focus:border-indigo-500 transition-all duration-200"
+                className="border border-gray-300 p-3 rounded-lg w-full h-36 focus:ring-2 focus:ring-[var(--color-primary)] focus:border-[var(--color-primary)] transition-all duration-200"
                 required
               ></textarea>
             </div>
@@ -303,7 +303,7 @@ export default function ContactUs() {
               <button
                 type="submit"
                 disabled={isSending}
-                className={`bg-gradient-to-r from-indigo-600 to-purple-600 hover:from-indigo-700 hover:to-purple-700 text-white font-semibold py-3 px-8 rounded-lg transition-all duration-300 transform hover:scale-105 w-full md:w-auto ${
+                className={`bg-gradient-to-r from-[var(--color-primary)] to-purple-600 hover:from-indigo-700 hover:to-purple-700 text-white font-semibold py-3 px-8 rounded-lg transition-all duration-300 transform hover:scale-105 w-full md:w-auto ${
                   isSending ? "opacity-50 cursor-not-allowed" : ""
                 }`}
               >

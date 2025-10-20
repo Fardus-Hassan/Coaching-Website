@@ -270,7 +270,7 @@ export default function AdmissionForm() {
 
           {/* Header */}
           <div className="mb-6 lg:flex gap-5">
-            <h1 className="text-2xl md:text-3xl font-bold text-gray-800 border-b-4 border-indigo-600 inline-block pb-1">
+            <h1 className="text-2xl md:text-3xl font-bold text-gray-800 border-b-4 border-[var(--color-primary)] inline-block pb-1">
               ভর্তি ফরম
             </h1>
             <p className="text-gray-600 text-sm md:text-base lg:mt-0 mt-3">
@@ -805,10 +805,10 @@ export default function AdmissionForm() {
               <button
                 type="submit"
                 disabled={isSubmitting || !formData.agreeTerms}
-                className={`bg-indigo-600 text-white font-bold py-3 px-8 rounded transition-colors duration-200 shadow-md hover:shadow-lg ${
+                className={`bg-[var(--color-secondary)] text-white font-bold py-3 px-8 rounded transition-colors duration-200 shadow-md hover:shadow-lg ${
                   isSubmitting || !formData.agreeTerms
                     ? "opacity-50 cursor-not-allowed"
-                    : "hover:bg-indigo-700"
+                    : "hover:bg-[var(--color-primary)]"
                 }`}
               >
                 {isSubmitting ? "জমা হচ্ছে..." : "জমা দিন"}

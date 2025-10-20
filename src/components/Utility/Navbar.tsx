@@ -6,6 +6,10 @@ import {
   Bars3Icon,
   XMarkIcon,
   ChevronDownIcon,
+  BuildingOfficeIcon,
+  UserIcon,
+  UserGroupIcon,
+  BookOpenIcon,
 } from "@heroicons/react/24/outline";
 import { FaFacebookF } from "react-icons/fa6";
 import { FaInstagram, FaLinkedinIn, FaYoutube } from "react-icons/fa";
@@ -20,27 +24,58 @@ import Image from "next/image";
 import Skeleton from 'react-loading-skeleton';
 import 'react-loading-skeleton/dist/skeleton.css';
 import { useSiteColor } from "../SiteColorProvider";
+import { 
+  HomeIcon, 
+  InformationCircleIcon, 
+  DocumentDuplicateIcon, 
+  PhotoIcon, 
+  VideoCameraIcon, 
+  CheckCircleIcon, 
+  EnvelopeIcon 
+} from "@heroicons/react/24/outline";
 
 const navigation = [
   {
     name: "হোম",
     href: "/",
+    icon: HomeIcon,
   },
   {
     name: "আমাদের সম্পর্কে",
     href: "/about",
+    icon: InformationCircleIcon,
     sub: [
-      { name: "প্রতিষ্ঠানের সম্পর্কে", href: "/about" },
-      { name: "নীতিনির্ধারকদের বাণী", href: "/chairman" },
-      { name: "কমিটি সদস্যবৃন্দ", href: "/committees" },
-      { name: "শিক্ষকবৃন্দ", href: "/teachers" },
+      { name: "প্রতিষ্ঠানের সম্পর্কে", href: "/about", icon: BuildingOfficeIcon },
+      { name: "নীতিনির্ধারকদের বাণী", href: "/chairman", icon: UserIcon },
+      { name: "কমিটি সদস্যবৃন্দ", href: "/committees", icon: UserGroupIcon },
+      { name: "শিক্ষকবৃন্দ", href: "/teachers", icon: BookOpenIcon },
     ],
   },
-  { name: "নোটিশ", href: "/notice" },
-  { name: "ফটো গ্যালারি", href: "/gallery" },
-  { name: "ভিডিও", href: "/video_gallery" },
-  { name: "রেজাল্ট", href: "/report-card" },
-  { name: "যোগাযোগ", href: "/contact_us" },
+  { 
+    name: "নোটিশ", 
+    href: "/notice", 
+    icon: DocumentDuplicateIcon 
+  },
+  { 
+    name: "ফটো গ্যালারি", 
+    href: "/gallery", 
+    icon: PhotoIcon 
+  },
+  { 
+    name: "ভিডিও", 
+    href: "/video_gallery", 
+    icon: VideoCameraIcon 
+  },
+  { 
+    name: "রেজাল্ট", 
+    href: "/report-card", 
+    icon: CheckCircleIcon 
+  },
+  { 
+    name: "যোগাযোগ", 
+    href: "/contact_us", 
+    icon: EnvelopeIcon 
+  },
 ];
 
 export default function Navbar() {
@@ -52,7 +87,6 @@ export default function Navbar() {
   const color = useSiteColor();
 
   console.log(color)
-
 
   useEffect(() => {
     const handleScroll = () => {
@@ -143,7 +177,7 @@ export default function Navbar() {
           <div className="mx-auto max-w-7xl px-4 sm:px-6 lg:px-8">
             <div className="flex items-center justify-between h-12">
               <div className="flex items-center space-x-4 text-white text-sm">
-                <span className="flex gap-1 items-center hover:text-var(--color-primary)] transition-colors">
+                <span className="flex gap-1 items-center hover:text-white/70 transition-colors">
                   <IoCall />
                   {data[0]?.institute_mobile}
                 </span>
@@ -216,55 +250,64 @@ export default function Navbar() {
             </button>
           </div>
 
-          <div className="hidden xl:flex flex-wrap lg:gap-x-5">
-            {navigation.map((item) => (
-              <div key={item.name} className="group relative">
-                <Link
-                  href={item.href}
-                  className={`text-sm/6 font-medium text-[var(--color-text)] hover:text-[var(--color-primary)] transition-colors duration-200 px-3 py-2 rounded-md ${
-                    isActive(item.href)
-                      ? "bg-[var(--color-primary)]/10 text-[var(--color-primary)] font-bold"
-                      : ""
-                  }`}
-                >
-                  {item.name}
+          {/* Desktop Menu with Icons */}
+          <div className="hidden xl:flex flex-wrap lg:gap-x-4">
+            {navigation.map((item) => {
+              const IconComponent = item.icon;
+              return (
+                <div key={item.name} className="group relative">
+                  <Link
+                    href={item.href}
+                    className={`text-sm/6 font-medium text-[var(--color-text)] hover:text-[var(--color-primary)] transition-colors duration-200 px-3 py-2 rounded-md flex items-center gap-1 ${
+                      isActive(item.href)
+                        ? "bg-[var(--color-primary)]/10 text-[var(--color-primary)] font-bold"
+                        : ""
+                    }`}
+                  >
+                    <IconComponent className="w-4 h-4" />
+                    {item.name}
+                    {item.sub && (
+                      <svg
+                        className="inline h-3 w-3 group-hover:rotate-180 transition-transform duration-200"
+                        fill="none"
+                        stroke="currentColor"
+                        viewBox="0 0 24 24"
+                      >
+                        <path
+                          strokeLinecap="round"
+                          strokeLinejoin="round"
+                          strokeWidth={2}
+                          d="M19 9l-7 7-7-7"
+                        />
+                      </svg>
+                    )}
+                  </Link>
                   {item.sub && (
-                    <svg
-                      className="ml-1 inline h-3 w-3 group-hover:rotate-180 transition-transform duration-200"
-                      fill="none"
-                      stroke="currentColor"
-                      viewBox="0 0 24 24"
-                    >
-                      <path
-                        strokeLinecap="round"
-                        strokeLinejoin="round"
-                        strokeWidth={2}
-                        d="M19 9l-7 7-7-7"
-                      />
-                    </svg>
-                  )}
-                </Link>
-                {item.sub && (
-                  <div className="absolute left-0 mt-2 w-56 bg-white rounded-md shadow-xl opacity-0 invisible group-hover:opacity-100 group-hover:visible transition-all duration-300 ease-in-out transform scale-95 group-hover:scale-100 origin-top border border-white">
-                    <div className="py-2">
-                      {item.sub.map((subItem) => (
-                        <Link
-                          key={subItem.name}
-                          href={subItem.href}
-                          className={`block px-4 py-2.5 text-sm text-[var(--color-text)] hover:bg-white hover:text-[var(--color-primary)] transition-colors duration-200 ${
-                            isActive(subItem.href)
-                              ? "bg-white text-[var(--color-primary)] font-semibold"
-                              : ""
-                          }`}
-                        >
-                          {subItem.name}
-                        </Link>
-                      ))}
+                    <div className="absolute left-0 mt-2 w-56 bg-white rounded-md shadow-xl opacity-0 invisible group-hover:opacity-100 group-hover:visible transition-all duration-300 ease-in-out transform scale-95 group-hover:scale-100 origin-top border border-white">
+                      <div className="py-2">
+                        {item.sub.map((subItem) => {
+                          const SubIconComponent = subItem.icon;
+                          return (
+                            <Link
+                              key={subItem.name}
+                              href={subItem.href}
+                              className={`block px-4 py-2.5 text-sm text-[var(--color-text)] hover:bg-white hover:text-[var(--color-primary)] transition-colors duration-200 flex items-center gap-2 ${
+                                isActive(subItem.href)
+                                  ? "bg-white text-[var(--color-primary)] font-semibold"
+                                  : ""
+                              }`}
+                            >
+                              <SubIconComponent className="w-4 h-4" />
+                              {subItem.name}
+                            </Link>
+                          );
+                        })}
+                      </div>
                     </div>
-                  </div>
-                )}
-              </div>
-            ))}
+                  )}
+                </div>
+              );
+            })}
           </div>
         </nav>
 
@@ -333,12 +376,13 @@ export default function Navbar() {
                           </button>
                         </div>
 
-                        {/* Navigation Links */}
+                        {/* Navigation Links with Icons */}
                         <div className="flow-root mt-8">
                           <div className="-my-6 divide-y divide-white/10">
                             {navigation.map((item) => {
                               const isExpanded = expandedItems.has(item.name);
                               const parentActive = isActive(item.href);
+                              const IconComponent = item.icon;
                               return (
                                 <div key={item.name} className="py-2">
                                   {item.sub ? (
@@ -349,7 +393,10 @@ export default function Navbar() {
                                           parentActive ? "bg-white/10" : ""
                                         }`}
                                       >
-                                        <span>{item.name}</span>
+                                        <span className="flex items-center gap-2">
+                                          <IconComponent className="w-5 h-5" />
+                                          {item.name}
+                                        </span>
                                         <ChevronDownIcon
                                           className={`h-4 w-4 transition-transform duration-200 ${
                                             isExpanded ? "rotate-180" : ""
@@ -363,30 +410,35 @@ export default function Navbar() {
                                             : "max-h-0 opacity-0"
                                         }`}
                                       >
-                                        {item.sub.map((subItem) => (
-                                          <Link
-                                            key={subItem.name}
-                                            href={subItem.href}
-                                            onClick={handleMobileLinkClick}
-                                            className={`-mx-3 block rounded-lg px-3 py-2 text-sm text-white/90 hover:bg-white/10 transition-colors duration-200 ${
-                                              isActive(subItem.href)
-                                                ? "bg-white/10 text-white font-semibold"
-                                                : ""
-                                            }`}
-                                          >
-                                            {subItem.name}
-                                          </Link>
-                                        ))}
+                                        {item.sub.map((subItem) => {
+                                          const SubIconComponent = subItem.icon;
+                                          return (
+                                            <Link
+                                              key={subItem.name}
+                                              href={subItem.href}
+                                              onClick={handleMobileLinkClick}
+                                              className={`-mx-3 block rounded-lg px-3 py-2 text-sm text-white/90 hover:bg-white/10 transition-colors duration-200 flex items-center gap-2 ${
+                                                isActive(subItem.href)
+                                                  ? "bg-white/10 text-white font-semibold"
+                                                  : ""
+                                              }`}
+                                            >
+                                              <SubIconComponent className="w-4 h-4" />
+                                              {subItem.name}
+                                            </Link>
+                                          );
+                                        })}
                                       </div>
                                     </>
                                   ) : (
                                     <Link
                                       href={item.href}
                                       onClick={handleMobileLinkClick}
-                                      className={`-mx-3 block rounded-lg px-3 py-2.5 text-base font-semibold text-white hover:bg-white/10 transition-colors duration-200 ${
+                                      className={`-mx-3 block rounded-lg px-3 py-2.5 text-base font-semibold text-white hover:bg-white/10 transition-colors duration-200 flex items-center gap-2 ${
                                         isActive(item.href) ? "bg-white/10" : ""
                                       }`}
                                     >
+                                      <IconComponent className="w-5 h-5" />
                                       {item.name}
                                     </Link>
                                   )}
@@ -400,15 +452,15 @@ export default function Navbar() {
                         <div className="mt-8 border-t border-white/10 pt-6">
                           <div className="space-y-3 text-white">
                             <a href={`tel:${data[0]?.institute_mobile}`} className="flex items-center gap-2 text-sm hover:text-white/70 transition-colors">
-                              <IoCall className="text-white" />
+                              <IoCall className="text-white w-5 h-5" />
                               <span>{data[0]?.institute_mobile}</span>
                             </a>
                             <Link href="/admission" onClick={handleMobileLinkClick} className="flex items-center gap-2 text-sm hover:text-white/70 transition-colors">
-                              <IoIosSchool className="text-white" />
+                              <IoIosSchool className="text-white w-5 h-5" />
                               <span>Admission</span>
                             </Link>
                             <a href={data[0]?.institute_management_web} target="_blank" className="flex items-center gap-2 text-sm hover:text-white/70 transition-colors">
-                              <PiStudentBold className="text-white" />
+                              <PiStudentBold className="text-white w-5 h-5" />
                               <span>Login</span>
                             </a>
                           </div>

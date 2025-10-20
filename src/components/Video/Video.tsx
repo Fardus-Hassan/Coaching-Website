@@ -72,9 +72,9 @@ export default function Video() {
         {/* Header */}
         <div className="text-center mb-12">
           <h2 className="text-2xl md:text-3xl font-extrabold text-gray-900">
-            ভিডিও <span className="text-indigo-600">গ্যালারি</span>
+            ভিডিও <span className="text-[var(--color-primary)]">গ্যালারি</span>
           </h2>
-          <div className="w-24 h-1 bg-gradient-to-r from-indigo-500 to-purple-500 mx-auto mt-3 rounded-full"></div>
+          <div className="w-24 h-1 bg-gradient-to-r from-[var(--color-primary)] to-[var(--color-secondary)] mx-auto mt-3 rounded-full"></div>
         </div>
 
         {/* Video Grid */}

@@ -89,10 +89,10 @@ export default function Notices() {
 
         {/* Header */}
         <div className="text-center mb-8 lg:mb-12">
-          <h2 className="text-2xl lg:text-3xl font-bold text-gray-900 mb-3">
-            নোটিশ <span className="text-indigo-600">বোর্ড</span>
+          <h2 className="text-2xl lg:text-3xl font-bold text-[var(--color-text)] mb-3">
+            নোটিশ <span className="text-[var(--color-primary)]">বোর্ড</span>
           </h2>
-          <div className="w-24 h-1 bg-gradient-to-r from-indigo-400 to-purple-400 mx-auto rounded-full"></div>
+          <div className="w-24 h-1 bg-gradient-to-r from-[var(--color-primary)] to-[var(--color-secondary)] mx-auto rounded-full"></div>
         </div>
 
         {/* Notices Grid */}
@@ -124,7 +124,7 @@ export default function Notices() {
                   </span>
                 </div>
 
-                <h3 className="text-lg font-semibold text-gray-900 mb-2 line-clamp-2">
+                <h3 className="text-lg font-semibold text-[var(--color-text)] mb-2 line-clamp-2">
                   {notice.notice_title}
                 </h3>
 
@@ -145,7 +145,7 @@ export default function Notices() {
                     className={`${
                       isDownloading
                         ? "bg-gray-400 cursor-not-allowed"
-                        : "bg-indigo-600 hover:bg-indigo-700 transform hover:-translate-y-1"
+                        : "bg-[var(--color-secondary)] hover:bg-[var(--color-primary)] transform hover:-translate-y-1"
                     } text-white font-bold px-5 py-2 rounded-lg shadow-md hover:shadow-xl transition-all duration-300 flex items-center justify-center gap-2 mt-auto`}
                   >
                     <Download size={16} /> {isDownloading ? "ডাউনলোড হচ্ছে..." : "ডাউনলোড করুন"}

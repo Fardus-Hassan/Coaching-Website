@@ -36,12 +36,8 @@ export default function ChairmanMessage() {
     }
 
   return (
-    <section className="relative py-12 lg:py-20 bg-gradient-to-br from-indigo-50 via-white to-purple-50 overflow-hidden">
-      {/* Decorative background elements */}
-      <div className="absolute inset-0 opacity-10">
-        <div className="absolute top-10 left-10 w-64 h-64 bg-indigo-300 rounded-full mix-blend-multiply filter blur-3xl animate-pulse"></div>
-        <div className="absolute bottom-10 right-10 w-64 h-64 bg-purple-300 rounded-full mix-blend-multiply filter blur-3xl animate-pulse animation-delay-2000"></div>
-      </div>
+    <section className="relative py-12 lg:py-20 bg-gray-50 overflow-hidden">
+
 
       <div className="relative mx-auto max-w-7xl px-4 sm:px-6 lg:px-8">
         {isLoading ? (
@@ -108,7 +104,7 @@ export default function ChairmanMessage() {
                   className={`relative ${index % 2 === 0 ? "lg:col-span-3" : "lg:col-span-3 lg:order-1"}`}
                 >
                   <div className="relative z-10 w-full max-w-sm">
-                    <h3 className="text-xl font-bold text-gray-800 mb-2">
+                    <h3 className="text-xl font-bold text-[var(--color-text)] mb-2">
                       {speech.name}
                     </h3>
                     <p className="text-gray-600 text-sm mb-4">{speech.designation}</p>
@@ -138,7 +134,7 @@ export default function ChairmanMessage() {
                   {/* Signature */}
                   <div className="pt-8">
                     <div className="text-right">
-                      <p className="font-bold text-lg text-gray-800">{speech.name}</p>
+                      <p className="font-bold text-lg text-[var(--color-text)]">{speech.name}</p>
                       <p className="text-gray-600 text-sm mt-1">{speech.designation}</p>
                     </div>
                   </div>

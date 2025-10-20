@@ -25,9 +25,9 @@ export default function AboutDetails() {
       <main>
         {/* About Section */}
         <section className="pt-16 px-4">
-          <h2 className="text-3xl font-bold text-center mb-8 text-gray-900">
-            প্রতিষ্ঠানের <span className="text-indigo-600">সম্পর্কে</span>
-            <div className="w-16 h-1 bg-indigo-600 mx-auto mt-2"></div>
+          <h2 className="text-3xl font-bold text-center mb-8 text-[var(--color-text)]">
+            প্রতিষ্ঠানের <span className="text-[var(--color-primary)]">সম্পর্কে</span>
+            <div className="w-16 h-1 bg-[var(--color-primary)] mx-auto mt-2"></div>
           </h2>
 
           <div className="max-w-7xl mx-auto space-y-6 text-gray-700 leading-relaxed">
@@ -62,9 +62,9 @@ export default function AboutDetails() {
 
         {/* Special Qualities Section */}
         <section className="py-20 px-4">
-          <h2 className="text-3xl font-bold text-center mb-8 text-gray-900">
-            প্রতিষ্ঠানের <span className="text-indigo-600">বৈশিষ্ট্য</span> সমূহ
-            <div className="w-16 h-1 bg-indigo-600 mx-auto mt-2"></div>
+          <h2 className="text-3xl font-bold text-center mb-8 text-[var(--color-text)]">
+            প্রতিষ্ঠানের <span className="text-[var(--color-primary)]">বৈশিষ্ট্য</span> সমূহ
+            <div className="w-16 h-1 bg-[var(--color-primary)] mx-auto mt-2"></div>
           </h2>
 
           <div className="max-w-7xl mx-auto grid grid-cols-1 md:grid-cols-2 gap-8">
@@ -97,7 +97,7 @@ export default function AboutDetails() {
                 <div className="space-y-4">
                   {qualitiesData.slice(0, Math.ceil(qualitiesData.length / 2)).map((quality, index) => (
                     <div key={quality.id} className="flex gap-3">
-                      <span className="text-indigo-600 mt-1">■</span>
+                      <span className="text-[var(--color-primary)] mt-1">■</span>
                       <p className="text-gray-700">{quality.point}</p>
                     </div>
                   ))}
@@ -107,7 +107,7 @@ export default function AboutDetails() {
                 <div className="space-y-4">
                   {qualitiesData.slice(Math.ceil(qualitiesData.length / 2)).map((quality, index) => (
                     <div key={quality.id} className="flex gap-3">
-                      <span className="text-indigo-600 mt-1">■</span>
+                      <span className="text-[var(--color-primary)] mt-1">■</span>
                       <p className="text-gray-700">{quality.point}</p>
                     </div>
                   ))}

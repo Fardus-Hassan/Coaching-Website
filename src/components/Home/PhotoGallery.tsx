@@ -89,10 +89,10 @@ const filteredImages = galleryImages.filter((img) => {
       <div className="mx-auto max-w-7xl px-4 sm:px-6 lg:px-8">
         {/* Header */}
         <div className="text-center mb-8 lg:mb-12">
-          <h2 className="text-2xl lg:text-3xl font-bold text-gray-900 mb-3">
-            ফটো <span className="text-indigo-600">গ্যালারি</span>
+          <h2 className="text-2xl lg:text-3xl font-bold text-[var(--color-text)] mb-3">
+            ফটো <span className="text-[var(--color-primary)]">গ্যালারি</span>
           </h2>
-          <div className="w-24 h-1 bg-gradient-to-r from-indigo-400 to-purple-400 mx-auto rounded-full"></div>
+          <div className="w-24 h-1 bg-gradient-to-r from-[var(--color-primary)] to-[var(--color-secondary)] mx-auto rounded-full"></div>
         </div>
 
         {/* Filter Tabs */}
@@ -103,7 +103,7 @@ const filteredImages = galleryImages.filter((img) => {
               onClick={() => setActiveTab(tab)}
               className={`px-4 py-2 rounded-lg font-semibold text-sm transition-all duration-300 ${
                 activeTab === tab
-                  ? "bg-indigo-600 text-white shadow-lg scale-105"
+                  ? "bg-[var(--color-primary)] text-white shadow-lg scale-105"
                   : "bg-white text-gray-700 hover:bg-gray-100 shadow-md hover:shadow-lg"
               }`}
             >
@@ -165,7 +165,7 @@ const filteredImages = galleryImages.filter((img) => {
         {isHomePage && (
           <div className="text-right mt-12">
             <Link href="/gallery">
-              <button className="bg-indigo-600 hover:bg-indigo-700 text-white font-bold px-8 py-3 rounded-lg shadow-lg hover:shadow-xl transform hover:-translate-y-1 transition-all duration-300">
+              <button className="bg-[var(--color-primary)] hover:bg-[var(--color-primary)] text-white font-bold px-8 py-3 rounded-lg shadow-lg hover:shadow-xl transform hover:-translate-y-1 transition-all duration-300">
                 আরোও দেখুন
               </button>
             </Link>
