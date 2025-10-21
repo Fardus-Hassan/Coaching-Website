@@ -2,11 +2,11 @@ import { apiSlice } from "../apiSlice";
 
 export interface SuccessStory {
   id: number;
-  name: string | null;
-  image: string | null;
-  designation: string | null;
-  institute: string | null;
-  description: string | null;
+  name: string;
+  image: string;
+  designation: string;
+  institute: string;
+  description: string;
 }
 
 export const successStoriesApi = apiSlice.injectEndpoints({

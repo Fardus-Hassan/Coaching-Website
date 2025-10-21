@@ -2,10 +2,10 @@ import { apiSlice } from "../apiSlice";
 
 export interface Gallery {
   id: number;
-  featured: boolean | null;
-  tag: string | null;
-  galary_image: string | null;
-  status: string | null;
+  featured: boolean;
+  tag: string;
+  galary_image: string;
+  status: string;
 }
 
 export const galleryApi = apiSlice.injectEndpoints({

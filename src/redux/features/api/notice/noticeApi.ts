@@ -2,19 +2,19 @@ import { apiSlice } from "../apiSlice";
 
 export interface AcademicYear {
   id: number;
-  name: string | null;
+  name: string;
 }
 
 export interface Notice {
   id: number;
-  date: string | null; 
-  notice_title: string | null;
-  notice_description: string | null;
-  expire_date: string | null;
-  file_attached: string | null;
+  date: string; 
+  notice_title: string;
+  notice_description: string;
+  expire_date: string;
+  file_attached: string;
   academic_year: AcademicYear;
-  created_at: string | null;
-  updated_at: string | null;
+  created_at: string;
+  updated_at: string;
 }
 
 export const noticeApi = apiSlice.injectEndpoints({

@@ -2,13 +2,13 @@ import { apiSlice } from "../apiSlice";
 
 export interface ContactInfo {
   id: number;
-  text: string | null;
-  office_address: string | null;
-  mobile: string | null;
-  email: string | null;
-  google_map: string | null;
-  image: string | null;
-  status: string | null;
+  text: string;
+  office_address: string;
+  mobile: string;
+  email: string;
+  google_map: string;
+  image: string;
+  status: string;
 }
 
 export interface ContactMessagePayload {

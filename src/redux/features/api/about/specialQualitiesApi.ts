@@ -2,7 +2,7 @@ import { apiSlice } from "../apiSlice";
 
 export interface SpecialQuality {
   id: number;
-  point: string | null;
+  point: string;
 }
 
 export const specialQualitiesApi = apiSlice.injectEndpoints({

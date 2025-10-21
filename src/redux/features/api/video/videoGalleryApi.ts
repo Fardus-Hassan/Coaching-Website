@@ -2,12 +2,12 @@ import { apiSlice } from "../apiSlice";
 
 export interface VideoGallery {
   id: number;
-  featured: boolean | null;
-  heading: string | null;
-  sub_heading: string | null;
-  img: string | null;
-  link: string | null;
-  status: string | null;
+  featured: boolean;
+  heading: string;
+  sub_heading: string;
+  img: string;
+  link: string;
+  status: string;
 }
 
 export const videoGalleryApi = apiSlice.injectEndpoints({

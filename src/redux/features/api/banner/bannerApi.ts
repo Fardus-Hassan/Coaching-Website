@@ -2,10 +2,10 @@ import { apiSlice } from "../apiSlice";
 
 export interface Banner {
   id: number;
-  heading: string | null;
-  description: string | null;
-  banner_image: string | null;
-  status: string | null;
+  heading: string;
+  description: string;
+  banner_image: string;
+  status: string;
 }
 
 export const bannerApi = apiSlice.injectEndpoints({

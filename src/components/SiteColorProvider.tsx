@@ -5,10 +5,10 @@ import { Loader2 } from "lucide-react";
 import { useEffect, useMemo, createContext, useContext } from "react";
 
 export interface SiteColor {
-  primary_color: string | null;
-  secondary_color: string | null;
-  others_color: string | null;
-  text_color: string | null;
+  primary_color: string;
+  secondary_color: string;
+  others_color: string;
+  text_color: string;
 }
 
 const DEFAULT_COLOR: SiteColor = {

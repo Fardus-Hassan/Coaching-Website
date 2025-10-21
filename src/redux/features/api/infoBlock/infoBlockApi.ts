@@ -2,8 +2,8 @@ import { apiSlice } from "../apiSlice";
 
 export interface InfoBlock {
   id: number;
-  highlighter: string | null;
-  footer_text: string | null;
+  highlighter: string;
+  footer_text: string;
 }
 
 export const infoBlockApi = apiSlice.injectEndpoints({

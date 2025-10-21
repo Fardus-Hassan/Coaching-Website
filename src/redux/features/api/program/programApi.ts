@@ -2,11 +2,11 @@ import { apiSlice } from "../apiSlice";
 
 export interface Program {
   id: number;
-  title: string | null;
-  sub_title: string | null;
-  short_description: string | null;
-  long_description: string | null;
-  price: string | null;
+  title: string;
+  sub_title: string;
+  short_description: string;
+  long_description: string;
+  price: string;
 }
 
 export const programApi = apiSlice.injectEndpoints({

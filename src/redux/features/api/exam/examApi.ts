@@ -2,8 +2,8 @@ import { apiSlice } from "../apiSlice";
 
 export interface Exam {
   id: number;
-  name: string | null;
-  date: string | null;
+  name: string;
+  date: string;
 }
 
 export const examApi = apiSlice.injectEndpoints({
