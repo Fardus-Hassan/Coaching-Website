@@ -8,7 +8,7 @@ import ScrollToTop from "@/components/Utility/ScrollToTop";
 import SiteColorProvider from "@/components/SiteColorProvider";
 import baseUrl from "@/apiConfig";
 
-export async function generateMetadata() {
+async function generateMetadata() {
   try {
     const res = await fetch(`${baseUrl()}institutes/`, {
       cache: "no-store",
