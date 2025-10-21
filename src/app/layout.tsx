@@ -9,7 +9,7 @@ import baseUrl from "@/apiConfig";
 export async function generateMetadata() {
   try {
     const res = await fetch(`${baseUrl()}institutes/`, {
-      cache: "no-store",
+      cache: "force-cache",
     });
     const data = await res.json();
     const institute = data[0];
