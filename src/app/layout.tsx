@@ -1,3 +1,5 @@
+"use client"
+
 import { Providers } from "@/components/Providers";
 import "./globals.css";
 import Navbar from "@/components/Utility/Navbar";
