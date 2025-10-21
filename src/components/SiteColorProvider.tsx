@@ -5,10 +5,10 @@ import { Loader2 } from "lucide-react";
 import { useEffect, useMemo, createContext, useContext } from "react";
 
 export interface SiteColor {
-  primary_color: string;
-  secondary_color: string;
-  others_color: string;
-  text_color: string;
+  primary_color: string | null;
+  secondary_color: string | null;
+  others_color: string | null;
+  text_color: string | null;
 }
 
 const DEFAULT_COLOR: SiteColor = {
@@ -45,7 +45,7 @@ export default function SiteColorProvider({
   if (isLoading)
     return (
       <div className="flex justify-center items-center text-gray-500 bg-white h-screen">
-        <Loader2 className="w-12 h-12 text-gray-500 animate-spin" />{" "}
+        <Loader2 className="w-14 h-14 text-gray-500 animate-spin" />{" "}
       </div>
     );
 
