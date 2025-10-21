@@ -1,5 +1,3 @@
-"use client"
-
 import { Providers } from "@/components/Providers";
 import "./globals.css";
 import Navbar from "@/components/Utility/Navbar";
@@ -8,7 +6,7 @@ import ScrollToTop from "@/components/Utility/ScrollToTop";
 import SiteColorProvider from "@/components/SiteColorProvider";
 import baseUrl from "@/apiConfig";
 
-async function generateMetadata() {
+export async function generateMetadata() {
   try {
     const res = await fetch(`${baseUrl()}institutes/`, {
       cache: "no-store",
