@@ -56,7 +56,7 @@ export default function ContactUs() {
       {/* Custom Alert */}
       {alert && (
         <div
-          className={`fixed top-4 right-4 z-50 p-5 rounded-xl shadow-2xl max-w-sm w-full transform transition-all duration-300 ${
+          className={`fixed top-1 right-1 z-50 p-5 rounded-xl shadow-2xl max-w-sm w-full transform transition-all duration-300 ${
             alert.type === "success"
               ? "bg-green-500 text-white"
               : "bg-red-500 text-white"

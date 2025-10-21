@@ -57,6 +57,7 @@ export interface OnlineAdmission {
   g_nid: string;
   status: "Aprove" | "Reject" | "Hold";
   avatar?: string;
+  note: string;
 }
 
 export const admissionApi = apiSlice.injectEndpoints({
@@ -76,11 +77,11 @@ export const admissionApi = apiSlice.injectEndpoints({
       providesTags: ["Batch"],
     }),
 
-    createOnlineAdmission: builder.mutation<any, OnlineAdmission>({
-      query: (newAdmission) => ({
+    createOnlineAdmission: builder.mutation<any, FormData>({
+      query: (formData) => ({
         url: "online-admissions/",
         method: "POST",
-        body: newAdmission,
+        body: formData,
       }),
       invalidatesTags: ["OnlineAdmission"],
     }),

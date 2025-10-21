@@ -119,7 +119,7 @@ export default function Navbar() {
       <div>
         <header className="fixed inset-x-0 top-0 z-50 bg-gray-50 shadow-lg">
           {/* Top Info Bar Skeleton */}
-          <div className="bg-gradient-to-r from-secondary to-primary h-12 hidden lg:block">
+          <div className="h-12 hidden lg:block">
             <div className="mx-auto max-w-7xl px-4 sm:px-6 lg:px-8">
               <div className="flex items-center justify-between h-12">
                 <div className="flex items-center space-x-4">
@@ -159,8 +159,9 @@ export default function Navbar() {
     );
   }
 
-  if (error)
-    return <p className="text-red-500 text-center">Failed to load data</p>;
+  if (error) {
+    return null;
+  }
 
   return (
     <div>
@@ -257,10 +258,10 @@ export default function Navbar() {
                 <div key={item.name} className="group relative">
                   <Link
                     href={item.href}
-                    className={`text-sm/6 font-medium text-[var(--color-text)] hover:text-[var(--color-primary)] transition-colors duration-200 px-3 py-2 rounded-md flex items-center gap-1 ${
+                    className={`text-sm/6 font-medium hover:text-[var(--color-primary)] transition-colors duration-200 px-3 py-2 rounded-md flex items-center gap-1 ${
                       isActive(item.href)
                         ? "bg-[var(--color-primary)]/10 text-[var(--color-primary)] font-bold"
-                        : ""
+                        : " text-[var(--color-text)]"
                     }`}
                   >
                     <IconComponent className="w-4 h-4" />
