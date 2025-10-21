@@ -2,10 +2,10 @@ import { apiSlice } from "../apiSlice";
 
 export interface SiteColor {
   id: number;
-  primary_color: string;
-  secondary_color: string;
-  others_color: string;
-  text_color: string;
+  primary_color: string | null;
+  secondary_color: string | null;
+  others_color: string | null;
+  text_color: string | null;
 }
 
 export const siteColorApi = apiSlice.injectEndpoints({

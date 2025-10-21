@@ -2,10 +2,10 @@ import { apiSlice } from "../apiSlice";
 
 export interface Committee {
   id: number;
-  name: string;
-  img: string;
-  degination: string;
-  status: string;
+  name: string | null;
+  img: string | null;
+  degination: string | null;
+  status: string | null;
 }
 
 export const committeeApi = apiSlice.injectEndpoints({

@@ -2,8 +2,8 @@ import { apiSlice } from "../apiSlice";
 
 export interface Teacher {
   id: number;
-  phone_number: string;
-  name: string;
+  phone_number: string | null;
+  name: string | null;
   avatar: string | null;
   designation: string | null;
 }

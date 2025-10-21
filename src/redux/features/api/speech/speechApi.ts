@@ -2,14 +2,14 @@ import { apiSlice } from "../apiSlice";
 
 export interface Speech {
   id: number;
-  sl: number;
-  title: string;
-  name: string;
-  img: string;
-  designation: string;
-  phone: string;
-  email: string;
-  speech: string;
+  sl: number | null;
+  title: string | null;
+  name: string | null;
+  img: string | null;
+  designation: string | null;
+  phone: string | null;
+  email: string | null;
+  speech: string | null;
 }
 
 export const speechApi = apiSlice.injectEndpoints({

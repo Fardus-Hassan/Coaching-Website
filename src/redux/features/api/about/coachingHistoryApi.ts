@@ -2,11 +2,11 @@ import { apiSlice } from "../apiSlice";
 
 export interface CoachingHistory {
   id: number;
-  heading: string;
-  description: string;
-  img: string;
-  video_link: string;
-  tag: string;
+  heading: string | null;
+  description: string | null;
+  img: string | null;
+  video_link: string | null;
+  tag: string | null;
 }
 
 export const coachingHistoryApi = apiSlice.injectEndpoints({

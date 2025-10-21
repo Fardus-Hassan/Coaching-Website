@@ -2,10 +2,10 @@ import { apiSlice } from "../apiSlice";
 
 export interface IconicStudent {
   id: number;
-  student_name: string;
-  image: string;
-  title: string;
-  description: string;
+  student_name: string | null;
+  image: string | null;
+  title: string | null;
+  description: string | null;
 }
 
 export const iconicStudentsApi = apiSlice.injectEndpoints({

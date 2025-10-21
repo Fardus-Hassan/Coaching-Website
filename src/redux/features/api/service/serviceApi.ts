@@ -2,8 +2,8 @@ import { apiSlice } from "../apiSlice";
 
 export interface Service {
   id: number;
-  service_name: string;
-  image: string;
+  service_name: string | null;
+  image: string | null;
 }
 
 export const serviceApi = apiSlice.injectEndpoints({
