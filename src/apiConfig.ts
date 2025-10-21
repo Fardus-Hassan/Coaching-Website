@@ -1,4 +1,4 @@
 export default function baseUrl() {
-  return "https://demo.coachingmanage.online/api/";
+  return "https://a1edu.coachingmanage.online/api/";
 }
 

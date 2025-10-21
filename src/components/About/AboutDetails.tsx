@@ -27,6 +27,13 @@ export default function AboutDetails() {
   const isLong = description.length > characterLimit;
   const displayText = isExpanded ? description : description.slice(0, characterLimit);
 
+
+  
+  if (historyData.length === 0 && qualitiesData.length === 0) {
+    return null;
+  }
+
+
   return (
     <div className="min-h-screen">
       {/* Main Content */}
