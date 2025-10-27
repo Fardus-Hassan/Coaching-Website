@@ -1,35 +1,13 @@
-// import { Loader2 } from "lucide-react";
-
-// export default async function Loading() {
-
-//     return (
-//       <div >
-//       <Loader2 className="w-14 h-14 text-gray-500 animate-spin" />
-//     </div>
-//     );
-//   }
-
+import baseUrl from "@/apiConfig";
 import Image from "next/image";
-import { getServerBaseUrl } from "../apiConfig";
-import { headers } from "next/headers";
+
 
 export default async function Loading() {
-  try {
-    const headersList = await headers();
-    const host = headersList.get('host') || '';
-    const apiUrl = getServerBaseUrl(host);
-    
-    // Add timeout to prevent hanging
-    const controller = new AbortController();
-    const timeoutId = setTimeout(() => controller.abort(), 5000); // 5 second timeout
-    
-    const res = await fetch(`${apiUrl}institutes/`, {
+  try {    
+    const res = await fetch(`${baseUrl()}institutes/`, {
       cache: "force-cache",
-      signal: controller.signal,
     });
     
-    clearTimeout(timeoutId);
-
     if (!res.ok) {
       throw new Error(`HTTP error! status: ${res.status}`);
     }

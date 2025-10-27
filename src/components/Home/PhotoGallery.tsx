@@ -37,18 +37,26 @@ export default function PhotoGallery({ isHomePage }: PhotoGalleryProps) {
       status: item.status,
     }));
 
-  const tabs: TabType[] = [
-    "All",
-    ...Array.from(new Set(galleryImages.map((img) => img.category))),
-  ];
+  // HomePage hole shudhu featured images filter kore nibo
+  const imagesToShow = isHomePage 
+    ? galleryImages.filter(img => img.featured)
+    : galleryImages;
 
-const filteredImages = galleryImages.filter((img) => {
-  const featuredFilter = isHomePage ? img.featured : true; 
-  
-  const tabFilter = activeTab === "All" || img.category === activeTab;
-  
-  return featuredFilter && tabFilter;
-});
+  // Categories imagesToShow theke nibo
+  const availableCategories = Array.from(new Set(imagesToShow.map(img => img.category)));
+
+  // Tabs create korbo
+  const tabs: TabType[] = imagesToShow.length > 0 
+    ? ["All", ...availableCategories]
+    : [];
+
+  const filteredImages = galleryImages.filter((img) => {
+    const featuredFilter = isHomePage ? img.featured : true; 
+    
+    const tabFilter = activeTab === "All" || img.category === activeTab;
+    
+    return featuredFilter && tabFilter;
+  });
 
   const displayedImages = isHomePage ? filteredImages.slice(0, 8) : filteredImages;
 
@@ -80,7 +88,13 @@ const filteredImages = galleryImages.filter((img) => {
     if (e.key === "ArrowLeft") prevImage();
   };
 
-  if (data.length === 0) {
+  // HomePage hole featured images na thakle kichui dekhabe na
+  if (isHomePage && !galleryImages.some(img => img.featured)) {
+    return null;
+  }
+
+  // Normal page e kono data na thakle dekhabe na
+  if (!isHomePage && data.length === 0) {
     return null;
   }
 
@@ -96,21 +110,23 @@ const filteredImages = galleryImages.filter((img) => {
         </div>
 
         {/* Filter Tabs */}
-        <div className="flex flex-wrap gap-3 mb-10">
-          {tabs.map((tab) => (
-            <button
-              key={tab}
-              onClick={() => setActiveTab(tab)}
-              className={`px-4 py-2 rounded-lg font-semibold text-sm transition-all duration-300 ${
-                activeTab === tab
-                  ? "bg-[var(--color-primary)] text-white shadow-lg scale-105"
-                  : "bg-white text-gray-700 hover:bg-gray-100 shadow-md hover:shadow-lg"
-              }`}
-            >
-              {tab}
-            </button>
-          ))}
-        </div>
+        {tabs.length > 0 && (
+          <div className="flex flex-wrap gap-3 mb-10">
+            {tabs.map((tab) => (
+              <button
+                key={tab}
+                onClick={() => setActiveTab(tab)}
+                className={`px-4 py-2 rounded-lg font-semibold text-sm transition-all duration-300 ${
+                  activeTab === tab
+                    ? "bg-[var(--color-primary)] text-white shadow-lg scale-105"
+                    : "bg-white text-gray-700 hover:bg-gray-100 shadow-md hover:shadow-lg"
+                }`}
+              >
+                {tab}
+              </button>
+            ))}
+          </div>
+        )}
 
         {/* Gallery Grid */}
         {isLoading ? (
@@ -145,6 +161,7 @@ const filteredImages = galleryImages.filter((img) => {
                     blurDataURL="data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAAEAAAABCAQAAAC1HAwCAAAAC0lEQVR4nGNgYAAAAAMAASsJTYQAAAAASUVORK5CYII="
                     sizes="(max-width: 640px) 100vw, (max-width: 1024px) 50vw, 25vw"
                     className="object-cover transform group-hover:scale-110 transition-transform duration-500"
+                    unoptimized
                   />
                 </div>
 
@@ -166,7 +183,7 @@ const filteredImages = galleryImages.filter((img) => {
           <div className="text-right mt-12">
             <Link href="/gallery">
               <button className="bg-[var(--color-primary)] hover:bg-[var(--color-primary)] text-white font-bold px-8 py-3 rounded-lg shadow-lg hover:shadow-xl transform hover:-translate-y-1 transition-all duration-300">
-                আরোও দেখুন
+                আরো দেখুন
               </button>
             </Link>
           </div>
@@ -238,7 +255,7 @@ const filteredImages = galleryImages.filter((img) => {
                 placeholder="blur"
                 blurDataURL="data:image/jpeg;base64,iVBORw0KGgoAAAANSUhEUgAAAAEAAAABCAQAAAC1HAwCAAAAC0lEQVR4nGNgYAAAAAMAASsJTYQAAAAASUVORK5CYII="
                 className="max-w-full max-h-full object-contain"
-                priority
+                unoptimized
               />
             </div>
 

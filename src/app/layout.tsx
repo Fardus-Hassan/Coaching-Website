@@ -4,16 +4,11 @@ import Navbar from "@/components/Utility/Navbar";
 import Footer from "@/components/Utility/Footer";
 import ScrollToTop from "@/components/Utility/ScrollToTop";
 import SiteColorProvider from "@/components/SiteColorProvider";
-import { getServerBaseUrl } from "@/apiConfig";
-import { headers } from "next/headers";
+import baseUrl from "@/apiConfig";
 
 export async function generateMetadata() {
   try {
-    const headersList = await headers();
-    const host = headersList.get('host') || '';
-    const apiUrl = getServerBaseUrl(host);
-    
-    const res = await fetch(`${apiUrl}institutes/`, {
+    const res = await fetch(`${baseUrl()}institutes/`, {
       cache: "force-cache",
     });
     const data = await res.json();

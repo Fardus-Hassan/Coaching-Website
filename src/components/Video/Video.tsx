@@ -20,9 +20,9 @@ export default function Video() {
   const [currentIndex, setCurrentIndex] = useState<number>(0);
   const { data = [], isLoading, error } = useGetVideoGalleriesQuery();
 
-  // Map API data to GalleryVideo format
+  // Map API data to GalleryVideo format - filter out videos without thumbnail or link
   const galleryVideos: GalleryVideo[] = data
-    .filter((item) => item.status === "ACTIVE")
+    .filter((item) => item.status === "ACTIVE" && item?.img && item?.link)
     .map((item) => ({
       id: item.id,
       thumbnail: item.img,
@@ -62,8 +62,31 @@ export default function Video() {
     if (e.key === "ArrowLeft") prevVideo();
   };
 
-  if (data.length === 0) {
-    return null;
+  // Loading or error state
+  if (error) return null;
+  if (isLoading || galleryVideos.length === 0) {
+    return isLoading ? (
+      <section className="py-12 lg:py-20 bg-gradient-to-b from-gray-50 to-gray-100">
+        <div className="mx-auto max-w-7xl px-4 sm:px-6 lg:px-8">
+          <div className="text-center mb-12">
+            <h2 className="text-2xl md:text-3xl font-extrabold text-gray-900">
+              ভিডিও <span className="text-[var(--color-primary)]">গ্যালারি</span>
+            </h2>
+            <div className="w-24 h-1 bg-gradient-to-r from-[var(--color-primary)] to-[var(--color-secondary)] mx-auto mt-3 rounded-full"></div>
+          </div>
+          <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-2 lg:gap-3">
+            {[...Array(6)].map((_, index) => (
+              <div
+                key={index}
+                className="relative overflow-hidden rounded-xl shadow-md"
+              >
+                <Skeleton height="100%" className="aspect-[4/3]" />
+              </div>
+            ))}
+          </div>
+        </div>
+      </section>
+    ) : null;
   }
 
   return (
@@ -78,62 +101,60 @@ export default function Video() {
         </div>
 
         {/* Video Grid */}
-        {isLoading ? (
-          <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-2 lg:gap-3">
-            {[...Array(6)].map((_, index) => (
-              <div
-                key={index}
-                className="relative overflow-hidden rounded-xl shadow-md"
-              >
-                <Skeleton height="100%" className="aspect-[4/3]" />
-              </div>
-            ))}
-          </div>
-        ) : error ? (
-          null
-        ) : filteredVideos.length === 0 ? (
-          null
-        ) : (
-          <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-2 lg:gap-3">
-            {filteredVideos.map((video, index) => (
-              <div
-                key={video.id}
-                onClick={() => openModal(video, index)}
-                className="group relative overflow-hidden rounded-xl shadow-md hover:shadow-2xl transition-all duration-300 cursor-pointer"
-              >
-                <div className="aspect-[4/3] overflow-hidden bg-gray-200 relative">
+        <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-2 lg:gap-3">
+          {filteredVideos.map((video, index) => (
+            <div
+              key={video.id}
+              onClick={() => openModal(video, index)}
+              className="group relative overflow-hidden rounded-xl shadow-md hover:shadow-2xl transition-all duration-300 cursor-pointer"
+            >
+              <div className="aspect-[4/3] overflow-hidden bg-gray-200 relative">
+                {video.thumbnail ? (
                   <Image
                     src={video.thumbnail}
-                    alt={video.heading}
+                    alt={video.heading || 'Video thumbnail'}
                     fill
                     placeholder="blur"
                     blurDataURL="data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAAEAAAABCAQAAAC1HAwCAAAAC0lEQVR4nGNgYAAAAAMAASsJTYQAAAAASUVORK5CYII="
                     className="object-cover transform group-hover:scale-110 transition-transform duration-500"
                     sizes="(max-width: 640px) 100vw, (max-width: 1024px) 50vw, 33vw"
                   />
-                  {/* Play Button Icon */}
-                  <div className="absolute inset-0 flex items-center justify-center z-10 transition-opacity duration-300">
+                ) : (
+                  <div className="w-full h-full bg-gray-300 flex items-center justify-center">
                     <svg
-                      className="w-16 h-16 text-white drop-shadow-lg"
+                      className="w-16 h-16 text-gray-400"
                       fill="currentColor"
                       viewBox="0 0 24 24"
                     >
                       <path d="M8 5v14l11-7z" />
                     </svg>
                   </div>
-                </div>
-
-                {/* Overlay with heading and sub_heading */}
-                <div className="absolute inset-0 bg-gradient-to-t from-black/70 via-black/50 to-transparent opacity-100 transition-opacity duration-300 flex items-end justify-center pb-4">
-                  <div className="transform translate-y-0 transition-transform duration-300 text-center">
-                    <p className="text-white font-semibold">{video.heading}</p>
-                    <p className="text-white text-sm mt-1 line-clamp-2">{video.sub_heading}</p>
-                  </div>
+                )}
+                
+                {/* Play Button Icon */}
+                <div className="absolute inset-0 flex items-center justify-center z-10 transition-opacity duration-300">
+                  <svg
+                    className="w-16 h-16 text-white drop-shadow-lg"
+                    fill="currentColor"
+                    viewBox="0 0 24 24"
+                  >
+                    <path d="M8 5v14l11-7z" />
+                  </svg>
                 </div>
               </div>
-            ))}
-          </div>
-        )}
+
+              {/* Overlay with heading and sub_heading */}
+              <div className="absolute inset-0 bg-gradient-to-t from-black/70 via-black/50 to-transparent opacity-100 transition-opacity duration-300 flex items-end justify-center pb-4">
+                <div className="transform translate-y-0 transition-transform duration-300 text-center px-2">
+                  <p className="text-white font-semibold">{video.heading}</p>
+                  {video.sub_heading && (
+                    <p className="text-white text-sm mt-1 line-clamp-2">{video.sub_heading}</p>
+                  )}
+                </div>
+              </div>
+            </div>
+          ))}
+        </div>
       </div>
 
       {/* Modal / Lightbox */}
@@ -193,19 +214,27 @@ export default function Video() {
             onClick={(e) => e.stopPropagation()}
           >
             <div className="relative w-full h-full flex items-center justify-center">
-              <iframe
-                src={selectedVideo.src.replace("youtu.be/", "www.youtube.com/embed/").split("?")[0]}
-                className="max-w-full max-h-full w-full aspect-video"
-                allow="autoplay; encrypted-media"
-                allowFullScreen
-                title={selectedVideo.heading}
-              ></iframe>
+              {selectedVideo.src ? (
+                <iframe
+                  src={selectedVideo.src.replace("youtu.be/", "www.youtube.com/embed/").split("?")[0]}
+                  className="max-w-full max-h-full w-full aspect-video"
+                  allow="autoplay; encrypted-media"
+                  allowFullScreen
+                  title={selectedVideo.heading || 'Video'}
+                ></iframe>
+              ) : (
+                <div className="bg-gray-800 text-white p-8 rounded-lg">
+                  <p>Video unavailable</p>
+                </div>
+              )}
             </div>
 
             {/* Video Info */}
-            <div className="absolute bottom-4 left-1/2 transform -translate-x-1/2 bg-black/70 text-white px-6 py-3 rounded-lg text-center">
+            <div className="absolute bottom-4 left-1/2 transform -translate-x-1/2 bg-black/70 text-white px-6 py-3 rounded-lg text-center max-w-2xl">
               <p className="font-semibold">{selectedVideo.heading}</p>
-              <p className="text-sm text-gray-300 mt-1 line-clamp-2">{selectedVideo.sub_heading}</p>
+              {selectedVideo.sub_heading && (
+                <p className="text-sm text-gray-300 mt-1 line-clamp-2">{selectedVideo.sub_heading}</p>
+              )}
               <p className="text-sm text-gray-300 mt-1">
                 {currentIndex + 1} / {filteredVideos.length}
               </p>

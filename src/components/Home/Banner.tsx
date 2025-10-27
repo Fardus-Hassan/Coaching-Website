@@ -50,9 +50,11 @@ export default function Banner() {
     return () => clearInterval(intervalId);
   }, [activeBanners]);
 
-
-
-  if (isLoading) {
+  // Error hole kichui dekhabe na
+  if (error) return null;
+  
+  // Loading hole ba active banner na thakle Skeleton dekhabe
+  if (isLoading || activeBanners.length === 0) {
     return (
       <div className="relative h-[calc(95vh-64px)] w-full overflow-hidden bg-gray-100">
         <Skeleton 
@@ -93,9 +95,6 @@ export default function Banner() {
       </div>
     );
   }
-
-  if (error) return null;
-  if (activeBanners.length === 0) return null;
 
   const currentBanner: Banner = activeBanners[currentIndex];
 
@@ -144,46 +143,18 @@ export default function Banner() {
 
         <div className="relative h-full flex items-end justify-start px-6 lg:px-12 pb-12 lg:pb-16 z-30">
           <div className="">
-            {(currentBanner?.heading || currentBanner?.description) && (
-              <div className={`content-transition ${isContentChanging ? 'opacity-0' : 'opacity-100'}`}>
-                {currentBanner?.heading ? (
-                  <h1 className="text-4xl font-bold tracking-tight text-white sm:text-5xl mb-4 lg:mb-6">
-                    {currentBanner?.heading}
-                  </h1>
-                ) : (
-                  <Skeleton 
-                    height={64} 
-                    width="75%" 
-                    baseColor="#d1d5db" 
-                    highlightColor="#e5e7eb"
-                    borderRadius={8}
-                    className="mb-4 lg:mb-6"
-                  />
-                )}
-                {currentBanner?.description ? (
-                  <p className="text-base sm:text-lg lg:text-xl font-medium text-gray-200 leading-relaxed max-w-2xl">
-                    {currentBanner?.description}
-                  </p>
-                ) : (
-                  <div className="space-y-2 max-w-2xl">
-                    <Skeleton 
-                      height={24} 
-                      width="100%" 
-                      baseColor="#d1d5db" 
-                      highlightColor="#e5e7eb"
-                      borderRadius={4}
-                    />
-                    <Skeleton 
-                      height={24} 
-                      width="85%" 
-                      baseColor="#d1d5db" 
-                      highlightColor="#e5e7eb"
-                      borderRadius={4}
-                    />
-                  </div>
-                )}
-              </div>
-            )}
+            <div className={`content-transition ${isContentChanging ? 'opacity-0' : 'opacity-100'}`}>
+              {currentBanner?.heading && (
+                <h1 className="text-4xl font-bold tracking-tight text-white sm:text-5xl mb-4 lg:mb-6">
+                  {currentBanner.heading}
+                </h1>
+              )}
+              {currentBanner?.description && (
+                <p className="text-base sm:text-lg lg:text-xl font-medium text-gray-200 leading-relaxed max-w-2xl">
+                  {currentBanner.description}
+                </p>
+              )}
+            </div>
           </div>
         </div>
       </div>
